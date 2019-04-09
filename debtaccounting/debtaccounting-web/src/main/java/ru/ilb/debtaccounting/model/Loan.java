@@ -18,11 +18,17 @@ import ru.ilb.debtaccounting.repositories.DebtStatusRepository;
 @Entity
 @DiscriminatorValue("1")
 public class Loan extends Debt implements Serializable {
-
+    
+    @Override
+    public void disburse() {
+        beforeDisburse();
+        processDisburse();
+        afterDisburse();
+    }
     /**
      * Перед выдачей
      */
-    protected void beforeDisburse() throws AlreadyDisbursedException {
+    protected void beforeDisburse() {
         if (getDebtStatus().getDisbursed()) {
             throw new AlreadyDisbursedException();
         }
@@ -42,11 +48,6 @@ public class Loan extends Debt implements Serializable {
         setDebtStatus(DebtStatusRepository.DISBURSED);
     }
 
-    @Override
-    public void disburse() {
-        beforeDisburse();
-        processDisburse();
-        afterDisburse();
-    }
+
 
 }

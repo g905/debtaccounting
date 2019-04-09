@@ -15,6 +15,8 @@
  */
 package ru.ilb.debtaccounting.model;
 
+import ru.ilb.debtaccounting.exceptions.AlreadyDisbursedException;
+
 /**
  *
  * @author slavb
@@ -24,5 +26,5 @@ public interface Disbursable {
     /**
      * Эмиссия долга
      */
-    public void disburse();
+    public void disburse()  throws AlreadyDisbursedException;
 }
