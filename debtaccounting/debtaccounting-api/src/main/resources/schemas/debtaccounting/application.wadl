@@ -1,0 +1,98 @@
+<application xmlns="http://wadl.dev.java.net/2009/02" 
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+             xmlns:command="urn:ru:ilb:debtaccounting:command"
+             xmlns:view="urn:ru:ilb:debtaccounting:view"
+             xmlns:core="urn:ru:ilb:debtaccounting:core"
+>    
+    <grammars>
+        <include href="command.xsd" />
+        <include href="view.xsd" />
+    </grammars>
+    <resources>
+        <resource path="/debts">
+            <method name="GET" id="list">
+                <doc>List of debts</doc>
+                <request>
+                    <param name="limit" style="query" type="xsd:int">
+                        <doc>limit number of debts returned</doc>
+                    </param>
+                    <param name="order" style="query" type="xsd:string">
+                        <doc>order of debts</doc>
+                    </param>
+                </request>
+                <response>
+                    <representation mediaType="application/xml" element="view:debts">
+                        <doc>list of debts</doc>
+                    </representation>
+                    <representation mediaType="application/json">
+                        <doc>list of debts</doc>
+                    </representation>
+                </response>
+            </method>
+            <method name="POST" id="create">
+                <doc>create new debt instance</doc>
+                <request>
+                    <representation mediaType="application/xml" element="view:debt">
+                        <doc>debt data</doc>
+                    </representation>
+                    <representation mediaType="application/json">
+                        <doc>debt data</doc>
+                    </representation>
+                </request>
+                <response>
+                    <representation mediaType="text/plain">
+                        <param name="result" style="plain" type="xsd:long">
+                            <doc>debt data</doc>
+                        </param>
+                    </representation>
+                </response>
+            </method>
+            <resource path="/{debtId}">
+                <param name="debtId" style="template" type="xsd:long">
+                    <doc>debt id</doc>
+                </param>
+                <method name="DELETE" id="remove">
+                    <doc>remove debt instance</doc>
+                    <request></request>
+                    <response status="204"></response>
+                </method>
+                <method name="GET" id="find">
+                    <doc>get debt instance</doc>
+                    <request></request>
+                    <response>
+                        <representation mediaType="application/xml" element="view:debt">
+                            <doc>debt data</doc>
+                        </representation>
+                        <representation mediaType="application/json">
+                            <doc>debt data</doc>
+                        </representation>
+                        <representation mediaType="application/xhtml+xml">
+                            <doc>debt data</doc>
+                        </representation>                        
+                    </response>
+                </method>
+                <method name="PUT" id="edit">
+                    <doc>edit debt instance</doc>
+                    <request>
+                        <representation mediaType="application/xml" element="view:debt">
+                            <doc>debt data</doc>
+                        </representation>
+                        <representation mediaType="application/json">
+                            <doc>debt data</doc>
+                        </representation>
+                    </request>
+                    <response status="204"></response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/heartbeat">
+            <method name="GET" id="heartbeat">
+                <response>
+                    <representation mediaType="*/*">
+                        <param name="result" style="plain" type="xsd:string"></param>
+                    </representation>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>
