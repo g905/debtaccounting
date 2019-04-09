@@ -17,12 +17,32 @@
             <xsd:documentation>read options</xsd:documentation>
         </xsd:annotation>
         <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="WITH_DOCFILE">
+            <xsd:enumeration value="WITH_ACCOUNT">
                 <xsd:annotation>
-                    <xsd:documentation>with docfile</xsd:documentation>
+                    <xsd:documentation>со счетами</xsd:documentation>
                 </xsd:annotation>
             </xsd:enumeration>
         </xsd:restriction>
     </xsd:simpleType>
-    
+
+
+    <xsd:simpleType name="debtStatusCode">
+        <xsd:annotation>
+            <xsd:documentation>код статуса долга</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="PENDING">
+                <xsd:annotation>
+                    <xsd:documentation>Ожидание выдачи</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DISBURSED">
+                <xsd:annotation>
+                    <xsd:documentation>Выдан</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+
+        </xsd:restriction>
+    </xsd:simpleType>
+
 </xsd:schema>

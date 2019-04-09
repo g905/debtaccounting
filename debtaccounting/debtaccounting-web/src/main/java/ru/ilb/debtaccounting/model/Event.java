@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.*;
 /**
  * @author slavb
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class Event implements Serializable {

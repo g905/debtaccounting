@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.*;
 /**
  * @author slavb
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

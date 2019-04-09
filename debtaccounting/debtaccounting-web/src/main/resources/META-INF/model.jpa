@@ -7,6 +7,9 @@
             <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155479065881382" v="true" xvt="" name="debtStatus" id="_155479068635888">
                 <jpa:xwm/>
                 <jpa:xm/>
+                <jpa:bv>
+                    <jpa:nn m="Статус должен быть заполнен"/>
+                </jpa:bv>
             </jpa:many-to-one>
             <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478925652110" connected-attribute-id="_155478966206224" v="true" xvt="" name="events" id="_155478966206325">
                 <jpa:xwm/>
@@ -26,8 +29,8 @@
             <jpa:query>Select e from Debt e</jpa:query>
         </jpa:nq>
         <jpa:inheritance strategy="SINGLE_TABLE"/>
-        <jpa:discriminator-value></jpa:discriminator-value>
-        <jpa:discriminator-column name="0" discriminator-type="INTEGER" column-definition="" length="30"/>
+        <jpa:discriminator-value>0</jpa:discriminator-value>
+        <jpa:discriminator-column name="" discriminator-type="INTEGER" column-definition="" length="30"/>
     </jpa:entity>
     <jpa:entity compositePrimaryKeyClass="EventPK" abs="false" class="Event" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478925652110">
         <jpa:ath>slavb</jpa:ath>
@@ -235,14 +238,33 @@
         <jpa:discriminator-value>1</jpa:discriminator-value>
     </jpa:entity>
     <jpa:entity compositePrimaryKeyClass="DebtStatusPK" abs="false" class="DebtStatus" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155479065881382">
+        <jpa:hc e="true">
+            <jpa:a>_155479067419885</jpa:a>
+        </jpa:hc>
+        <jpa:eq e="true">
+            <jpa:a>_155479067419885</jpa:a>
+        </jpa:eq>
+        <jpa:con am="PUBLIC" e="true">
+            <jpa:a>_155479065882383</jpa:a>
+            <jpa:a>_155479067419885</jpa:a>
+            <jpa:a>_155479067626286</jpa:a>
+        </jpa:con>
+        <jpa:con am="PUBLIC" e="true"/>
         <jpa:des>Статус долга</jpa:des>
         <jpa:ath>slavb</jpa:ath>
         <jpa:attributes>
-            <jpa:basic attribute-type="String" v="true" xvt="" name="code" id="_155479067419885">
+            <jpa:basic attribute-type="ru.ilb.debtaccounting.core.DebtStatusCode" v="true" xvt="" name="code" id="_155479067419885">
+                <jpa:des>код</jpa:des>
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:enumerated>STRING</jpa:enumerated>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_155479067626286">
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
-            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_155479067626286">
+            <jpa:basic attribute-type="boolean" v="true" xvt="" name="disbursed" id="_155479236948136">
+                <jpa:des>Выдан</jpa:des>
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
@@ -260,6 +282,9 @@
         </jpa:nq>
         <jpa:nq e="false" name="DebtStatus.findByName">
             <jpa:query>Select d from DebtStatus d where d.name=:name</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="DebtStatus.findByDisbursed">
+            <jpa:query>Select d from DebtStatus d where d.disbursed=:disbursed</jpa:query>
         </jpa:nq>
     </jpa:entity>
     <jpa:snp loc="BEFORE_PACKAGE" e="true">/**

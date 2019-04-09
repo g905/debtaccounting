@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.*;
 /**
  * @author slavb
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @DiscriminatorValue("1")
