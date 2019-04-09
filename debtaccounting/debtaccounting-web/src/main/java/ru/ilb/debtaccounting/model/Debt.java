@@ -6,6 +6,8 @@ package ru.ilb.debtaccounting.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -37,11 +39,11 @@ public abstract class Debt implements Serializable, Disbursable {
     @NotNull(message = "Статус должен быть заполнен")
     private DebtStatus debtStatus;
 
-    @OneToMany(mappedBy = "debt")
+    @OneToMany(mappedBy = "debt", cascade = CascadeType.ALL)
     @XmlTransient
     private List<Event> events;
 
-    @OneToMany(mappedBy = "debt")
+    @OneToMany(mappedBy = "debt", cascade = CascadeType.ALL)
     @XmlTransient
     private List<DebtAccount> debtAccounts;
 
@@ -121,6 +123,10 @@ public abstract class Debt implements Serializable, Disbursable {
     public void removeDebtAccount(DebtAccount debtAccount) {
         getDebtAccounts().remove(debtAccount);
         debtAccount.setDebt(null);
+    }
+
+    public Optional<DebtAccount> getDebtAccount(Class<? extends DebtAccount> type) {
+        return getDebtAccounts().stream().filter(da -> type.isAssignableFrom(da.getClass())).findFirst();
     }
 
 }

@@ -18,13 +18,14 @@ import ru.ilb.debtaccounting.repositories.DebtStatusRepository;
 @Entity
 @DiscriminatorValue("1")
 public class Loan extends Debt implements Serializable {
-    
+
     @Override
     public void disburse() {
         beforeDisburse();
         processDisburse();
         afterDisburse();
     }
+
     /**
      * Перед выдачей
      */
@@ -38,6 +39,28 @@ public class Loan extends Debt implements Serializable {
      * Выдача
      */
     protected void processDisburse() {
+        createAccounts();
+        executeEvents();
+    }
+
+    /**
+     * Создат счета
+     * 1. Создать счет основного долга
+     */
+    protected void createAccounts() {
+        DebtBalance debtBalance = new DebtBalance();
+        addDebtAccount(debtBalance);
+        Account account = new Account();
+        account.addDebtAccount(debtBalance);
+    }
+
+    /**
+     * Исполнить события
+     */
+    protected void executeEvents() {
+        DisbursementEvent disbursementEvent = new DisbursementEvent();
+        addEvent(disbursementEvent);
+        disbursementEvent.execute();
     }
 
     /**
@@ -47,7 +70,5 @@ public class Loan extends Debt implements Serializable {
     protected void afterDisburse() {
         setDebtStatus(DebtStatusRepository.DISBURSED);
     }
-
-
 
 }

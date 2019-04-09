@@ -91,4 +91,6 @@ public abstract class Transaction implements Serializable {
         semiTransaction.setTransaction(null);
     }
 
+    public abstract void execute();
+
 }

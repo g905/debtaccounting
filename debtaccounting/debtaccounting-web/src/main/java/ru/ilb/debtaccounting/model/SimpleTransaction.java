@@ -25,6 +25,14 @@ public class SimpleTransaction extends Transaction implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Account credit;
 
+    public SimpleTransaction(Account debit, Account credit) {
+        this.debit = debit;
+        this.credit = credit;
+    }
+
+    public SimpleTransaction() {
+    }
+
     public Account getDebit() {
         return debit;
     }
@@ -49,6 +57,14 @@ public class SimpleTransaction extends Transaction implements Serializable {
     public SimpleTransaction withCredit(Account credit) {
         this.credit = credit;
         return this;
+    }
+
+    @Override
+    public void execute() {
+        if (debit != null) {
+            
+        }
+        
     }
 
 }

@@ -20,6 +20,7 @@
     <class>ru.ilb.debtaccounting.model.AccountBalance</class>
     <class>ru.ilb.debtaccounting.model.Loan</class>
     <class>ru.ilb.debtaccounting.model.DebtStatus</class>
+    <class>ru.ilb.debtaccounting.model.DisbursementEvent</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <!-- ГЕНЕРАЦИЯ МЕТАДАННЫХ НА ОСНОВЕ МОДЕЛИ -->
