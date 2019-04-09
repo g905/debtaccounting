@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" ptype="MONOLITH" ppkg="ru.ilb.debtaccounting" epkg="model" v="3.1" rws="_14881688460591" Pws="_14881688460591" cws="_14881688460591" persistenceUnitName="debtaccounting" sm="false" xs="true" id="_14855761330684" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
     <jpa:description>debtaccounting model</jpa:description>
-    <jpa:entity compositePrimaryKeyClass="DebtPK" abs="false" class="Debt" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_15547892496197">
+    <jpa:entity compositePrimaryKeyClass="DebtPK" abs="true" class="Debt" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_15547892496197">
         <jpa:ath>slavb</jpa:ath>
         <jpa:attributes>
             <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155479065881382" v="true" xvt="" name="debtStatus" id="_155479068635888">
@@ -29,10 +29,9 @@
             <jpa:query>Select e from Debt e</jpa:query>
         </jpa:nq>
         <jpa:inheritance strategy="SINGLE_TABLE"/>
-        <jpa:discriminator-value>0</jpa:discriminator-value>
         <jpa:discriminator-column name="" discriminator-type="INTEGER" column-definition="" length="30"/>
     </jpa:entity>
-    <jpa:entity compositePrimaryKeyClass="EventPK" abs="false" class="Event" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478925652110">
+    <jpa:entity compositePrimaryKeyClass="EventPK" abs="true" class="Event" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478925652110">
         <jpa:ath>slavb</jpa:ath>
         <jpa:attributes>
             <jpa:basic attribute-type="java.time.LocalDate" v="true" xvt="" name="date" id="_155479029845376">
@@ -60,7 +59,7 @@
             <jpa:query>Select e from Event e where e.date=:date</jpa:query>
         </jpa:nq>
     </jpa:entity>
-    <jpa:entity compositePrimaryKeyClass="TransactionPK" abs="false" class="Transaction" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478964715420">
+    <jpa:entity compositePrimaryKeyClass="TransactionPK" abs="true" class="Transaction" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478964715420">
         <jpa:ath>slavb</jpa:ath>
         <jpa:attributes>
             <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155478925652110" connected-attribute-id="_155478966997628" v="true" xvt="" name="event" id="_155478966997427">
@@ -81,7 +80,6 @@
             <jpa:query>Select e from Transaction e</jpa:query>
         </jpa:nq>
         <jpa:inheritance strategy="SINGLE_TABLE"/>
-        <jpa:discriminator-value>0</jpa:discriminator-value>
         <jpa:discriminator-column name="" discriminator-type="INTEGER" column-definition="" length="30"/>
     </jpa:entity>
     <jpa:entity compositePrimaryKeyClass="SimpleTransactionPK" abs="false" class="SimpleTransaction" superclassId="_155478964715420" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478975644629">

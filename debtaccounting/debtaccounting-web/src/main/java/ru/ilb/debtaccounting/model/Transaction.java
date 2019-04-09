@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,9 +25,8 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorValue("0")
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.INTEGER)
-public class Transaction implements Serializable {
+public abstract class Transaction implements Serializable {
 
     @Id
     @GeneratedValue

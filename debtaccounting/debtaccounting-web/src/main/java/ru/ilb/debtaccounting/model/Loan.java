@@ -7,6 +7,8 @@ import java.io.Serializable;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.xml.bind.annotation.*;
+import ru.ilb.debtaccounting.exceptions.AlreadyDisbursedException;
+import ru.ilb.debtaccounting.repositories.DebtStatusRepository;
 
 /**
  * @author slavb
@@ -16,5 +18,35 @@ import javax.xml.bind.annotation.*;
 @Entity
 @DiscriminatorValue("1")
 public class Loan extends Debt implements Serializable {
+
+    /**
+     * Перед выдачей
+     */
+    protected void beforeDisburse() throws AlreadyDisbursedException {
+        if (getDebtStatus().getDisbursed()) {
+            throw new AlreadyDisbursedException();
+        }
+    }
+
+    /**
+     * Выдача
+     */
+    protected void processDisburse() {
+    }
+
+    /**
+     * После выдачи
+     * 1. Установить статус Выдан
+     */
+    protected void afterDisburse() {
+        setDebtStatus(DebtStatusRepository.DISBURSED);
+    }
+
+    @Override
+    public void disburse() {
+        beforeDisburse();
+        processDisburse();
+        afterDisburse();
+    }
 
 }

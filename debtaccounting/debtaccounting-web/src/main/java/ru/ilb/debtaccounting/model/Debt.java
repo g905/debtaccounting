@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,18 +18,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
-import ru.ilb.debtaccounting.exceptions.AlreadyDisbursedException;
-import ru.ilb.debtaccounting.repositories.DebtStatusRepository;
 
 /**
  * @author slavb
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorValue("0")
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.INTEGER)
-public class Debt implements Serializable {
+public abstract class Debt implements Serializable, Disbursable {
 
     @Id
     @GeneratedValue
@@ -124,40 +121,6 @@ public class Debt implements Serializable {
     public void removeDebtAccount(DebtAccount debtAccount) {
         getDebtAccounts().remove(debtAccount);
         debtAccount.setDebt(null);
-    }
-
-    /**
-     * Выдача долга
-     */
-    public void disburse() throws AlreadyDisbursedException {
-        beforeDisburse();
-        processDisburse();
-        afterDisburse();
-    }
-
-    /**
-     * Перед выдачей
-     */
-    protected void beforeDisburse() throws AlreadyDisbursedException {
-        if (debtStatus.getDisbursed()) {
-            throw new AlreadyDisbursedException();
-        }
-
-    }
-
-    /**
-     * Выдача
-     */
-    protected void processDisburse() {
-    }
-
-    /**
-     * После выдачи
-     * 1. Установить статус Выдан
-     */
-    protected void afterDisburse() {
-        debtStatus = DebtStatusRepository.DISBURSED;
-
     }
 
 }

@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Event implements Serializable {
+public abstract class Event implements Serializable {
 
     @Id
     @GeneratedValue
