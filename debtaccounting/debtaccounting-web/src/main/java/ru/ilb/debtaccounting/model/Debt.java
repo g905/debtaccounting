@@ -20,6 +20,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
+import ru.ilb.debtaccounting.exceptions.AlreadyDisbursedException;
 
 /**
  * @author slavb
@@ -29,7 +30,7 @@ import javax.xml.bind.annotation.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.INTEGER)
-public abstract class Debt implements Serializable, Disbursable {
+public class Debt implements Serializable, Disbursable {
 
     @Id
     @GeneratedValue
@@ -127,6 +128,11 @@ public abstract class Debt implements Serializable, Disbursable {
 
     public Optional<DebtAccount> getDebtAccount(Class<? extends DebtAccount> type) {
         return getDebtAccounts().stream().filter(da -> type.isAssignableFrom(da.getClass())).findFirst();
+    }
+
+    @Override
+    public void disburse() throws AlreadyDisbursedException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

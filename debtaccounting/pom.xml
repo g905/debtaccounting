@@ -32,6 +32,7 @@
     <modules>
         <module>debtaccounting-web</module>
         <module>debtaccounting-api</module>
+        <module>debtaccounting-model</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,9 +42,7 @@
         <doclint>none</doclint>
         <apache-cxf.version>3.3.3</apache-cxf.version>
         <eclipselink.version>2.7.4</eclipselink.version>
-        <ilb-common.version>1.29</ilb-common.version>
-        <maven-source-plugin.version>2.4</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
+        <ilb-common.version>1.30</ilb-common.version>
     </properties>
     <build>
         <pluginManagement>

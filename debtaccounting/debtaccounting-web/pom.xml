@@ -29,7 +29,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>        
     </properties>
 
-
     <dependencyManagement>
         <dependencies>
             <!-- fix jcabi-aspects aspectjrt=1.8.7 -->
@@ -226,29 +225,11 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-connector.version}</version>
         </dependency>
-
-        <!-- playing with jpa-rs
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.dbws</artifactId>
-            <version>${eclipselink.version}</version>
-            <type>jar</type>
-        </dependency>-->
-
-        <!-- uncomment to enable @Cacheable support
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>23.2-jre</version>
-        </dependency>
-        -->
-        <!-- caffeine @Cacheable support -->
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
             <version>2.6.2</version>
         </dependency>
-
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>

@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.ilb.debtaccounting.api.DebtsResource;
 import ru.ilb.debtaccounting.logic.DebtLogic;
 import ru.ilb.debtaccounting.mappers.DebtMapper;
-import ru.ilb.debtaccounting.utils.JaxbHelper;
 import ru.ilb.debtaccounting.repositories.DebtRepository;
 import ru.ilb.debtaccounting.providers.AuthorizationHandler;
 import ru.ilb.debtaccounting.view.Debt;
@@ -29,9 +28,6 @@ public class DebtsResourceImpl implements DebtsResource {
 
     @Autowired
     AuthorizationHandler authorizationHandler;
-
-    @Autowired
-    JaxbHelper jaxbHelper;
 
     @Autowired
     private DebtMapper debtMapper;
