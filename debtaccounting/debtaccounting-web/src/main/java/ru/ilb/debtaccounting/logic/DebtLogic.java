@@ -29,11 +29,11 @@ import ru.ilb.debtaccounting.repositories.DebtRepository;
 public class DebtLogic {
     @Autowired
     DebtRepository documentRepository;
-    
+
     @Loggable(Loggable.INFO)
     public Debt getDebt(long documentId){
-        return documentRepository.findOne(documentId);
+        return documentRepository.getOne(documentId);
     }
-    
-    
+
+
 }

@@ -15,7 +15,6 @@
  */
 package ru.ilb.debtaccounting.web;
 
-import io.swagger.annotations.Api;
 import java.sql.Connection;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,7 +27,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @author slavb
  */
 @Path("heartbeat")
-@Api("heartbeat")
 public class Heartbeat {
 
     @PersistenceContext(unitName = "debtaccounting")

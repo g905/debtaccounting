@@ -5,11 +5,10 @@
  */
 package ru.ilb.debtaccounting.web;
 
-import io.swagger.annotations.Api;
+import javax.inject.Named;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import org.apache.cxf.jaxrs.ext.search.SearchContext;
 import org.apache.cxf.jaxrs.ext.xml.XSLTTransform;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +22,7 @@ import ru.ilb.debtaccounting.view.Debt;
 import ru.ilb.debtaccounting.view.Debts;
 
 @Path("debts")
-@Api("debts")
+@Named
 public class DebtsResourceImpl implements DebtsResource {
 
     @Autowired
@@ -31,8 +30,8 @@ public class DebtsResourceImpl implements DebtsResource {
 
     @Autowired
     private DebtMapper debtMapper;
-    
-    @Autowired 
+
+    @Autowired
     private DebtLogic debtLogic;
 
     private UriInfo uriInfo;
@@ -44,13 +43,6 @@ public class DebtsResourceImpl implements DebtsResource {
 
     @Autowired
     DebtRepository debtRepository;
-
-    private SearchContext searchContext;
-
-    @Context
-    public void setSearchContext(SearchContext searchContext) {
-        this.searchContext = searchContext;
-    }
 
     private static final Logger LOG = LoggerFactory.getLogger(DebtsResourceImpl.class);
 

@@ -16,29 +16,31 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <mysql-connector.version>8.0.13</mysql-connector.version>
-        <eclipselink.version>2.7.4</eclipselink.version>
         <javax-persistence.version>2.2.1</javax-persistence.version>
-        <javax.ws.rs-api.version>2.1</javax.ws.rs-api.version>
-        <org.springframework.version>5.1.5.RELEASE</org.springframework.version>
-        <swagger.ui.version>2.2.10-1</swagger.ui.version>
-        <maven.test.skip>false</maven.test.skip>
-        <maven.tomcat.skip>true</maven.tomcat.skip>
+        <javax.ws.rs-api.version>2.1.1</javax.ws.rs-api.version>
+        <spring.boot.version>2.1.9.RELEASE</spring.boot.version>
+        <swagger.ui.version>3.22.2</swagger.ui.version>
         <org.mapstruct.version>1.3.0.Final</org.mapstruct.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>        
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <!-- fix jcabi-aspects aspectjrt=1.8.7 -->
-            <dependency>
+<!--            <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjrt</artifactId>
                 <version>1.8.13</version>
-            </dependency>        
+            </dependency>-->
+            <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
-    </dependencyManagement>        
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -50,16 +52,16 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-jdk8</artifactId>
             <version>${org.mapstruct.version}</version>
-        </dependency>        
+        </dependency>
         <dependency>
             <groupId>com.migesok</groupId>
             <artifactId>jaxb-java-time-adapters</artifactId>
-            <version>1.1.3</version>        
+            <version>1.1.3</version>
         </dependency>
         <dependency>
             <groupId>ru.ilb.debtaccounting</groupId>
             <artifactId>debtaccounting-api</artifactId>
-            <version>1.0-SNAPSHOT</version>        
+            <version>1.0-SNAPSHOT</version>
         </dependency>
         <!-- @com.jcabi.aspects.Loggable and other, see http://www.yegor256.com/2014/06/01/aop-aspectj-java-method-logging.html-->
         <dependency>
@@ -71,22 +73,30 @@
         <dependency>
             <groupId>ru.ilb.aspectlock</groupId>
             <artifactId>redisson-aspect-lock</artifactId>
-            <version>1.1</version>        
+            <version>1.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+            <artifactId>cxf-spring-boot-starter-jaxrs</artifactId>
             <version>${apache-cxf.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-rs-extension-search</artifactId>
-            <version>${apache-cxf.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-rs-client</artifactId>
-            <version>${apache-cxf.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-entitymanager</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
@@ -99,11 +109,6 @@
             <version>${apache-cxf.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>5.2.4.Final</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-rs-extension-providers</artifactId>
             <version>${apache-cxf.version}</version>
@@ -111,6 +116,11 @@
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-rs-service-description</artifactId>
+            <version>${apache-cxf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-service-description-openapi-v3</artifactId>
             <version>${apache-cxf.version}</version>
         </dependency>
         <dependency>
@@ -135,55 +145,18 @@
             <version>${swagger.ui.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-rs-service-description-swagger</artifactId>
-            <version>${apache-cxf.version}</version>
+            <groupId>ru.ilb.common</groupId>
+            <artifactId>common-springboot</artifactId>
+            <version>${ilb-common.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.10</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aspects</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>${org.springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
-            <version>1.10.5.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.marschall</groupId>
-            <artifactId>threeten-jpa</artifactId>
-            <version>1.5.1</version>
         </dependency>
         <dependency>
             <groupId>cglib</groupId>
@@ -193,7 +166,6 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish</groupId>
@@ -223,12 +195,15 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql-connector.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
-            <version>2.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
@@ -241,9 +216,13 @@
     <build>
         <finalName>${project.name}</finalName>
 
-        
+
         <plugins>
-            
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -409,5 +388,5 @@
         </profile>
 
     </profiles>
-    
+
 </project>
