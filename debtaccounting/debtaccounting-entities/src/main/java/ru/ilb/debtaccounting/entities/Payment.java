@@ -15,12 +15,29 @@
  */
 package ru.ilb.debtaccounting.entities;
 
-import ru.ilb.debtaccounting.entities.Event;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
- * Просроченная выплата
+ *
  * @author slavb
  */
-public class OverduePaymentEvent extends Event {
+public class Payment {
+
+    /**
+     * Тип платежа
+     */
+    PaymentTypeCode type;
+
+    /**
+     * Дата платежа
+     */
+    LocalDate date;
+
+
+    /**
+     * Сумма платежа
+     */
+    BigDecimal amount;
 
 }

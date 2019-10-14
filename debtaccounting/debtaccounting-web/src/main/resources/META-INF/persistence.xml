@@ -13,7 +13,7 @@
     <class>ru.ilb.debtaccounting.model.AccountBalance</class>
     <class>ru.ilb.debtaccounting.model.Loan</class>
     <class>ru.ilb.debtaccounting.model.DebtStatus</class>
-    <class>ru.ilb.debtaccounting.model.DisbursementEvent</class>
+    <class>ru.ilb.debtaccounting.model.DisburseEvent</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>

@@ -303,12 +303,12 @@
             <jpa:query>Select d from DebtStatus d where d.disbursed=:disbursed</jpa:query>
         </jpa:nq>
     </jpa:entity>
-    <jpa:entity compositePrimaryKeyClass="DisbursementEventPK" abs="false" class="DisbursementEvent" superclassId="_155478925652110" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_1554798818005107">
+    <jpa:entity compositePrimaryKeyClass="DisburseEventPK" abs="false" class="DisburseEvent" superclassId="_155478925652110" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_1554798818005107">
         <jpa:des>Событие выдачи</jpa:des>
         <jpa:ath>slavb</jpa:ath>
         <jpa:attributes/>
-        <jpa:nq e="false" name="DisbursementEvent.findAll">
-            <jpa:query>Select e from DisbursementEvent e</jpa:query>
+        <jpa:nq e="false" name="DisburseEvent.findAll">
+            <jpa:query>Select e from DisburseEvent e</jpa:query>
         </jpa:nq>
         <jpa:discriminator-value>1</jpa:discriminator-value>
     </jpa:entity>

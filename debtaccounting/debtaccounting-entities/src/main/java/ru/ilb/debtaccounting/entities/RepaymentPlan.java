@@ -15,12 +15,12 @@
  */
 package ru.ilb.debtaccounting.entities;
 
-import ru.ilb.debtaccounting.entities.Event;
+import java.util.List;
 
 /**
- * Просроченная выплата
+ * График погашения
  * @author slavb
  */
-public class OverduePaymentEvent extends Event {
-
+public class RepaymentPlan {
+    private List<Payment> payments;
 }

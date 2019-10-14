@@ -17,7 +17,7 @@ import ru.ilb.debtaccounting.exceptions.AccountNotFoundException;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @DiscriminatorValue("1")
-public class DisbursementEvent extends Event implements Serializable {
+public class DisburseEvent extends Event implements Serializable {
 
     /**
      * Исполнить событие

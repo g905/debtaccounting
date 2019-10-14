@@ -33,6 +33,8 @@
         <module>debtaccounting-web</module>
         <module>debtaccounting-api</module>
         <module>debtaccounting-model</module>
+        <module>debtaccounting-entities</module>
+        <module>debtaccounting-core</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

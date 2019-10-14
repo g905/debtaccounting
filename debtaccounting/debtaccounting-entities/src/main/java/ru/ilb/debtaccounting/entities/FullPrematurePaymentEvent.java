@@ -15,6 +15,8 @@
  */
 package ru.ilb.debtaccounting.entities;
 
+import ru.ilb.debtaccounting.entities.Event;
+
 /**
  * Полное досрочное погашение
  * @author slavb

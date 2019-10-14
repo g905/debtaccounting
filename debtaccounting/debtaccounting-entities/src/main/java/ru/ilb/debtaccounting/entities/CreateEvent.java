@@ -15,12 +15,16 @@
  */
 package ru.ilb.debtaccounting.entities;
 
-import ru.ilb.debtaccounting.entities.Event;
-
 /**
- * Просроченная выплата
+ * Создание долга
  * @author slavb
  */
-public class OverduePaymentEvent extends Event {
+public class CreateEvent extends Event {
+
+    /**
+     * График погашения
+     */
+    RepaymentPlan repaymentPlan;
+
 
 }

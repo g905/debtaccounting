@@ -13,14 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.ilb.debtaccounting.entities;
+package ru.ilb.debtaccounting.core.events;
 
-import ru.ilb.debtaccounting.entities.Event;
+import ru.ilb.debtaccounting.entities.DisburseEvent;
+import ru.ilb.debtaccounting.entities.EventHandler;
 
 /**
- * Просроченная выплата
+ *
  * @author slavb
  */
-public class OverduePaymentEvent extends Event {
+public class DisburseEventHandler extends EventHandler<DisburseEvent>{
+
+    @Override
+    public void process(DisburseEvent event) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

@@ -58,9 +58,9 @@ public class Loan extends Debt implements Serializable {
      * Исполнить события
      */
     protected void executeEvents() {
-        DisbursementEvent disbursementEvent = new DisbursementEvent();
-        addEvent(disbursementEvent);
-        disbursementEvent.execute();
+        DisburseEvent DisburseEvent = new DisburseEvent();
+        addEvent(DisburseEvent);
+        DisburseEvent.execute();
     }
 
     /**
