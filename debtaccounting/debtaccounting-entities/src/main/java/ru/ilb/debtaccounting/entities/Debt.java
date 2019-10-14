@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 slavb.
+ * Copyright 2019 Bystrobank.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,43 @@ import java.time.LocalDate;
  *
  * @author slavb
  */
-public class Debt {
+public abstract class Debt {
 
     /**
      * Дата выдачи
      */
     LocalDate disbursementDate;
 
+    DebtStatusCode status;
+
+    /**
+     * График погашения
+     */
+    RepaymentPlan repaymentPlan;
+
+    public LocalDate getDisbursementDate() {
+        return disbursementDate;
+    }
+
+    public void setDisbursementDate(LocalDate disbursementDate) {
+        this.disbursementDate = disbursementDate;
+    }
+
+    public RepaymentPlan getRepaymentPlan() {
+        return repaymentPlan;
+    }
+
+    public void setRepaymentPlan(RepaymentPlan repaymentPlan) {
+        this.repaymentPlan = repaymentPlan;
+    }
+
+    public DebtStatusCode getStatus() {
+        return status;
+    }
+
+    public void setStatus(DebtStatusCode status) {
+        this.status = status;
+    }
+
+    
 }

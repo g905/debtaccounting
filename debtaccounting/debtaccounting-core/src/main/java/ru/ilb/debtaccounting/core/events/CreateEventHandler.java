@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 slavb.
+ * Copyright 2019 Bystrobank.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +16,20 @@
 package ru.ilb.debtaccounting.core.events;
 
 import ru.ilb.debtaccounting.entities.CreateEvent;
+import ru.ilb.debtaccounting.entities.DebtStatusCode;
 import ru.ilb.debtaccounting.entities.EventHandler;
+import ru.ilb.debtaccounting.entities.Loan;
 
 /**
  *
  * @author slavb
  */
-public class CreateEventHandler extends EventHandler<CreateEvent>{
+public class CreateEventHandler extends EventHandler<CreateEvent,Loan>{
 
     @Override
     public void process(CreateEvent event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        debt.setRepaymentPlan(event.getRepaymentPlan());
+        debt.setStatus(DebtStatusCode.CREATED);
     }
 
 }

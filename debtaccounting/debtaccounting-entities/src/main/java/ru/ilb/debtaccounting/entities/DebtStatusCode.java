@@ -16,23 +16,17 @@
 package ru.ilb.debtaccounting.entities;
 
 /**
- * Создание долга
+ *
  * @author slavb
  */
-public class CreateEvent extends Event {
-
+public enum DebtStatusCode {
     /**
-     * График погашения
+     * Создан
      */
-    RepaymentPlan repaymentPlan;
-
-    public RepaymentPlan getRepaymentPlan() {
-        return repaymentPlan;
-    }
-
-    public void setRepaymentPlan(RepaymentPlan repaymentPlan) {
-        this.repaymentPlan = repaymentPlan;
-    }
-
+    CREATED,
+    /**
+     * Выдан
+     */
+    DISBURSED
 
 }

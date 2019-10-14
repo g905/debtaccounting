@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 slavb.
+ * Copyright 2019 Bystrobank.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,12 +17,13 @@ package ru.ilb.debtaccounting.core.events;
 
 import ru.ilb.debtaccounting.entities.DisburseEvent;
 import ru.ilb.debtaccounting.entities.EventHandler;
+import ru.ilb.debtaccounting.entities.Loan;
 
 /**
  *
  * @author slavb
  */
-public class DisburseEventHandler extends EventHandler<DisburseEvent>{
+public class DisburseEventHandler extends EventHandler<DisburseEvent, Loan> {
 
     @Override
     public void process(DisburseEvent event) {

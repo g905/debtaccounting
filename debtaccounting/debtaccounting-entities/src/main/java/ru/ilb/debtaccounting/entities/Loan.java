@@ -16,23 +16,9 @@
 package ru.ilb.debtaccounting.entities;
 
 /**
- * Создание долга
+ * Кредит
  * @author slavb
  */
-public class CreateEvent extends Event {
-
-    /**
-     * График погашения
-     */
-    RepaymentPlan repaymentPlan;
-
-    public RepaymentPlan getRepaymentPlan() {
-        return repaymentPlan;
-    }
-
-    public void setRepaymentPlan(RepaymentPlan repaymentPlan) {
-        this.repaymentPlan = repaymentPlan;
-    }
-
+public class Loan extends Debt{
 
 }

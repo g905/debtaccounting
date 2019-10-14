@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 slavb.
+ * Copyright 2019 Bystrobank.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,9 +19,12 @@ package ru.ilb.debtaccounting.entities;
  * Обработчик события
  * @author slavb
  * @param <E> Тип события
+ * @param <D> Тип долга
  */
-public abstract class EventHandler<E extends Event> {
+public abstract class EventHandler<E extends Event, D extends Debt> {
 
+
+    protected D debt;
     /**
      * Обработать событие
      * @param event

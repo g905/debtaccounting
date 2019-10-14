@@ -16,23 +16,13 @@
 package ru.ilb.debtaccounting.entities;
 
 /**
- * Создание долга
+ *
  * @author slavb
  */
-public class CreateEvent extends Event {
+public class AlreadyDisbursedException extends DebtException{
 
-    /**
-     * График погашения
-     */
-    RepaymentPlan repaymentPlan;
-
-    public RepaymentPlan getRepaymentPlan() {
-        return repaymentPlan;
+    public AlreadyDisbursedException() {
+        super("Долг уже выдан");
     }
-
-    public void setRepaymentPlan(RepaymentPlan repaymentPlan) {
-        this.repaymentPlan = repaymentPlan;
-    }
-
 
 }
