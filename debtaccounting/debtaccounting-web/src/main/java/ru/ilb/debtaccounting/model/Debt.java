@@ -18,7 +18,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
 import ru.ilb.debtaccounting.exceptions.AlreadyDisbursedException;
 
@@ -37,7 +36,6 @@ public class Debt implements Serializable, Disbursable {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @NotNull(message = "Статус должен быть заполнен")
     private DebtStatus debtStatus;
 
     @OneToMany(mappedBy = "debt", cascade = CascadeType.ALL)
@@ -132,7 +130,8 @@ public class Debt implements Serializable, Disbursable {
 
     @Override
     public void disburse() throws AlreadyDisbursedException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

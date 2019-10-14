@@ -4,7 +4,6 @@
 package ru.ilb.debtaccounting.model;
 
 import java.io.Serializable;
-import java.util.Optional;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.xml.bind.annotation.*;
@@ -26,12 +25,10 @@ public class DisbursementEvent extends Event implements Serializable {
      */
     @Override
     public void execute() {
-        Account debit = getDebt().getDebtAccount(DebtBalance.class).map(db->db.getAccount()).orElseThrow(AccountNotFoundException::new);
-        SimpleTransaction simpleTransaction = new SimpleTransaction(debit,null);
+        Account debit = getDebt().getDebtAccount(DebtBalance.class).map(db -> db.getAccount()).orElseThrow(AccountNotFoundException::new);
+        SimpleTransaction simpleTransaction = new SimpleTransaction(debit, null);
         addTransaction(simpleTransaction);
         simpleTransaction.execute();
-
     }
-
 
 }

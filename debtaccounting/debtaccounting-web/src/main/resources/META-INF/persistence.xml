@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="debtaccounting" transaction-type="JTA">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>ru.ilb.debtaccounting.model.Debt</class>
+    <class>ru.ilb.debtaccounting.model.Event</class>
+    <class>ru.ilb.debtaccounting.model.Transaction</class>
+    <class>ru.ilb.debtaccounting.model.SimpleTransaction</class>
+    <class>ru.ilb.debtaccounting.model.Account</class>
+    <class>ru.ilb.debtaccounting.model.SemiTransaction</class>
+    <class>ru.ilb.debtaccounting.model.DebtAccount</class>
+    <class>ru.ilb.debtaccounting.model.DebtBalance</class>
+    <class>ru.ilb.debtaccounting.model.AccountBalance</class>
+    <class>ru.ilb.debtaccounting.model.Loan</class>
+    <class>ru.ilb.debtaccounting.model.DebtStatus</class>
+    <class>ru.ilb.debtaccounting.model.DisbursementEvent</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+</persistence>

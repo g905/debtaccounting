@@ -62,9 +62,7 @@ public class SimpleTransaction extends Transaction implements Serializable {
     @Override
     public void execute() {
         if (debit != null) {
-            
         }
-        
     }
 
 }
