@@ -15,11 +15,15 @@
  */
 package ru.ilb.debtaccounting.core.events;
 
+import java.util.Set;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import ru.ilb.debtaccounting.entities.AlreadyCreatedException;
 import ru.ilb.debtaccounting.entities.CreateEvent;
 import ru.ilb.debtaccounting.entities.DebtStatusCode;
 import ru.ilb.debtaccounting.entities.EventHandler;
 import ru.ilb.debtaccounting.entities.Loan;
+import javax.validation.Validator;
 
 /**
  *
@@ -27,12 +31,13 @@ import ru.ilb.debtaccounting.entities.Loan;
  */
 public class CreateEventHandler extends EventHandler<CreateEvent, Loan> {
 
-    public CreateEventHandler(Loan debt) {
-        super(debt);
+    public CreateEventHandler(Validator validator) {
+        super(validator);
     }
 
     @Override
-    public void process(CreateEvent event) {
+    public void process(Loan debt, CreateEvent event) {
+        super.process(debt, event);
         if (debt.getStatus() != null) {
             throw new AlreadyCreatedException();
         }

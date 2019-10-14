@@ -15,6 +15,7 @@
  */
 package ru.ilb.debtaccounting.core.events;
 
+import javax.validation.Validator;
 import ru.ilb.debtaccounting.entities.AlreadyDisbursedException;
 import ru.ilb.debtaccounting.entities.DebtStatusCode;
 import ru.ilb.debtaccounting.entities.DisburseEvent;
@@ -27,12 +28,13 @@ import ru.ilb.debtaccounting.entities.Loan;
  */
 public class DisburseEventHandler extends EventHandler<DisburseEvent, Loan> {
 
-    public DisburseEventHandler(Loan debt) {
-        super(debt);
+    public DisburseEventHandler(Validator validator) {
+        super(validator);
     }
 
+
     @Override
-    public void process(DisburseEvent event) {
+    public void process(Loan debt, DisburseEvent event) {
         if (debt.getStatus() != DebtStatusCode.CREATED) {
             throw new AlreadyDisbursedException();
         }

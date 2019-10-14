@@ -15,6 +15,9 @@
  */
 package ru.ilb.debtaccounting.core.events;
 
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import ru.ilb.debtaccounting.entities.CreateEvent;
@@ -36,11 +39,12 @@ public class CreateEventHandlerTest {
     public void testProcess() {
         System.out.println("process");
         Loan loan = new Loan();
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
         CreateEvent event = new CreateEvent();
-        CreateEventHandler instance = new CreateEventHandler(loan);
-        instance.process(event);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        CreateEventHandler instance = new CreateEventHandler(validator);
+        instance.process(loan,event);
     }
 
 }

@@ -15,6 +15,8 @@
  */
 package ru.ilb.debtaccounting.entities;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Создание долга
  * @author slavb
@@ -24,6 +26,7 @@ public class CreateEvent extends Event {
     /**
      * График погашения
      */
+    @NotNull
     RepaymentPlan repaymentPlan;
 
     public RepaymentPlan getRepaymentPlan() {

@@ -15,25 +15,42 @@
  */
 package ru.ilb.debtaccounting.entities;
 
+import java.util.Set;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import javax.validation.Validator;
+
 /**
  * Обработчик события
+ *
  * @author slavb
  * @param <E> Тип события
  * @param <D> Тип долга
  */
 public abstract class EventHandler<E extends Event, D extends Debt> {
 
+    protected final Validator validator;
 
-    protected final D debt;
-
-    public EventHandler(D debt) {
-        this.debt = debt;
+    public EventHandler(Validator validator) {
+        this.validator = validator;
     }
-    
+
     /**
      * Обработать событие
+     *
+     * @param debt
      * @param event
      */
-    abstract public void process(E event);
+    public void process(D debt, E event) {
+        validate(debt, event);
+    }
+
+    protected void validate(D debt, E event) {
+        Set<ConstraintViolation<E>> violations = validator.validate(event);
+        if (!violations.isEmpty()) {
+            throw new ConstraintViolationException(violations);
+        }
+
+    }
 
 }
