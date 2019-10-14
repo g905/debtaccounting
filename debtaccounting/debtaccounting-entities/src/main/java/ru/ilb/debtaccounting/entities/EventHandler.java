@@ -24,7 +24,12 @@ package ru.ilb.debtaccounting.entities;
 public abstract class EventHandler<E extends Event, D extends Debt> {
 
 
-    protected D debt;
+    protected final D debt;
+
+    public EventHandler(D debt) {
+        this.debt = debt;
+    }
+    
     /**
      * Обработать событие
      * @param event

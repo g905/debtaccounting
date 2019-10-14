@@ -15,29 +15,32 @@
  */
 package ru.ilb.debtaccounting.core.events;
 
-import ru.ilb.debtaccounting.entities.AlreadyDisbursedException;
-import ru.ilb.debtaccounting.entities.DebtStatusCode;
-import ru.ilb.debtaccounting.entities.DisburseEvent;
-import ru.ilb.debtaccounting.entities.EventHandler;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import ru.ilb.debtaccounting.entities.CreateEvent;
 import ru.ilb.debtaccounting.entities.Loan;
 
 /**
  *
- * @author slavb
+ * @author Bystrobank
  */
-public class DisburseEventHandler extends EventHandler<DisburseEvent, Loan> {
+public class CreateEventHandlerTest {
 
-    public DisburseEventHandler(Loan debt) {
-        super(debt);
+    public CreateEventHandlerTest() {
     }
 
-    @Override
-    public void process(DisburseEvent event) {
-        if (debt.getStatus() != DebtStatusCode.CREATED) {
-            throw new AlreadyDisbursedException();
-        }
-
-        debt.setStatus(DebtStatusCode.DISBURSED);
+    /**
+     * Test of process method, of class CreateEventHandler.
+     */
+    @Test
+    public void testProcess() {
+        System.out.println("process");
+        Loan loan = new Loan();
+        CreateEvent event = new CreateEvent();
+        CreateEventHandler instance = new CreateEventHandler(loan);
+        instance.process(event);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
 }

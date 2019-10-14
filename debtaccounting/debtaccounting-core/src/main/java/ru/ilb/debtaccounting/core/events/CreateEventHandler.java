@@ -15,6 +15,7 @@
  */
 package ru.ilb.debtaccounting.core.events;
 
+import ru.ilb.debtaccounting.entities.AlreadyCreatedException;
 import ru.ilb.debtaccounting.entities.CreateEvent;
 import ru.ilb.debtaccounting.entities.DebtStatusCode;
 import ru.ilb.debtaccounting.entities.EventHandler;
@@ -24,10 +25,17 @@ import ru.ilb.debtaccounting.entities.Loan;
  *
  * @author slavb
  */
-public class CreateEventHandler extends EventHandler<CreateEvent,Loan>{
+public class CreateEventHandler extends EventHandler<CreateEvent, Loan> {
+
+    public CreateEventHandler(Loan debt) {
+        super(debt);
+    }
 
     @Override
     public void process(CreateEvent event) {
+        if (debt.getStatus() != null) {
+            throw new AlreadyCreatedException();
+        }
         debt.setRepaymentPlan(event.getRepaymentPlan());
         debt.setStatus(DebtStatusCode.CREATED);
     }
