@@ -17,6 +17,7 @@ package ru.ilb.debtaccounting.events;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import ru.ilb.debtaccounting.entities.Debt;
 
@@ -47,6 +48,7 @@ public abstract class Event<D extends Debt, ER extends EventRequest> {
     @NotNull
     D debt;
 
+    @Valid
     ER request;
 
     public LocalDate getDate() {

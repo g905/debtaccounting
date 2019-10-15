@@ -15,12 +15,12 @@
  */
 package ru.ilb.debtaccounting.events.loan.repayment;
 
-import ru.ilb.debtaccounting.events.Event;
+import ru.ilb.debtaccounting.events.loan.LoanEvent;
 
 /**
  * Платеж по графику
  * @author slavb
  */
-public class RepaymentEvent extends Event {
+public class RepaymentEvent extends LoanEvent {
 
 }

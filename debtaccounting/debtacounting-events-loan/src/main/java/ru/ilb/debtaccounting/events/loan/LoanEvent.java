@@ -26,5 +26,4 @@ import ru.ilb.debtaccounting.events.EventRequest;
  */
 public class LoanEvent<ER extends EventRequest> extends Event<Loan,ER> {
 
-
 }

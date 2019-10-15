@@ -15,13 +15,12 @@
  */
 package ru.ilb.debtaccounting.events.loan.prematurepayment;
 
-import ru.ilb.debtaccounting.events.Event;
-import ru.ilb.debtaccounting.events.Event;
+import ru.ilb.debtaccounting.events.loan.LoanEvent;
 
 /**
  * Частичное досрочное погашение
  * @author slavb
  */
-public class PrematurePaymentEvent extends Event {
-
+public class PrematurePaymentEvent extends LoanEvent {
+    
 }

@@ -16,12 +16,14 @@
 package ru.ilb.debtaccounting.events.loan.createloan;
 
 import java.io.IOException;
+import java.io.InputStream;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import ru.ilb.debtaccounting.entities.Loan;
+import ru.ilb.debtaccounting.entities.RepaymentPlan;
 import ru.ilb.debtaccounting.testcase.ODSTestCase;
 
 /**
@@ -41,12 +43,17 @@ public class CreateLoanEventHandlerTest {
     public void testProcess() throws IOException {
         System.out.println("process");
 
-        ODSTestCase testCase = new ODSTestCase(this.getClass().getClassLoader().getResourceAsStream("testcases/repaymentplan.ods"));
+        InputStream testData = this.getClass().getClassLoader().getResourceAsStream("testcases/repaymentplan.ods");
+        ODSTestCase testCase = new ODSTestCase(testData);
 
         Loan loan = new Loan();
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         CreateLoanEvent event = new CreateLoanEvent();
+        CreateLoanRequest request = new CreateLoanRequest();
+        RepaymentPlan repaymentPlan = new RepaymentPlan();
+        request.setRepaymentPlan(repaymentPlan);
+        event.setRequest(request);
 
         CreateLoanEventHandler instance = new CreateLoanEventHandler(validator);
         instance.process(loan, event);
