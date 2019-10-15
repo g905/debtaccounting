@@ -15,7 +15,7 @@
  */
 package ru.ilb.debtaccounting.events.createloan;
 
-import ru.ilb.debtaccounting.entities.events.Event;
+import ru.ilb.debtaccounting.events.Event;
 
 /**
  * Создание долга

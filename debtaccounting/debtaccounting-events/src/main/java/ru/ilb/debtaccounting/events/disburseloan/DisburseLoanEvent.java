@@ -15,7 +15,7 @@
  */
 package ru.ilb.debtaccounting.events.disburseloan;
 
-import ru.ilb.debtaccounting.entities.events.Event;
+import ru.ilb.debtaccounting.events.Event;
 
 /**
  * Эмиссия долга

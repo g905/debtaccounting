@@ -15,8 +15,8 @@
  */
 package ru.ilb.debtaccounting.events.overduepayment;
 
-import ru.ilb.debtaccounting.entities.events.Event;
-import ru.ilb.debtaccounting.entities.events.Event;
+import ru.ilb.debtaccounting.events.Event;
+import ru.ilb.debtaccounting.events.Event;
 
 /**
  * Просроченная выплата

@@ -17,7 +17,7 @@ package ru.ilb.debtaccounting.events.createloan;
 
 import javax.validation.constraints.NotNull;
 import ru.ilb.debtaccounting.entities.RepaymentPlan;
-import ru.ilb.debtaccounting.entities.events.EventRequest;
+import ru.ilb.debtaccounting.events.EventRequest;
 
 /**
  *

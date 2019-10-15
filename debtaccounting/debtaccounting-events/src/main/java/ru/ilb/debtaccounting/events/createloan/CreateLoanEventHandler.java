@@ -17,7 +17,7 @@ package ru.ilb.debtaccounting.events.createloan;
 
 import javax.validation.Validator;
 import ru.ilb.debtaccounting.entities.DebtStatusCode;
-import ru.ilb.debtaccounting.entities.events.EventHandler;
+import ru.ilb.debtaccounting.events.EventHandler;
 import ru.ilb.debtaccounting.entities.Loan;
 
 /**
