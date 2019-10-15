@@ -15,6 +15,7 @@
  */
 package ru.ilb.debtaccounting.events;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -30,9 +31,21 @@ import ru.ilb.debtaccounting.entities.Debt;
  */
 public abstract class EventHandler<E extends Event, D extends Debt> {
 
+    private final Class<E> eventClass;
+
     protected final Validator validator;
 
     public EventHandler(Validator validator) {
+        if (getClass().getGenericSuperclass() instanceof ParameterizedType) {
+            //Если класс переопределяет T, возьмем из параметров
+            this.eventClass = (Class<E>) ((ParameterizedType) getClass()
+                    .getGenericSuperclass())
+                    .getActualTypeArguments()[0];
+        } else {
+            //Иначе возьмем базовый класс Operation
+            this.eventClass = (Class<E>) Event.class;
+        }
+
         this.validator = validator;
     }
 
