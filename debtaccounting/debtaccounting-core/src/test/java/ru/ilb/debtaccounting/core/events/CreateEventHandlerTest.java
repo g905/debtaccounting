@@ -15,13 +15,15 @@
  */
 package ru.ilb.debtaccounting.core.events;
 
+import java.io.IOException;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import ru.ilb.debtaccounting.entities.events.CreateEvent;
 import ru.ilb.debtaccounting.entities.Loan;
+import ru.ilb.debtaccounting.testcase.ODSTestCase;
+import ru.ilb.debtaccounting.testcase.TestCase;
 
 /**
  *
@@ -34,17 +36,21 @@ public class CreateEventHandlerTest {
 
     /**
      * Test of process method, of class CreateLoanEventHandler.
+     * @throws java.io.IOException
      */
     @Test
-    public void testProcess() {
+    public void testProcess() throws IOException {
         System.out.println("process");
+
+        ODSTestCase testCase = new ODSTestCase(this.getClass().getClassLoader().getResourceAsStream("testcases/repaymentplan.ods"));
+
         Loan loan = new Loan();
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         CreateEvent event = new CreateEvent();
 
         CreateLoanEventHandler instance = new CreateLoanEventHandler(validator);
-        instance.process(loan,event);
+        instance.process(loan, event);
     }
 
 }

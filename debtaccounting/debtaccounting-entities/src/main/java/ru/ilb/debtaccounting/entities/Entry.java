@@ -26,6 +26,12 @@ import javax.validation.constraints.NotNull;
 public class Entry {
 
     /**
+     * Платежный период
+     */
+    @NotNull
+    Integer period;
+
+    /**
      * Тип платежа
      */
     @NotNull

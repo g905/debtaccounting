@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Bystrobank.
+ * Copyright 2019 slavb.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,30 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.ilb.debtaccounting.entities;
+package ru.ilb.debtaccounting.testcase;
 
-import java.util.List;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.Map;
 
 /**
- * График погашения
  *
  * @author slavb
  */
-public class RepaymentPlan {
+public class TestCase {
 
-    @NotNull
-    @Size(min = 1)
-    protected List<Entry> entries;
+    protected Map<String, Object> inputData;
 
-    public List<Entry> getEntries() {
-        return entries;
+    protected Map<String, Object[]> calculationTable;
+
+    public Map<String, Object> getInputData() {
+        return inputData;
     }
 
-    public void setEntries(List<Entry> entries) {
-        this.entries = entries;
+    public Map<String, Object[]> getCalculationTable() {
+        return calculationTable;
     }
-
 
 }

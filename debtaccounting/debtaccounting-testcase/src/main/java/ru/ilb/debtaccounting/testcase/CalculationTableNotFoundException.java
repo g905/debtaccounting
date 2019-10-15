@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Bystrobank.
+ * Copyright 2019 slavb.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,30 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.ilb.debtaccounting.entities;
-
-import java.util.List;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+package ru.ilb.debtaccounting.testcase;
 
 /**
- * График погашения
  *
  * @author slavb
  */
-public class RepaymentPlan {
+public class CalculationTableNotFoundException extends RuntimeException{
 
-    @NotNull
-    @Size(min = 1)
-    protected List<Entry> entries;
-
-    public List<Entry> getEntries() {
-        return entries;
+    public CalculationTableNotFoundException() {
+        super("Calculation table not found");
     }
-
-    public void setEntries(List<Entry> entries) {
-        this.entries = entries;
-    }
-
 
 }
