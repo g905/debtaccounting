@@ -15,8 +15,13 @@
  */
 package ru.ilb.debtaccounting.events;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
@@ -47,6 +52,28 @@ public abstract class EventHandler<E extends Event, D extends Debt> {
         }
 
         this.validator = validator;
+    }
+
+    public E createEvent() {
+        E event = newEvent();
+        initEvent(event);
+        return event;
+
+    }
+
+    protected void initEvent(Event event) {
+        event.setCreatedDate(LocalDateTime.now());
+        event.setDate(LocalDate.now());
+    }
+
+    protected E newEvent() {
+        E newInstance;
+        try {
+            newInstance = eventClass.getDeclaredConstructor().newInstance();
+        } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            throw new RuntimeException(ex);
+        }
+        return newInstance;
     }
 
     /**

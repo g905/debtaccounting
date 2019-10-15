@@ -49,14 +49,16 @@ public class CreateLoanEventHandlerTest {
         Loan loan = new Loan();
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
-        CreateLoanEvent event = new CreateLoanEvent();
+        CreateLoanEventHandler hanler = new CreateLoanEventHandler(validator);
+        CreateLoanEvent event = hanler.createEvent();
         CreateLoanRequest request = new CreateLoanRequest();
         RepaymentPlan repaymentPlan = new RepaymentPlan();
         request.setRepaymentPlan(repaymentPlan);
         event.setRequest(request);
+        event.setDebt(loan);
 
-        CreateLoanEventHandler instance = new CreateLoanEventHandler(validator);
-        instance.process(loan, event);
+
+        hanler.process(loan, event);
     }
 
 }
