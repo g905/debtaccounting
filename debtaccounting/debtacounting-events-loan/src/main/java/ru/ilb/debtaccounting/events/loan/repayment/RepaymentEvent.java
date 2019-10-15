@@ -13,23 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.ilb.debtaccounting.events;
+package ru.ilb.debtaccounting.events.loan.repayment;
+
+import ru.ilb.debtaccounting.events.Event;
 
 /**
- *
+ * Платеж по графику
  * @author slavb
  */
-public enum EventTypeCode {
-    /**
-     * Эмиссия долга
-     */
-    DISBURSEMENT,
-    /**
-     * Платеж по графику
-     */
-    REPAYMENT,
-    /**
-     * Частичное досрочное погашение
-     */
-    PREMATUREPAYMENT
+public class RepaymentEvent extends Event {
+
 }

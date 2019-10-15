@@ -13,19 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.ilb.debtaccounting.events;
+package ru.ilb.debtaccounting.events.loan.disburseloan;
 
+import javax.validation.Validator;
+import ru.ilb.debtaccounting.entities.DebtStatusCode;
+import ru.ilb.debtaccounting.events.EventHandler;
 import ru.ilb.debtaccounting.entities.Loan;
 
 /**
  *
  * @author slavb
  */
-public class LoanEvent extends Event {
+public class DisburseLoanEventHandler extends EventHandler<DisburseLoanEvent, Loan> {
+
+    public DisburseLoanEventHandler(Validator validator) {
+        super(validator);
+    }
+
 
     @Override
-    public Loan getDebt() {
-        return (Loan) super.getDebt();
+    public void process(Loan debt, DisburseLoanEvent event) {
+        if (debt.getStatus() != DebtStatusCode.CREATED) {
+            throw new AlreadyDisbursedException();
+        }
+
+        debt.setStatus(DebtStatusCode.DISBURSED);
     }
 
 }
