@@ -15,12 +15,12 @@
  */
 package ru.ilb.debtaccounting.events.loan.createloan;
 
-import ru.ilb.debtaccounting.events.Event;
+import ru.ilb.debtaccounting.events.loan.LoanEvent;
 
 /**
  * Создание долга
  * @author slavb
  */
-public class CreateLoanEvent extends Event<CreateLoanRequest> {
+public class CreateLoanEvent extends LoanEvent<CreateLoanRequest> {
 
 }

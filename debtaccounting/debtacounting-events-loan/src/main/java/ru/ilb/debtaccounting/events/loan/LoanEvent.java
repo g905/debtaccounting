@@ -17,16 +17,14 @@ package ru.ilb.debtaccounting.events.loan;
 
 import ru.ilb.debtaccounting.entities.Loan;
 import ru.ilb.debtaccounting.events.Event;
+import ru.ilb.debtaccounting.events.EventRequest;
 
 /**
  *
  * @author slavb
+ * @param <ER>
  */
-public class LoanEvent extends Event {
+public class LoanEvent<ER extends EventRequest> extends Event<Loan,ER> {
 
-    @Override
-    public Loan getDebt() {
-        return (Loan) super.getDebt();
-    }
 
 }
