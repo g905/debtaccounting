@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.ilb.debtaccounting.entities;
+package ru.ilb.debtaccounting.entities.events;
 
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
+import ru.ilb.debtaccounting.entities.Debt;
 
 /**
  * Обработчик события

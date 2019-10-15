@@ -15,12 +15,18 @@
  */
 package ru.ilb.debtaccounting.entities;
 
-import ru.ilb.debtaccounting.entities.Event;
-
 /**
- * Полное досрочное погашение
+ * Тип транзакции
+ *
  * @author slavb
  */
-public class FullPrematurePaymentEvent extends Event {
-
+public enum EntryTypeCode {
+    /**
+     * Платеж по основному долгу
+     */
+    DEBT,
+    /**
+     * Проценты
+     */
+    INTERESTS,
 }

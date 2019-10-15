@@ -15,23 +15,20 @@
  */
 package ru.ilb.debtaccounting.core.events;
 
-import java.util.Set;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import ru.ilb.debtaccounting.entities.AlreadyCreatedException;
-import ru.ilb.debtaccounting.entities.CreateEvent;
-import ru.ilb.debtaccounting.entities.DebtStatusCode;
-import ru.ilb.debtaccounting.entities.EventHandler;
-import ru.ilb.debtaccounting.entities.Loan;
 import javax.validation.Validator;
+import ru.ilb.debtaccounting.entities.events.AlreadyCreatedException;
+import ru.ilb.debtaccounting.entities.events.CreateEvent;
+import ru.ilb.debtaccounting.entities.DebtStatusCode;
+import ru.ilb.debtaccounting.entities.events.EventHandler;
+import ru.ilb.debtaccounting.entities.Loan;
 
 /**
- *
+ * Событие "Создание долга"
  * @author slavb
  */
-public class CreateEventHandler extends EventHandler<CreateEvent, Loan> {
+public class CreateLoanEventHandler extends EventHandler<CreateEvent, Loan> {
 
-    public CreateEventHandler(Validator validator) {
+    public CreateLoanEventHandler(Validator validator) {
         super(validator);
     }
 
@@ -44,5 +41,7 @@ public class CreateEventHandler extends EventHandler<CreateEvent, Loan> {
         debt.setRepaymentPlan(event.getRepaymentPlan());
         debt.setStatus(DebtStatusCode.CREATED);
     }
+
+
 
 }

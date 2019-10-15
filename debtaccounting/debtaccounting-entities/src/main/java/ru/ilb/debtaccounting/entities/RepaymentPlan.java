@@ -16,11 +16,27 @@
 package ru.ilb.debtaccounting.entities;
 
 import java.util.List;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * График погашения
+ *
  * @author slavb
  */
 public class RepaymentPlan {
-    private List<Payment> payments;
+
+    @NotNull
+    @Size(min = 1)
+    protected List<Entry> payments;
+
+    public List<Entry> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Entry> payments) {
+        this.payments = payments;
+    }
+
+
 }

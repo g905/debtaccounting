@@ -13,12 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.ilb.debtaccounting.entities;
+package ru.ilb.debtaccounting.entities.events;
 
 /**
- * Эмиссия долга
+ *
  * @author slavb
  */
-public class DisburseEvent extends Event {
-
+public enum EventTypeCode {
+    /**
+     * Эмиссия долга
+     */
+    DISBURSEMENT,
+    /**
+     * Платеж по графику
+     */
+    REPAYMENT,
+    /**
+     * Частичное досрочное погашение
+     */
+    PREMATUREPAYMENT
 }

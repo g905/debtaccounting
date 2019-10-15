@@ -13,16 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.ilb.debtaccounting.entities;
+package ru.ilb.debtaccounting.entities.events;
+
+import ru.ilb.debtaccounting.entities.Loan;
 
 /**
  *
  * @author slavb
  */
-public class AlreadyDisbursedException extends DebtException{
+public class LoanEvent extends Event {
 
-    public AlreadyDisbursedException() {
-        super("Долг уже выдан");
+    @Override
+    public Loan getDebt() {
+        return (Loan) super.getDebt();
     }
 
 }

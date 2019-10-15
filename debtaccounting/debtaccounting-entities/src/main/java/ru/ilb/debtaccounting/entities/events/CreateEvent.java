@@ -13,12 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.ilb.debtaccounting.entities;
+package ru.ilb.debtaccounting.entities.events;
+
+import javax.validation.constraints.NotNull;
+import ru.ilb.debtaccounting.entities.RepaymentPlan;
 
 /**
- * Платеж по графику
+ * Создание долга
  * @author slavb
  */
-public class RepaymentEvent extends Event {
+public class CreateEvent extends Event {
+
+    /**
+     * График погашения
+     */
+    @NotNull
+    RepaymentPlan repaymentPlan;
+
+    public RepaymentPlan getRepaymentPlan() {
+        return repaymentPlan;
+    }
+
+    public void setRepaymentPlan(RepaymentPlan repaymentPlan) {
+        this.repaymentPlan = repaymentPlan;
+    }
+
 
 }

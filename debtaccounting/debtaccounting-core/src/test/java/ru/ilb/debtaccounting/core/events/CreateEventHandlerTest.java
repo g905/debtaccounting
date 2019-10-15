@@ -20,7 +20,7 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import ru.ilb.debtaccounting.entities.CreateEvent;
+import ru.ilb.debtaccounting.entities.events.CreateEvent;
 import ru.ilb.debtaccounting.entities.Loan;
 
 /**
@@ -33,7 +33,7 @@ public class CreateEventHandlerTest {
     }
 
     /**
-     * Test of process method, of class CreateEventHandler.
+     * Test of process method, of class CreateLoanEventHandler.
      */
     @Test
     public void testProcess() {
@@ -43,7 +43,7 @@ public class CreateEventHandlerTest {
         Validator validator = factory.getValidator();
         CreateEvent event = new CreateEvent();
 
-        CreateEventHandler instance = new CreateEventHandler(validator);
+        CreateLoanEventHandler instance = new CreateLoanEventHandler(validator);
         instance.process(loan,event);
     }
 

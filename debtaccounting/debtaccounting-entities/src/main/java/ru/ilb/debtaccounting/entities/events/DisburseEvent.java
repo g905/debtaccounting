@@ -13,25 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.ilb.debtaccounting.entities;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+package ru.ilb.debtaccounting.entities.events;
 
 /**
- * Событие
+ * Эмиссия долга
  * @author slavb
  */
-public abstract class Event {
-
-    /**
-     * Дата учета события
-     */
-    LocalDate date;
-    
-    /**
-     * Дата регистрации события
-     */
-    LocalDateTime createdDate;
+public class DisburseEvent extends Event {
 
 }

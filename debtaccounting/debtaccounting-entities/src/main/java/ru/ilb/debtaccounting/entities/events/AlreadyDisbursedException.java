@@ -13,31 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.ilb.debtaccounting.entities;
+package ru.ilb.debtaccounting.entities.events;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import ru.ilb.debtaccounting.entities.DebtException;
 
 /**
  *
  * @author slavb
  */
-public class Payment {
+public class AlreadyDisbursedException extends DebtException{
 
-    /**
-     * Тип платежа
-     */
-    PaymentTypeCode type;
-
-    /**
-     * Дата платежа
-     */
-    LocalDate date;
-
-
-    /**
-     * Сумма платежа
-     */
-    BigDecimal amount;
+    public AlreadyDisbursedException() {
+        super("Долг уже выдан");
+    }
 
 }

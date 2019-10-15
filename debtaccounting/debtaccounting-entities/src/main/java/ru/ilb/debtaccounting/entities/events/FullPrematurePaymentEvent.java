@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.ilb.debtaccounting.entities;
+package ru.ilb.debtaccounting.entities.events;
+
+import ru.ilb.debtaccounting.entities.events.Event;
 
 /**
- * Частичное досрочное погашение
+ * Полное досрочное погашение
  * @author slavb
  */
-public class PrematurePaymentEvent extends Event {
+public class FullPrematurePaymentEvent extends Event {
 
 }

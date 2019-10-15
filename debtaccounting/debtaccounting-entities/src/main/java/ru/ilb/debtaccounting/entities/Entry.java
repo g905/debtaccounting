@@ -15,17 +15,33 @@
  */
 package ru.ilb.debtaccounting.entities;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import javax.validation.constraints.NotNull;
+
 /**
  *
  * @author slavb
  */
-public enum PaymentTypeCode {
+public class Entry {
+
     /**
-     * Платеж по основному долгу
+     * Тип платежа
      */
-    DEBT,
+    @NotNull
+    EntryTypeCode type;
+
     /**
-     * Проценты
+     * Дата платежа
      */
-    INTERESTS,
+    @NotNull
+    LocalDate date;
+
+
+    /**
+     * Сумма платежа
+     */
+    @NotNull
+    BigDecimal amount;
+
 }

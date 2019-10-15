@@ -16,10 +16,10 @@
 package ru.ilb.debtaccounting.core.events;
 
 import javax.validation.Validator;
-import ru.ilb.debtaccounting.entities.AlreadyDisbursedException;
+import ru.ilb.debtaccounting.entities.events.AlreadyDisbursedException;
 import ru.ilb.debtaccounting.entities.DebtStatusCode;
-import ru.ilb.debtaccounting.entities.DisburseEvent;
-import ru.ilb.debtaccounting.entities.EventHandler;
+import ru.ilb.debtaccounting.entities.events.DisburseEvent;
+import ru.ilb.debtaccounting.entities.events.EventHandler;
 import ru.ilb.debtaccounting.entities.Loan;
 
 /**
