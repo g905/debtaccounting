@@ -13,33 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.ilb.debtaccounting.core.events;
+package ru.ilb.debtaccounting.events.createloan;
 
 import javax.validation.Validator;
-import ru.ilb.debtaccounting.entities.events.AlreadyDisbursedException;
 import ru.ilb.debtaccounting.entities.DebtStatusCode;
-import ru.ilb.debtaccounting.entities.events.DisburseEvent;
 import ru.ilb.debtaccounting.entities.events.EventHandler;
 import ru.ilb.debtaccounting.entities.Loan;
 
 /**
- *
+ * Событие "Создание долга"
  * @author slavb
  */
-public class DisburseEventHandler extends EventHandler<DisburseEvent, Loan> {
+public class CreateLoanEventHandler extends EventHandler<CreateLoanEvent, Loan> {
 
-    public DisburseEventHandler(Validator validator) {
+    public CreateLoanEventHandler(Validator validator) {
         super(validator);
     }
 
-
     @Override
-    public void process(Loan debt, DisburseEvent event) {
-        if (debt.getStatus() != DebtStatusCode.CREATED) {
-            throw new AlreadyDisbursedException();
+    public void process(Loan debt, CreateLoanEvent event) {
+        super.process(debt, event);
+        if (debt.getStatus() != null) {
+            throw new AlreadyCreatedException();
         }
-
-        debt.setStatus(DebtStatusCode.DISBURSED);
+        debt.setRepaymentPlan(event.getRepaymentPlan());
+        debt.setStatus(DebtStatusCode.CREATED);
     }
+
+
 
 }

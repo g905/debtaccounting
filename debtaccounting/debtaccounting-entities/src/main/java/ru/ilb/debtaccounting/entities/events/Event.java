@@ -31,7 +31,7 @@ public abstract class Event {
      */
     @NotNull
     LocalDate date;
-    
+
     /**
      * Дата регистрации события
      */
@@ -43,6 +43,8 @@ public abstract class Event {
      */
     @NotNull
     Debt debt;
+
+    EventRequest request;
 
     public LocalDate getDate() {
         return date;
@@ -68,7 +70,11 @@ public abstract class Event {
         this.debt = debt;
     }
 
+    public EventRequest getRequest() {
+        return request;
+    }
 
-
-
+    public void setRequest(EventRequest request) {
+        this.request = request;
+    }
 }

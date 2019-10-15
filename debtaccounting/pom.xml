@@ -34,7 +34,7 @@
         <module>debtaccounting-api</module>
         <module>debtaccounting-model</module>
         <module>debtaccounting-entities</module>
-        <module>debtaccounting-core</module>
+        <module>debtaccounting-events</module>
         <module>debtaccounting-testcase</module>
     </modules>
     <properties>

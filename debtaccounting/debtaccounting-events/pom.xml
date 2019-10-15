@@ -6,7 +6,7 @@
         <artifactId>debtaccounting</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>debtaccounting-core</artifactId>
+    <artifactId>debtaccounting-events</artifactId>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
@@ -62,4 +62,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <name>debtaccounting-events</name>
 </project>
