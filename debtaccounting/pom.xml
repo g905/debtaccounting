@@ -37,6 +37,7 @@
         <module>debtaccounting-events</module>
         <module>debtaccounting-testcase</module>
         <module>debtacounting-events-loan</module>
+        <module>debtaccounting-validation</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
