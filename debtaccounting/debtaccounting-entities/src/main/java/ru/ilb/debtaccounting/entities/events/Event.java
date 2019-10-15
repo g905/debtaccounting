@@ -22,9 +22,11 @@ import ru.ilb.debtaccounting.entities.Debt;
 
 /**
  * Событие
+ *
  * @author slavb
+ * @param <ER> тип запроса
  */
-public abstract class Event {
+public abstract class Event<ER extends EventRequest> {
 
     /**
      * Дата учета события
@@ -44,7 +46,7 @@ public abstract class Event {
     @NotNull
     Debt debt;
 
-    EventRequest request;
+    ER request;
 
     public LocalDate getDate() {
         return date;
@@ -70,11 +72,11 @@ public abstract class Event {
         this.debt = debt;
     }
 
-    public EventRequest getRequest() {
+    public ER getRequest() {
         return request;
     }
 
-    public void setRequest(EventRequest request) {
+    public void setRequest(ER request) {
         this.request = request;
     }
 }

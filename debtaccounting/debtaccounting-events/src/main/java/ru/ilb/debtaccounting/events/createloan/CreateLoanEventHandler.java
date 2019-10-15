@@ -36,7 +36,7 @@ public class CreateLoanEventHandler extends EventHandler<CreateLoanEvent, Loan> 
         if (debt.getStatus() != null) {
             throw new AlreadyCreatedException();
         }
-        debt.setRepaymentPlan(event.getRepaymentPlan());
+        debt.setRepaymentPlan(event.getRequest().getRepaymentPlan());
         debt.setStatus(DebtStatusCode.CREATED);
     }
 

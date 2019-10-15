@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Bystrobank.
+ * Copyright 2019 slavb.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,28 @@
  */
 package ru.ilb.debtaccounting.events.createloan;
 
-import ru.ilb.debtaccounting.entities.events.Event;
+import javax.validation.constraints.NotNull;
+import ru.ilb.debtaccounting.entities.RepaymentPlan;
+import ru.ilb.debtaccounting.entities.events.EventRequest;
 
 /**
- * Создание долга
+ *
  * @author slavb
  */
-public class CreateLoanEvent extends Event<CreateLoanRequest> {
+public class CreateLoanRequest extends EventRequest {
+
+    /**
+     * График погашения
+     */
+    @NotNull
+    RepaymentPlan repaymentPlan;
+
+    public RepaymentPlan getRepaymentPlan() {
+        return repaymentPlan;
+    }
+
+    public void setRepaymentPlan(RepaymentPlan repaymentPlan) {
+        this.repaymentPlan = repaymentPlan;
+    }
 
 }
