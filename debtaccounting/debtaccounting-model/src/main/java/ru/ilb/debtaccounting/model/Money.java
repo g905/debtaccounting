@@ -13,9 +13,12 @@ import javax.xml.bind.annotation.*;
 /**
  * @author slavb
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @Embeddable
 public class Money implements Serializable {
+
+    private static final int[] CENTS = new int[]{1, 10, 100, 1000};
 
     /**
      * Сумма
@@ -41,6 +44,7 @@ public class Money implements Serializable {
 
     public Money() {
     }
+
     /**
      * Get сумма
      *
@@ -99,7 +103,6 @@ public class Money implements Serializable {
         return this;
     }
 
-
     public static Money dollars(double amount) {
         return new Money(amount, Currency.getInstance(Locale.US));
     }
@@ -116,16 +119,13 @@ public class Money implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         Money money = (Money) o;
-
         if (amount != money.amount) {
             return false;
         }
         if (currency != null ? !currency.equals(money.currency) : money.currency != null) {
             return false;
         }
-
         return true;
     }
 
@@ -139,37 +139,43 @@ public class Money implements Serializable {
 
     /**
      * Функция складывает деньги
+     *
      * @param other с чем сложить
      * @return Результат сложения
      */
-    public Money add(Money other) {
+    public Money addMoney(Money other) {
         assertSameCurrencyAs(other);
         return newMoney(amount + other.amount);
     }
 
     /**
-     * Функция вычитает деньги. 
+     * Функция вычитает деньги.
+     *
      * @param other вычистаемое.
      * @return Результат вычитания.
      */
-    public Money subtract(Money other) {
+    public Money subtractMoney(Money other) {
         assertSameCurrencyAs(other);
         return newMoney(amount - other.amount);
     }
+
     /**
-     * Функция меняет знак денег 
+     * Функция меняет знак денег
+     *
      * @return Результат смены знака
      */
-    public Money negate() {
+    public Money negateMoney() {
         return newMoney(-amount);
     }
+
     /**
      * Функция умнажает деньги на коэффициент.
-     * @param arg вычистаемое. 
+     *
+     * @param arg вычистаемое.
      * @return Результат умножения.
      */
-    public Money multiply(double arg) {
-        return new Money((double)amount / centFactor() * arg, currency);
+    public Money multiplyMoney(double arg) {
+        return new Money((double) amount / centFactor() * arg, currency);
     }
 
     public int compareTo(Object other) {
@@ -177,8 +183,9 @@ public class Money implements Serializable {
     }
 
     /**
-     * Фунция сравнения денег. 
-     * @param other с чем сравнить 
+     * Фунция сравнения денег.
+     *
+     * @param other с чем сравнить
      * @return -1 меньше, 0 равно, 1 больше
      */
     public int compareTo(Money other) {
@@ -189,13 +196,13 @@ public class Money implements Serializable {
         if (amount == other.amount) {
             return 0;
         }
-
         return 1;
     }
 
     /**
-     * Больше ли деньги. 
-     * @param other с чем сравнивать. 
+     * Больше ли деньги.
+     *
+     * @param other с чем сравнивать.
      * @return True, если больше.
      */
     public boolean greaterThan(Money other) {
@@ -203,8 +210,9 @@ public class Money implements Serializable {
     }
 
     /**
-     * Разделить деньги на несколько частей. 
-     * @param n количество частей. 
+     * Разделить деньги на несколько частей.
+     *
+     * @param n количество частей.
      * @return Массив разделенных денег.
      */
     public Money[] allocate(int n) {
@@ -212,7 +220,6 @@ public class Money implements Serializable {
         Money highResult = newMoney(lowResult.amount + 1);
         Money[] results = new Money[n];
         int remainder = (int) amount % n;
-
         for (int i = 0; i < remainder; i++) {
             results[i] = highResult;
         }
@@ -223,8 +230,9 @@ public class Money implements Serializable {
     }
 
     /**
-     * Разделяет деньги на неравный части. 
-     * @param ratios пропорция для разделения. 
+     * Разделяет деньги на неравный части.
+     *
+     * @param ratios пропорция для разделения.
      * @return Массив разделенных денег.
      */
     public Money[] allocate(long[] ratios) {
@@ -234,7 +242,6 @@ public class Money implements Serializable {
         }
         long remainder = amount;
         Money[] results = new Money[ratios.length];
-
         for (int i = 0; i < results.length; i++) {
             results[i] = newMoney(amount * ratios[i] / total);
             remainder -= results[i].amount;
@@ -242,18 +249,17 @@ public class Money implements Serializable {
         for (int i = 0; i < remainder; i++) {
             results[i].amount++;
         }
-
         return results;
     }
-
-    private static final int[] CENTS = new int[]{1, 10, 100, 1000};
 
     private int centFactor() {
         return CENTS[currency.getDefaultFractionDigits()];
     }
 
     private void assertSameCurrencyAs(Money arg) {
-        //Assert.assertEquals("money math mismatch", currency, arg.currency);
+        if (!currency.equals(arg.currency)) {
+            throw new AssertionError("currency mismatch");
+        }
     }
 
     private Money newMoney(long amount) {
@@ -262,4 +268,5 @@ public class Money implements Serializable {
         money.amount = amount;
         return money;
     }
+
 }

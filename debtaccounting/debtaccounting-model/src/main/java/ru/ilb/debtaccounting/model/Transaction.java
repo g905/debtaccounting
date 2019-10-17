@@ -217,7 +217,7 @@ public class Transaction implements Serializable {
     }
 
     void execute() {
-        Entry entryFrom = new Entry(date, amount.negate());
+        Entry entryFrom = new Entry(date, amount.negateMoney());
         accountFrom.addEntry(entryFrom);
         addEntry(entryFrom);
         Entry entryTo = new Entry(date, amount);
