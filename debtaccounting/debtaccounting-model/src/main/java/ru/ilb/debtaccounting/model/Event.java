@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,6 +31,9 @@ public abstract class Event implements Serializable {
 
     @Basic
     private LocalDate date;
+
+    @Embedded
+    private EventRequest eventRequest;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Debt debt;
@@ -61,6 +65,19 @@ public abstract class Event implements Serializable {
 
     public Event withDate(LocalDate date) {
         this.date = date;
+        return this;
+    }
+
+    public EventRequest getEventRequest() {
+        return eventRequest;
+    }
+
+    public void setEventRequest(EventRequest eventRequest) {
+        this.eventRequest = eventRequest;
+    }
+
+    public Event withEventRequest(EventRequest eventRequest) {
+        this.eventRequest = eventRequest;
         return this;
     }
 
