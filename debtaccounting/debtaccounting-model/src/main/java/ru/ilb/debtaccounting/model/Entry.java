@@ -19,11 +19,14 @@ import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class SemiTransaction implements Serializable {
+public class Entry implements Serializable {
 
     @Id
     @GeneratedValue
     private Long id;
+
+    @Basic
+    private String date;
 
     @Basic
     private BigDecimal amount;
@@ -42,8 +45,21 @@ public class SemiTransaction implements Serializable {
         this.id = id;
     }
 
-    public SemiTransaction withId(Long id) {
+    public Entry withId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public Entry withDate(String date) {
+        this.date = date;
         return this;
     }
 
@@ -55,7 +71,7 @@ public class SemiTransaction implements Serializable {
         this.amount = amount;
     }
 
-    public SemiTransaction withAmount(BigDecimal amount) {
+    public Entry withAmount(BigDecimal amount) {
         this.amount = amount;
         return this;
     }
@@ -68,7 +84,7 @@ public class SemiTransaction implements Serializable {
         this.transaction = transaction;
     }
 
-    public SemiTransaction withTransaction(Transaction transaction) {
+    public Entry withTransaction(Transaction transaction) {
         this.transaction = transaction;
         return this;
     }
@@ -81,7 +97,7 @@ public class SemiTransaction implements Serializable {
         this.account = account;
     }
 
-    public SemiTransaction withAccount(Account account) {
+    public Entry withAccount(Account account) {
         this.account = account;
         return this;
     }

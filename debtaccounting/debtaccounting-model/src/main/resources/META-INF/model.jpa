@@ -91,6 +91,16 @@
     <entity compositePrimaryKeyClass="TransactionPK" abs="true" class="Transaction" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478964715420">
         <ath>slavb</ath>
         <attributes>
+            <basic attribute-type="java.time.LocalDate" v="true" xvt="" name="date" id="_1571314056178113">
+                <des>Дата транзакции</des>
+                <xwm/>
+                <xm/>
+            </basic>
+            <basic attribute-type="String" v="true" xvt="" name="amount" id="_1571314068157114">
+                <des>Сумма транзакции</des>
+                <xwm/>
+                <xm/>
+            </basic>
             <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478925652110" connected-attribute-id="_155478966997628" v="true" xvt="" name="event" id="_155478966997427">
                 <xwm/>
                 <xm/>
@@ -99,7 +109,7 @@
                 <xwm/>
                 <xm/>
             </many-to-one>
-            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478984578741" connected-attribute-id="_155478988629448" v="true" xvt="" name="semiTransactions" id="_155478988629449">
+            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478984578741" connected-attribute-id="_155478988629448" v="true" xvt="" name="entries" id="_155478988629449">
                 <xwm/>
                 <xm/>
             </one-to-many>
@@ -112,6 +122,12 @@
         <nq e="false" name="Transaction.findAll">
             <query>Select e from Transaction e</query>
         </nq>
+        <nq e="false" name="Transaction.findByDate">
+            <query>Select t from Transaction t where t.date=:date</query>
+        </nq>
+        <nq e="false" name="Transaction.findByAmount">
+            <query>Select t from Transaction t where t.amount=:amount</query>
+        </nq>
         <inheritance strategy="SINGLE_TABLE"/>
         <discriminator-column name="" discriminator-type="INTEGER" column-definition="" length="30"/>
     </entity>
@@ -123,14 +139,16 @@
         <con am="PUBLIC" e="true"/>
         <ath>slavb</ath>
         <attributes>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="debit" id="_155478978941437">
+            <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="fromAccount" id="_155478978941437">
+                <des>Счет списания</des>
                 <xwm/>
                 <xm/>
                 <bv>
                     <nn/>
                 </bv>
             </many-to-one>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="credit" id="_155478980926940">
+            <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="toAccount" id="_155478980926940">
+                <des>Счет зачисления</des>
                 <xwm/>
                 <xm/>
                 <bv>
@@ -139,10 +157,10 @@
             </many-to-one>
         </attributes>
         <nq e="false" name="SimpleTransaction.findAll">
-            <query>Select e from SimpleTransaction e</query>
+            <query>Select e fromAccount SimpleTransaction e</query>
         </nq>
         <nq e="false" name="SimpleTransaction.findByAttribute">
-            <query>Select s from SimpleTransaction s where s.attribute=:attribute</query>
+            <query>Select s fromAccount SimpleTransaction s where s.attribute=:attribute</query>
         </nq>
         <discriminator-value>1</discriminator-value>
     </entity>
@@ -168,6 +186,10 @@
                 <xwm/>
                 <xm/>
             </one-to-many>
+            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478984578741" connected-attribute-id="_1571313873416111" v="true" xvt="" name="entries" id="_1571313873416112">
+                <xwm/>
+                <xm/>
+            </one-to-many>
             <id attribute-type="Long" v="true" xvt="" name="id" id="_155478977386534">
                 <xwm/>
                 <xm/>
@@ -184,9 +206,13 @@
             <query>Select a from Account a where a.name=:name</query>
         </nq>
     </entity>
-    <entity compositePrimaryKeyClass="SemiTransactionPK" abs="false" class="SemiTransaction" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478984578741">
+    <entity compositePrimaryKeyClass="EntryPK" abs="false" class="Entry" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478984578741">
         <ath>slavb</ath>
         <attributes>
+            <basic attribute-type="String" v="true" xvt="" name="date" id="_1571314155020115">
+                <xwm/>
+                <xm/>
+            </basic>
             <basic attribute-type="java.math.BigDecimal" v="true" xvt="" name="amount" id="_155478991952554">
                 <xwm/>
                 <xm/>
@@ -195,7 +221,7 @@
                 <xwm/>
                 <xm/>
             </many-to-one>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="account" id="_155478989556651">
+            <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" connected-attribute-id="_1571313873416112" v="true" xvt="" name="account" id="_1571313873416111">
                 <xwm/>
                 <xm/>
             </many-to-one>
@@ -205,11 +231,14 @@
                 <generated-value strategy="DEFAULT"/>
             </id>
         </attributes>
-        <nq e="false" name="SemiTransaction.findAll">
-            <query>Select e from SemiTransaction e</query>
+        <nq e="false" name="Entry.findAll">
+            <query>Select e from Entry e</query>
         </nq>
-        <nq e="false" name="SemiTransaction.findByAmount">
-            <query>Select s from SemiTransaction s where s.amount=:amount</query>
+        <nq e="false" name="Entry.findByAmount">
+            <query>Select s from Entry s where s.amount=:amount</query>
+        </nq>
+        <nq e="false" name="Entry.findByDate">
+            <query>Select e from Entry e where e.date=:date</query>
         </nq>
     </entity>
     <entity compositePrimaryKeyClass="DebtAccountPK" abs="false" class="DebtAccount" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155479004646055">
@@ -303,7 +332,7 @@
         <des>Статус долга</des>
         <ath>slavb</ath>
         <attributes>
-            <basic attribute-type="ru.ilb.debtaccounting.core.DebtStatusCode" v="true" xvt="" name="code" id="_155479067419885">
+            <basic attribute-type="DebtStatusCode" v="true" xvt="" name="code" id="_155479067419885">
                 <des>код</des>
                 <xwm/>
                 <xm/>

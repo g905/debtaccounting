@@ -9,11 +9,11 @@
     <artifactId>debtaccounting-model</artifactId>
     <packaging>jar</packaging>
     <dependencies>
-        <dependency>
+<!--        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>debtaccounting-api</artifactId>
             <version>${project.version}</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>debtaccounting-utils</artifactId>

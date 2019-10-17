@@ -12,7 +12,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.*;
-import ru.ilb.debtaccounting.core.DebtStatusCode;
 
 /**
  * Статус долга

@@ -27,10 +27,10 @@ import ru.ilb.debtaccounting.model.DebtStatus;
 @AutoPopulableRepository
 public interface DebtStatusRepository extends CacheableJpaRepository<DebtStatus, Long> {
 
-    public static DebtStatus PENDING = new DebtStatus(1L, DebtStatusCode.PENDING, "Ожидание выдачи")
-            .withDisbursed(false);
-
-    public static DebtStatus DISBURSED = new DebtStatus(1L, DebtStatusCode.DISBURSED, "Выдан")
-            .withDisbursed(true);
+//    public static DebtStatus PENDING = new DebtStatus(1L, DebtStatusCode.PENDING, "Ожидание выдачи")
+//            .withDisbursed(false);
+//
+//    public static DebtStatus DISBURSED = new DebtStatus(1L, DebtStatusCode.DISBURSED, "Выдан")
+//            .withDisbursed(true);
 
 }

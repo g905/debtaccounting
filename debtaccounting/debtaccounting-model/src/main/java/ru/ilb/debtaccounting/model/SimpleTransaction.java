@@ -20,52 +20,84 @@ import javax.xml.bind.annotation.*;
 @DiscriminatorValue("1")
 public class SimpleTransaction extends Transaction implements Serializable {
 
+    /**
+     * Счет списания
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
-    private Account debit;
+    private Account fromAccount;
 
+    /**
+     * Счет зачисления
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
-    private Account credit;
+    private Account toAccount;
 
-    public SimpleTransaction(Account debit, Account credit) {
-        this.debit = debit;
-        this.credit = credit;
+    public SimpleTransaction(Account fromAccount, Account toAccount) {
+        this.fromAccount = fromAccount;
+        this.toAccount = toAccount;
     }
 
     public SimpleTransaction() {
     }
 
-    public Account getDebit() {
-        return debit;
+    /**
+     * Get счет списания
+     *
+     * @return {@link #fromAccount}
+     */
+    public Account getFromAccount() {
+        return fromAccount;
     }
 
-    public void setDebit(Account debit) {
-        this.debit = debit;
+    /**
+     * Set счет списания
+     *
+     * @param fromAccount {@link #fromAccount}
+     */
+    public void setFromAccount(Account fromAccount) {
+        this.fromAccount = fromAccount;
     }
 
-    public SimpleTransaction withDebit(Account debit) {
-        this.debit = debit;
+    /**
+     * Set счет списания
+     *
+     * @param fromAccount {@link #fromAccount}
+     * @return {@link #SimpleTransaction}
+     */
+    public SimpleTransaction withFromAccount(Account fromAccount) {
+        this.fromAccount = fromAccount;
         return this;
     }
 
-    public Account getCredit() {
-        return credit;
+    /**
+     * Get счет зачисления
+     *
+     * @return {@link #toAccount}
+     */
+    public Account getToAccount() {
+        return toAccount;
     }
 
-    public void setCredit(Account credit) {
-        this.credit = credit;
+    /**
+     * Set счет зачисления
+     *
+     * @param toAccount {@link #toAccount}
+     */
+    public void setToAccount(Account toAccount) {
+        this.toAccount = toAccount;
     }
 
-    public SimpleTransaction withCredit(Account credit) {
-        this.credit = credit;
+    /**
+     * Set счет зачисления
+     *
+     * @param toAccount {@link #toAccount}
+     * @return {@link #SimpleTransaction}
+     */
+    public SimpleTransaction withToAccount(Account toAccount) {
+        this.toAccount = toAccount;
         return this;
-    }
-
-    @Override
-    public void execute() {
-        if (debit != null) {
-        }
     }
 
 }

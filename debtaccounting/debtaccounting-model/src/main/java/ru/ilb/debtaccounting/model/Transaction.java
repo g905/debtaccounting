@@ -4,8 +4,10 @@
 package ru.ilb.debtaccounting.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Basic;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -32,6 +34,18 @@ public abstract class Transaction implements Serializable {
     @GeneratedValue
     private Long id;
 
+    /**
+     * Дата транзакции
+     */
+    @Basic
+    private LocalDate date;
+
+    /**
+     * Сумма транзакции
+     */
+    @Basic
+    private String amount;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Event event;
 
@@ -40,7 +54,7 @@ public abstract class Transaction implements Serializable {
 
     @OneToMany(mappedBy = "transaction")
     @XmlTransient
-    private List<SemiTransaction> semiTransactions;
+    private List<Entry> entries;
 
     public Long getId() {
         return id;
@@ -52,6 +66,64 @@ public abstract class Transaction implements Serializable {
 
     public Transaction withId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    /**
+     * Get дата транзакции
+     *
+     * @return {@link #date}
+     */
+    public LocalDate getDate() {
+        return date;
+    }
+
+    /**
+     * Set дата транзакции
+     *
+     * @param date {@link #date}
+     */
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    /**
+     * Set дата транзакции
+     *
+     * @param date {@link #date}
+     * @return {@link #Transaction}
+     */
+    public Transaction withDate(LocalDate date) {
+        this.date = date;
+        return this;
+    }
+
+    /**
+     * Get сумма транзакции
+     *
+     * @return {@link #amount}
+     */
+    public String getAmount() {
+        return amount;
+    }
+
+    /**
+     * Set сумма транзакции
+     *
+     * @param amount {@link #amount}
+     */
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    /**
+     * Set сумма транзакции
+     *
+     * @param amount {@link #amount}
+     * @return {@link #Transaction}
+     */
+    public Transaction withAmount(String amount) {
+        this.amount = amount;
         return this;
     }
 
@@ -81,32 +153,30 @@ public abstract class Transaction implements Serializable {
         return this;
     }
 
-    public List<SemiTransaction> getSemiTransactions() {
-        if (semiTransactions == null) {
-            semiTransactions = new ArrayList<>();
+    public List<Entry> getEntries() {
+        if (entries == null) {
+            entries = new ArrayList<>();
         }
-        return semiTransactions;
+        return entries;
     }
 
-    public void setSemiTransactions(List<SemiTransaction> semiTransactions) {
-        this.semiTransactions = semiTransactions;
+    public void setEntries(List<Entry> entries) {
+        this.entries = entries;
     }
 
-    public Transaction withSemiTransactions(List<SemiTransaction> semiTransactions) {
-        this.semiTransactions = semiTransactions;
+    public Transaction withEntries(List<Entry> entries) {
+        this.entries = entries;
         return this;
     }
 
-    public void addSemiTransaction(SemiTransaction semiTransaction) {
-        getSemiTransactions().add(semiTransaction);
-        semiTransaction.setTransaction(this);
+    public void addEntry(Entry entry) {
+        getEntries().add(entry);
+        entry.setTransaction(this);
     }
 
-    public void removeSemiTransaction(SemiTransaction semiTransaction) {
-        getSemiTransactions().remove(semiTransaction);
-        semiTransaction.setTransaction(null);
+    public void removeEntry(Entry entry) {
+        getEntries().remove(entry);
+        entry.setTransaction(null);
     }
-
-    public abstract void execute();
 
 }

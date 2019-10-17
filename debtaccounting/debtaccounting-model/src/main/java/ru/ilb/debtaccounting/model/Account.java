@@ -48,6 +48,10 @@ public class Account implements Serializable {
     @XmlTransient
     private List<AccountBalance> accountBalances;
 
+    @OneToMany(mappedBy = "account")
+    @XmlTransient
+    private List<Entry> entries;
+
     public Long getId() {
         return id;
     }
@@ -169,6 +173,32 @@ public class Account implements Serializable {
     public void removeAccountBalance(AccountBalance accountBalance) {
         getAccountBalances().remove(accountBalance);
         accountBalance.setAccount(null);
+    }
+
+    public List<Entry> getEntries() {
+        if (entries == null) {
+            entries = new ArrayList<>();
+        }
+        return entries;
+    }
+
+    public void setEntries(List<Entry> entries) {
+        this.entries = entries;
+    }
+
+    public Account withEntries(List<Entry> entries) {
+        this.entries = entries;
+        return this;
+    }
+
+    public void addEntry(Entry entry) {
+        getEntries().add(entry);
+        entry.setAccount(this);
+    }
+
+    public void removeEntry(Entry entry) {
+        getEntries().remove(entry);
+        entry.setAccount(null);
     }
 
 }
