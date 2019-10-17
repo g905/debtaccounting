@@ -4,6 +4,10 @@
     <entity compositePrimaryKeyClass="DebtPK" abs="false" class="Debt" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_15547892496197">
         <ath>slavb</ath>
         <attributes>
+            <basic attribute-type="ru.ilb.debtaccounting.model.DebtStatusCode" v="true" xvt="" name="status" id="_1571305246203200">
+                <xwm/>
+                <xm/>
+            </basic>
             <many-to-one optional="true" primaryKey="false" connected-entity-id="_155479065881382" v="true" xvt="" name="debtStatus" id="_155479068635888">
                 <xwm/>
                 <xm/>
@@ -35,6 +39,9 @@
         <nq e="false" name="Debt.findAll">
             <query>Select e from Debt e</query>
         </nq>
+        <nq e="false" name="Debt.findByStatus">
+            <query>Select d from Debt d where d.status=:status</query>
+        </nq>
     </entity>
     <entity compositePrimaryKeyClass="EventPK" abs="true" class="Event" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478925652110">
         <ath>slavb</ath>
@@ -43,7 +50,7 @@
                 <xwm/>
                 <xm/>
             </basic>
-            <basic attribute-type="ru.ilb.debtaccounting.model.EventRequest" v="true" xvt="" name="eventRequest" id="_157130263119190">
+            <basic attribute-type="ru.ilb.debtaccounting.model.EventRequest" v="true" xvt="" name="request" id="_157130263119190">
                 <des>Запрос</des>
                 <xwm/>
                 <xm/>
@@ -73,8 +80,8 @@
         <nq e="false" name="Event.findByDate">
             <query>Select e from Event e where e.date=:date</query>
         </nq>
-        <nq e="false" name="Event.findByEventRequest">
-            <query>Select e from Event e where e.eventRequest=:eventRequest</query>
+        <nq e="false" name="Event.findByRequest">
+            <query>Select e from Event e where e.request=:request</query>
         </nq>
         <nq e="false" name="Event.findByCreatedDate">
             <query>Select e from Event e where e.createdDate=:createdDate</query>

@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,6 +28,9 @@ public class Debt implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Basic
+    private DebtStatusCode status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private DebtStatus debtStatus;
@@ -52,6 +56,19 @@ public class Debt implements Serializable {
 
     public Debt withId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public DebtStatusCode getStatus() {
+        return status;
+    }
+
+    public void setStatus(DebtStatusCode status) {
+        this.status = status;
+    }
+
+    public Debt withStatus(DebtStatusCode status) {
+        this.status = status;
         return this;
     }
 
@@ -137,5 +154,4 @@ public class Debt implements Serializable {
         return getDebtAccounts().stream().filter(da -> type.isAssignableFrom(da.getClass())).findFirst();
     }
 
- 
 }

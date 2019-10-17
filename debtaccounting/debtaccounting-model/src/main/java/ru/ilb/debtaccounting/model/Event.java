@@ -36,7 +36,7 @@ public abstract class Event implements Serializable {
      * Запрос
      */
     @Basic
-    private EventRequest eventRequest;
+    private EventRequest request;
 
     /**
      * Дата создания
@@ -82,8 +82,8 @@ public abstract class Event implements Serializable {
      *
      * @return {@link #eventRequest}
      */
-    public EventRequest getEventRequest() {
-        return eventRequest;
+    public EventRequest getRequest() {
+        return request;
     }
 
     /**
@@ -91,18 +91,18 @@ public abstract class Event implements Serializable {
      *
      * @param eventRequest {@link #eventRequest}
      */
-    public void setEventRequest(EventRequest eventRequest) {
-        this.eventRequest = eventRequest;
+    public void setRequest(EventRequest request) {
+        this.request = request;
     }
 
     /**
      * Set запрос
      *
-     * @param eventRequest {@link #eventRequest}
+     * @param request {@link #request}
      * @return {@link #Event}
      */
-    public Event withEventRequest(EventRequest eventRequest) {
-        this.eventRequest = eventRequest;
+    public Event withRequest(EventRequest request) {
+        this.request = request;
         return this;
     }
 
@@ -173,7 +173,5 @@ public abstract class Event implements Serializable {
         getTransactions().remove(transaction);
         transaction.setEvent(null);
     }
-
-    public abstract void execute();
 
 }
