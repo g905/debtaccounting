@@ -149,7 +149,7 @@ public class Money implements Serializable {
 
     /**
      * Функция вычитает деньги. 
-     * @param other вычистаемое. 
+     * @param other вычистаемое.
      * @return Результат вычитания.
      */
     public Money subtract(Money other) {
@@ -164,7 +164,7 @@ public class Money implements Serializable {
         return newMoney(-amount);
     }
     /**
-     * Функция умнажает деньги на коэффициент. @
+     * Функция умнажает деньги на коэффициент.
      * @param arg вычистаемое. 
      * @return Результат умножения.
      */
@@ -179,9 +179,7 @@ public class Money implements Serializable {
     /**
      * Фунция сравнения денег. 
      * @param other с чем сравнить 
-     * @return -1 меньше<br>
-     * 0 равно<br>
-     * 1 больше<br>
+     * @return -1 меньше, 0 равно, 1 больше
      */
     public int compareTo(Money other) {
         assertSameCurrencyAs(other);
@@ -207,8 +205,7 @@ public class Money implements Serializable {
     /**
      * Разделить деньги на несколько частей. 
      * @param n количество частей. 
-     * @return
-     * Массив разделенных денег.
+     * @return Массив разделенных денег.
      */
     public Money[] allocate(int n) {
         Money lowResult = newMoney(amount / n);
@@ -227,8 +224,7 @@ public class Money implements Serializable {
 
     /**
      * Разделяет деньги на неравный части. 
-     * @param ratios пропорция для
-     * разделения. 
+     * @param ratios пропорция для разделения. 
      * @return Массив разделенных денег.
      */
     public Money[] allocate(long[] ratios) {
