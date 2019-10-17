@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,7 +31,10 @@ public abstract class Event implements Serializable {
     @Basic
     private LocalDate date;
 
-    @Embedded
+    /**
+     * Запрос
+     */
+    @Basic
     private EventRequest eventRequest;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -68,14 +70,30 @@ public abstract class Event implements Serializable {
         return this;
     }
 
+    /**
+     * Get запрос
+     *
+     * @return {@link #eventRequest}
+     */
     public EventRequest getEventRequest() {
         return eventRequest;
     }
 
+    /**
+     * Set запрос
+     *
+     * @param eventRequest {@link #eventRequest}
+     */
     public void setEventRequest(EventRequest eventRequest) {
         this.eventRequest = eventRequest;
     }
 
+    /**
+     * Set запрос
+     *
+     * @param eventRequest {@link #eventRequest}
+     * @return {@link #Event}
+     */
     public Event withEventRequest(EventRequest eventRequest) {
         this.eventRequest = eventRequest;
         return this;

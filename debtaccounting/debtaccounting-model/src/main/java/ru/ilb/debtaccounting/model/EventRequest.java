@@ -4,14 +4,12 @@
 package ru.ilb.debtaccounting.model;
 
 import java.io.Serializable;
-import javax.persistence.Embeddable;
 import javax.xml.bind.annotation.*;
 
 /**
  * @author slavb
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@Embeddable
 public class EventRequest implements Serializable {
 
 }
