@@ -5,6 +5,7 @@ package ru.ilb.debtaccounting.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
@@ -36,6 +37,12 @@ public abstract class Event implements Serializable {
      */
     @Basic
     private EventRequest eventRequest;
+
+    /**
+     * Дата создания
+     */
+    @Basic
+    private LocalDateTime createdDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Debt debt;
@@ -96,6 +103,35 @@ public abstract class Event implements Serializable {
      */
     public Event withEventRequest(EventRequest eventRequest) {
         this.eventRequest = eventRequest;
+        return this;
+    }
+
+    /**
+     * Get дата создания
+     *
+     * @return {@link #createdDate}
+     */
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    /**
+     * Set дата создания
+     *
+     * @param createdDate {@link #createdDate}
+     */
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    /**
+     * Set дата создания
+     *
+     * @param createdDate {@link #createdDate}
+     * @return {@link #Event}
+     */
+    public Event withCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
         return this;
     }
 

@@ -48,6 +48,11 @@
                 <xwm/>
                 <xm/>
             </basic>
+            <basic attribute-type="java.time.LocalDateTime" v="true" xvt="" name="createdDate" id="_1571303297407127">
+                <des>Дата создания</des>
+                <xwm/>
+                <xm/>
+            </basic>
             <many-to-one optional="true" primaryKey="false" connected-entity-id="_15547892496197" connected-attribute-id="_155478966206325" v="true" xvt="" name="debt" id="_155478966206224">
                 <xwm/>
                 <xm/>
@@ -70,6 +75,9 @@
         </nq>
         <nq e="false" name="Event.findByEventRequest">
             <query>Select e from Event e where e.eventRequest=:eventRequest</query>
+        </nq>
+        <nq e="false" name="Event.findByCreatedDate">
+            <query>Select e from Event e where e.createdDate=:createdDate</query>
         </nq>
     </entity>
     <entity compositePrimaryKeyClass="TransactionPK" abs="true" class="Transaction" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478964715420">
