@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -36,6 +37,7 @@ public abstract class Event implements Serializable {
      * Запрос
      */
     @Basic
+    @Valid
     private EventRequest request;
 
     /**

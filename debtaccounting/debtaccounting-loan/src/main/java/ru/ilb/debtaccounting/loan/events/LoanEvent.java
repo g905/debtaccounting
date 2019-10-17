@@ -16,9 +16,7 @@
 package ru.ilb.debtaccounting.loan.events;
 
 import ru.ilb.debtaccounting.loan.Loan;
-import ru.ilb.debtaccounting.model.Debt;
 import ru.ilb.debtaccounting.model.Event;
-import ru.ilb.debtaccounting.model.EventRequest;
 
 /**
  *

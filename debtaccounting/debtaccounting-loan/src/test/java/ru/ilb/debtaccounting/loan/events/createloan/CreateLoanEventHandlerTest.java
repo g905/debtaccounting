@@ -17,6 +17,7 @@ package ru.ilb.debtaccounting.loan.events.createloan;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
@@ -51,6 +52,9 @@ public class CreateLoanEventHandlerTest {
         CreateLoanEventHandler hanler = new CreateLoanEventHandler(validator);
         CreateLoanEvent event = hanler.createEvent();
         CreateLoanRequest request = new CreateLoanRequest();
+        request.setAmount(BigDecimal.valueOf(968600));
+        request.setPeriod(60);
+        request.setRate(BigDecimal.valueOf(0.1537));
         CashFlow CashFlow = new CashFlow();
         request.setCashFlow(CashFlow);
         event.setRequest(request);

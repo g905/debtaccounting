@@ -54,6 +54,7 @@
                 <des>Запрос</des>
                 <xwm/>
                 <xm/>
+                <an e="true" n="@javax.validation.Valid"/>
             </basic>
             <basic attribute-type="java.time.LocalDateTime" v="true" xvt="" name="createdDate" id="_1571303297407127">
                 <des>Дата создания</des>
