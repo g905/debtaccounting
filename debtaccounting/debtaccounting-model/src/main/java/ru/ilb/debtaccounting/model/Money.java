@@ -29,6 +29,18 @@ public class Money implements Serializable {
     @Basic
     private Currency currency;
 
+    public Money(long amount, Currency currency) {
+        this.currency = currency;
+        this.amount = amount * centFactor();
+    }
+
+    public Money(double amount, Currency currency) {
+        this.currency = currency;
+        this.amount = Math.round(amount * centFactor());
+    }
+
+    public Money() {
+    }
     /**
      * Get сумма
      *
@@ -87,18 +99,6 @@ public class Money implements Serializable {
         return this;
     }
 
-    public Money(long amount, Currency currency) {
-        this.currency = currency;
-        this.amount = amount * centFactor();
-    }
-
-    public Money(double amount, Currency currency) {
-        this.currency = currency;
-        this.amount = Math.round(amount * centFactor());
-    }
-
-    private Money() {
-    }
 
     public static Money dollars(double amount) {
         return new Money(amount, Currency.getInstance(Locale.US));
