@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.*;
 /**
  * @author slavb
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class Transaction implements Serializable {
@@ -36,11 +37,10 @@ public class Transaction implements Serializable {
     private LocalDate date;
 
     /**
-     * Сумма транзакции
+     * Сумма
      */
-    @Basic
-    @Column(scale = 2, precision = 15)
-    private BigDecimal amount;
+    @Embedded
+    private Money amount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Event event;
@@ -58,7 +58,7 @@ public class Transaction implements Serializable {
     @XmlTransient
     private List<Entry> entries;
 
-    public Transaction(LocalDate date, BigDecimal amount, Account accountFrom, Account accountTo) {
+    public Transaction(LocalDate date, Money amount, Account accountFrom, Account accountTo) {
         this.date = date;
         this.amount = amount;
         this.accountFrom = accountFrom;
@@ -111,30 +111,30 @@ public class Transaction implements Serializable {
     }
 
     /**
-     * Get сумма транзакции
+     * Get сумма
      *
      * @return {@link #amount}
      */
-    public BigDecimal getAmount() {
+    public Money getAmount() {
         return amount;
     }
 
     /**
-     * Set сумма транзакции
+     * Set сумма
      *
      * @param amount {@link #amount}
      */
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(Money amount) {
         this.amount = amount;
     }
 
     /**
-     * Set сумма транзакции
+     * Set сумма
      *
      * @param amount {@link #amount}
      * @return {@link #Transaction}
      */
-    public Transaction withAmount(BigDecimal amount) {
+    public Transaction withAmount(Money amount) {
         this.amount = amount;
         return this;
     }

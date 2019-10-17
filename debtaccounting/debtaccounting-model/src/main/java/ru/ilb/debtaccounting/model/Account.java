@@ -201,23 +201,27 @@ public class Account implements Serializable {
         getEntries().remove(entry);
         entry.setAccount(null);
     }
+
     /**
      * Withdraw money from account
+     *
      * @param amount
      * @param target
-     * @param date 
+     * @param date
      */
-    void withdraw(BigDecimal amount, Account target, LocalDate date) {
+    void withdraw(Money amount, Account target, LocalDate date) {
         new Transaction(date, amount, this, target).execute();
     }
-    
+
     /**
      * Deposit money to account
+     *
      * @param amount
      * @param source
-     * @param date 
+     * @param date
      */
-    void deposit(BigDecimal amount, Account source, LocalDate date) {
+    void deposit(Money amount, Account source, LocalDate date) {
         new Transaction(date, amount, source, this).execute();
     }
+
 }

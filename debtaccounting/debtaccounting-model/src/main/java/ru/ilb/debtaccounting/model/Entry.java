@@ -4,9 +4,9 @@
 package ru.ilb.debtaccounting.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import javax.persistence.Basic;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,8 +29,8 @@ public class Entry implements Serializable {
     @Basic
     private LocalDate date;
 
-    @Basic
-    private BigDecimal amount;
+    @Embedded
+    private Money amount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Transaction transaction;
@@ -38,7 +38,7 @@ public class Entry implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Account account;
 
-    public Entry(LocalDate date, BigDecimal amount) {
+    public Entry(LocalDate date, Money amount) {
         this.date = date;
         this.amount = amount;
     }
@@ -72,15 +72,15 @@ public class Entry implements Serializable {
         return this;
     }
 
-    public BigDecimal getAmount() {
+    public Money getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(Money amount) {
         this.amount = amount;
     }
 
-    public Entry withAmount(BigDecimal amount) {
+    public Entry withAmount(Money amount) {
         this.amount = amount;
         return this;
     }
