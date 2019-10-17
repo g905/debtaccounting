@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public abstract class Event implements Serializable {
+public class Event implements Serializable {
 
     @Id
     @GeneratedValue
@@ -52,7 +52,7 @@ public abstract class Event implements Serializable {
     @OneToMany(mappedBy = "event")
     @XmlTransient
     private List<Transaction> transactions;
-
+    
     public Long getId() {
         return id;
     }
@@ -91,7 +91,7 @@ public abstract class Event implements Serializable {
     /**
      * Set запрос
      *
-     * @param eventRequest {@link #eventRequest}
+     * @param request {@link #eventRequest}
      */
     public void setRequest(EventRequest request) {
         this.request = request;
