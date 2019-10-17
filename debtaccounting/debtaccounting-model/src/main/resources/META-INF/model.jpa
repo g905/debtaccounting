@@ -126,10 +126,16 @@
             <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="debit" id="_155478978941437">
                 <xwm/>
                 <xm/>
+                <bv>
+                    <nn/>
+                </bv>
             </many-to-one>
             <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="credit" id="_155478980926940">
                 <xwm/>
                 <xm/>
+                <bv>
+                    <nn/>
+                </bv>
             </many-to-one>
         </attributes>
         <nq e="false" name="SimpleTransaction.findAll">

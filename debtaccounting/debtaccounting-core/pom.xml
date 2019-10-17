@@ -6,24 +6,23 @@
         <artifactId>debtaccounting</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>debtaccounting-model</artifactId>
+    <artifactId>debtaccounting-core</artifactId>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>debtaccounting-api</artifactId>
+            <artifactId>debtaccounting-model</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>debtaccounting-utils</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <version>8.0</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

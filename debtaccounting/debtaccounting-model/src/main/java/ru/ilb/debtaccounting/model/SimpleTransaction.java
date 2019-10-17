@@ -8,6 +8,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -20,9 +21,11 @@ import javax.xml.bind.annotation.*;
 public class SimpleTransaction extends Transaction implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
     private Account debit;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
     private Account credit;
 
     public SimpleTransaction(Account debit, Account credit) {
