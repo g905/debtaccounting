@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.*;
-import ru.ilb.debtaccounting.exceptions.AlreadyDisbursedException;
 
 /**
  * @author slavb
@@ -23,7 +22,7 @@ import ru.ilb.debtaccounting.exceptions.AlreadyDisbursedException;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Debt implements Serializable, Disbursable {
+public class Debt implements Serializable {
 
     @Id
     @GeneratedValue
@@ -138,10 +137,5 @@ public class Debt implements Serializable, Disbursable {
         return getDebtAccounts().stream().filter(da -> type.isAssignableFrom(da.getClass())).findFirst();
     }
 
-    @Override
-    public void disburse() throws AlreadyDisbursedException {
-        // To change body of generated methods, choose Tools | Templates.
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
+ 
 }
