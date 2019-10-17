@@ -15,7 +15,9 @@
  */
 package ru.ilb.debtaccounting.entities;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import javax.validation.constraints.NotNull;
 
 /**
  * Долг
@@ -25,15 +27,33 @@ import java.time.LocalDate;
 public abstract class Debt {
 
     /**
+     * Сумма кредита
+     */
+    @NotNull
+    BigDecimal amount;
+
+    /**
+     * Срок кредита
+     */
+    @NotNull
+    Integer period;
+
+    /**
      * Дата выдачи
      */
+    @NotNull
     LocalDate disbursementDate;
 
+    /**
+     * Статус кредита
+     */
+    @NotNull
     DebtStatusCode status;
 
     /**
      * График погашения
      */
+    @NotNull
     RepaymentPlan repaymentPlan;
 
     public LocalDate getDisbursementDate() {
@@ -60,5 +80,4 @@ public abstract class Debt {
         this.status = status;
     }
 
-    
 }

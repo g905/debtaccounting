@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Bystrobank.
+ * Copyright 2019 slavb.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,43 +15,13 @@
  */
 package ru.ilb.debtaccounting.entities;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import javax.validation.constraints.NotNull;
-
 /**
  *
  * @author slavb
  */
-public class Entry {
+public class DebtAccount {
 
-    /**
-     * Платежный период
-     */
-    @NotNull
-    Integer period;
-
-    /**
-     * Тип платежа
-     */
-    @NotNull
-    EntryTypeCode type;
-
-    /**
-     * Дата платежа
-     */
-    @NotNull
-    LocalDate date;
-
-
-    /**
-     * Сумма платежа
-     */
-    @NotNull
-    BigDecimal amount;
-
-    Account debit;
-
-    Account credit;
+    Debt debt;
+    Account account;
 
 }
