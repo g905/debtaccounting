@@ -4,18 +4,16 @@
 package ru.ilb.debtaccounting.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.*;
@@ -23,12 +21,9 @@ import javax.xml.bind.annotation.*;
 /**
  * @author slavb
  */
-
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(discriminatorType = DiscriminatorType.INTEGER)
-public abstract class Transaction implements Serializable {
+public class Transaction implements Serializable {
 
     @Id
     @GeneratedValue
@@ -44,7 +39,8 @@ public abstract class Transaction implements Serializable {
      * Сумма транзакции
      */
     @Basic
-    private String amount;
+    @Column(scale = 2, precision = 15)
+    private BigDecimal amount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Event event;
@@ -52,9 +48,25 @@ public abstract class Transaction implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private CashFlow cashFlow;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Account accountFrom;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Account accountTo;
+
     @OneToMany(mappedBy = "transaction")
     @XmlTransient
     private List<Entry> entries;
+
+    public Transaction(LocalDate date, BigDecimal amount, Account accountFrom, Account accountTo) {
+        this.date = date;
+        this.amount = amount;
+        this.accountFrom = accountFrom;
+        this.accountTo = accountTo;
+    }
+
+    public Transaction() {
+    }
 
     public Long getId() {
         return id;
@@ -103,7 +115,7 @@ public abstract class Transaction implements Serializable {
      *
      * @return {@link #amount}
      */
-    public String getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
@@ -112,7 +124,7 @@ public abstract class Transaction implements Serializable {
      *
      * @param amount {@link #amount}
      */
-    public void setAmount(String amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
@@ -122,7 +134,7 @@ public abstract class Transaction implements Serializable {
      * @param amount {@link #amount}
      * @return {@link #Transaction}
      */
-    public Transaction withAmount(String amount) {
+    public Transaction withAmount(BigDecimal amount) {
         this.amount = amount;
         return this;
     }
@@ -153,6 +165,32 @@ public abstract class Transaction implements Serializable {
         return this;
     }
 
+    public Account getAccountFrom() {
+        return accountFrom;
+    }
+
+    public void setAccountFrom(Account accountFrom) {
+        this.accountFrom = accountFrom;
+    }
+
+    public Transaction withAccountFrom(Account accountFrom) {
+        this.accountFrom = accountFrom;
+        return this;
+    }
+
+    public Account getAccountTo() {
+        return accountTo;
+    }
+
+    public void setAccountTo(Account accountTo) {
+        this.accountTo = accountTo;
+    }
+
+    public Transaction withAccountTo(Account accountTo) {
+        this.accountTo = accountTo;
+        return this;
+    }
+
     public List<Entry> getEntries() {
         if (entries == null) {
             entries = new ArrayList<>();
@@ -177,6 +215,15 @@ public abstract class Transaction implements Serializable {
     public void removeEntry(Entry entry) {
         getEntries().remove(entry);
         entry.setTransaction(null);
+    }
+
+    void execute() {
+        Entry entryFrom = new Entry(date, amount.negate());
+        accountFrom.addEntry(entryFrom);
+        addEntry(entryFrom);
+        Entry entryTo = new Entry(date, amount);
+        accountFrom.addEntry(entryTo);
+        addEntry(entryTo);
     }
 
 }

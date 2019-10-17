@@ -5,6 +5,7 @@ package ru.ilb.debtaccounting.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
@@ -200,5 +201,23 @@ public class Account implements Serializable {
         getEntries().remove(entry);
         entry.setAccount(null);
     }
-
+    /**
+     * Withdraw money from account
+     * @param amount
+     * @param target
+     * @param date 
+     */
+    void withdraw(BigDecimal amount, Account target, LocalDate date) {
+        new Transaction(date, amount, this, target).execute();
+    }
+    
+    /**
+     * Deposit money to account
+     * @param amount
+     * @param source
+     * @param date 
+     */
+    void deposit(BigDecimal amount, Account source, LocalDate date) {
+        new Transaction(date, amount, source, this).execute();
+    }
 }
