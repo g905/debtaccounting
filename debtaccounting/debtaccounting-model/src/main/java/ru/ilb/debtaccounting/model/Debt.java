@@ -32,6 +32,9 @@ public class Debt implements Serializable, Disbursable {
     @ManyToOne(fetch = FetchType.LAZY)
     private DebtStatus debtStatus;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private CashFlow cashFlow;
+
     @OneToMany(mappedBy = "debt", cascade = CascadeType.ALL)
     @XmlTransient
     private List<Event> events;
@@ -63,6 +66,19 @@ public class Debt implements Serializable, Disbursable {
 
     public Debt withDebtStatus(DebtStatus debtStatus) {
         this.debtStatus = debtStatus;
+        return this;
+    }
+
+    public CashFlow getCashFlow() {
+        return cashFlow;
+    }
+
+    public void setCashFlow(CashFlow cashFlow) {
+        this.cashFlow = cashFlow;
+    }
+
+    public Debt withCashFlow(CashFlow cashFlow) {
+        this.cashFlow = cashFlow;
         return this;
     }
 

@@ -35,6 +35,9 @@ public abstract class Transaction implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Event event;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private CashFlow cashFlow;
+
     @OneToMany(mappedBy = "transaction")
     @XmlTransient
     private List<SemiTransaction> semiTransactions;
@@ -62,6 +65,19 @@ public abstract class Transaction implements Serializable {
 
     public Transaction withEvent(Event event) {
         this.event = event;
+        return this;
+    }
+
+    public CashFlow getCashFlow() {
+        return cashFlow;
+    }
+
+    public void setCashFlow(CashFlow cashFlow) {
+        this.cashFlow = cashFlow;
+    }
+
+    public Transaction withCashFlow(CashFlow cashFlow) {
+        this.cashFlow = cashFlow;
         return this;
     }
 

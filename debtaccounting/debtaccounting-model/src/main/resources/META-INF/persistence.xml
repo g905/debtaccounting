@@ -14,6 +14,7 @@
     <class>ru.ilb.debtaccounting.model.Loan</class>
     <class>ru.ilb.debtaccounting.model.DebtStatus</class>
     <class>ru.ilb.debtaccounting.model.DisburseEvent</class>
+    <class>ru.ilb.debtaccounting.model.CashFlow</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
       <property name="javax.persistence.jdbc.password" value="app"/>
