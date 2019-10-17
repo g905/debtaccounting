@@ -117,6 +117,11 @@
                 <xm/>
                 <column unique="false" nullable="true" insertable="true" updatable="true" precision="15" scale="2"/>
             </basic>
+            <basic attribute-type="String" v="true" xvt="" name="name" id="_157130161523071">
+                <des>Наименование счета</des>
+                <xwm/>
+                <xm/>
+            </basic>
             <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155479004646055" connected-attribute-id="_155479006402262" v="true" xvt="" name="debtAccounts" id="_155479006402363">
                 <xwm/>
                 <xm/>
@@ -136,6 +141,9 @@
         </nq>
         <nq e="false" name="Account.findByBalance">
             <query>Select a from Account a where a.balance=:balance</query>
+        </nq>
+        <nq e="false" name="Account.findByName">
+            <query>Select a from Account a where a.name=:name</query>
         </nq>
     </entity>
     <entity compositePrimaryKeyClass="SemiTransactionPK" abs="false" class="SemiTransaction" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478984578741">

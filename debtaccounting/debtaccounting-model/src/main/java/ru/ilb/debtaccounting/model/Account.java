@@ -34,6 +34,12 @@ public class Account implements Serializable {
     @Column(scale = 2, precision = 15)
     private BigDecimal balance;
 
+    /**
+     * Наименование счета
+     */
+    @Basic
+    private String name;
+
     @OneToMany(mappedBy = "account")
     @XmlTransient
     private List<DebtAccount> debtAccounts;
@@ -81,6 +87,35 @@ public class Account implements Serializable {
      */
     public Account withBalance(BigDecimal balance) {
         this.balance = balance;
+        return this;
+    }
+
+    /**
+     * Get наименование счета
+     *
+     * @return {@link #name}
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Set наименование счета
+     *
+     * @param name {@link #name}
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Set наименование счета
+     *
+     * @param name {@link #name}
+     * @return {@link #Account}
+     */
+    public Account withName(String name) {
+        this.name = name;
         return this;
     }
 
