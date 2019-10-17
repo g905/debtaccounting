@@ -36,7 +36,6 @@
         <module>debtaccounting-testcase</module>
         <module>debtaccounting-validation</module>
         <module>debtaccounting-loan</module>
-        <module>debtaccounting-core</module>
         <module>debtaccounting-utils</module>
     </modules>
     <properties>
