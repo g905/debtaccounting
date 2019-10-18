@@ -147,17 +147,15 @@
     <entity compositePrimaryKeyClass="AccountPK" abs="false" class="Account" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478977385433">
         <ath>slavb</ath>
         <attributes>
-            <basic attribute-type="java.math.BigDecimal" v="true" xvt="" name="balance" id="_155479010985367">
-                <des>Остаток на счете</des>
-                <xwm/>
-                <xm/>
-                <column unique="false" nullable="true" insertable="true" updatable="true" precision="15" scale="2"/>
-            </basic>
             <basic attribute-type="String" v="true" xvt="" name="name" id="_157130161523071">
                 <des>Наименование счета</des>
                 <xwm/>
                 <xm/>
             </basic>
+            <embedded connected-class-id="_1571317617979192" v="true" xvt="" name="amount" id="_1571325113731113">
+                <xwm/>
+                <xm/>
+            </embedded>
             <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155479004646055" connected-attribute-id="_155479006402262" v="true" xvt="" name="debtAccounts" id="_155479006402363">
                 <xwm/>
                 <xm/>
@@ -254,18 +252,6 @@
         <nq e="false" name="DebtAccount.findAll">
             <query>Select e from DebtAccount e</query>
         </nq>
-        <inheritance strategy="SINGLE_TABLE"/>
-        <discriminator-value>0</discriminator-value>
-        <discriminator-column name="" discriminator-type="INTEGER" column-definition="" length="30"/>
-    </entity>
-    <entity compositePrimaryKeyClass="DebtBalancePK" abs="false" class="DebtBalance" superclassId="_155479004646055" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155479007406064">
-        <des>Счет основного долга</des>
-        <ath>slavb</ath>
-        <attributes/>
-        <nq e="false" name="DebtBalance.findAll">
-            <query>Select e from DebtBalance e</query>
-        </nq>
-        <discriminator-value>1</discriminator-value>
     </entity>
     <entity compositePrimaryKeyClass="AccountBalancePK" abs="false" class="AccountBalance" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155479016569768">
         <ath>slavb</ath>
@@ -275,12 +261,10 @@
                 <xwm/>
                 <xm/>
             </basic>
-            <basic attribute-type="java.math.BigDecimal" v="true" xvt="" name="balance" id="_155479021660575">
-                <des>Остаток</des>
+            <embedded connected-class-id="_1571317617979192" v="true" xvt="" name="amount" id="_1571325141927115">
                 <xwm/>
                 <xm/>
-                <column unique="false" nullable="true" insertable="true" updatable="true" precision="15" scale="2"/>
-            </basic>
+            </embedded>
             <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" connected-attribute-id="_155479018836773" v="true" xvt="" name="account" id="_155479018836672">
                 <xwm/>
                 <xm/>
@@ -400,9 +384,8 @@
     </c>
     <wsl>
         <ws n="Main" id="_157123801533879">
-            <i ref="_155478977385433" x="295" y="234"/>
+            <i ref="_155478977385433" x="296" y="229"/>
             <i ref="_155479004646055" x="529" y="436"/>
-            <i ref="_155479007406064" x="295" y="638"/>
             <i ref="_1571317617979192" x="92" y="271"/>
             <i ref="_155479065881382" x="529" y="828"/>
             <i ref="_157130186335572" x="825" y="403"/>

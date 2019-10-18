@@ -5,15 +5,10 @@ package ru.ilb.debtaccounting.model;
 
 import java.io.Serializable;
 import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.*;
 
@@ -23,9 +18,6 @@ import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorValue("0")
-@DiscriminatorColumn(discriminatorType = DiscriminatorType.INTEGER)
 public class DebtAccount implements Serializable {
 
     @Id

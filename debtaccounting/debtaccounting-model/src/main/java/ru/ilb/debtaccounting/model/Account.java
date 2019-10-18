@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -29,17 +29,13 @@ public class Account implements Serializable {
     private Long id;
 
     /**
-     * Остаток на счете
-     */
-    @Basic
-    @Column(scale = 2, precision = 15)
-    private BigDecimal balance;
-
-    /**
      * Наименование счета
      */
     @Basic
     private String name;
+
+    @Embedded
+    private Money amount;
 
     @OneToMany(mappedBy = "account")
     @XmlTransient
@@ -63,35 +59,6 @@ public class Account implements Serializable {
 
     public Account withId(Long id) {
         this.id = id;
-        return this;
-    }
-
-    /**
-     * Get остаток на счете
-     *
-     * @return {@link #balance}
-     */
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    /**
-     * Set остаток на счете
-     *
-     * @param balance {@link #balance}
-     */
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
-
-    /**
-     * Set остаток на счете
-     *
-     * @param balance {@link #balance}
-     * @return {@link #Account}
-     */
-    public Account withBalance(BigDecimal balance) {
-        this.balance = balance;
         return this;
     }
 
@@ -121,6 +88,19 @@ public class Account implements Serializable {
      */
     public Account withName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public Money getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Money amount) {
+        this.amount = amount;
+    }
+
+    public Account withAmount(Money amount) {
+        this.amount = amount;
         return this;
     }
 

@@ -52,7 +52,7 @@ public class Event implements Serializable {
     @OneToMany(mappedBy = "event")
     @XmlTransient
     private List<Transaction> transactions;
-    
+
     public Long getId() {
         return id;
     }

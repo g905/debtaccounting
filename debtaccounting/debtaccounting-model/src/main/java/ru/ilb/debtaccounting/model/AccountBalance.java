@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import javax.persistence.Basic;
-import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -33,12 +33,8 @@ public class AccountBalance implements Serializable {
     @Basic
     private LocalDate date;
 
-    /**
-     * Остаток
-     */
-    @Basic
-    @Column(scale = 2, precision = 15)
-    private BigDecimal balance;
+    @Embedded
+    private Money amount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Account account;
@@ -85,32 +81,16 @@ public class AccountBalance implements Serializable {
         return this;
     }
 
-    /**
-     * Get остаток
-     *
-     * @return {@link #balance}
-     */
-    public BigDecimal getBalance() {
-        return balance;
+    public Money getAmount() {
+        return amount;
     }
 
-    /**
-     * Set остаток
-     *
-     * @param balance {@link #balance}
-     */
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
+    public void setAmount(Money amount) {
+        this.amount = amount;
     }
 
-    /**
-     * Set остаток
-     *
-     * @param balance {@link #balance}
-     * @return {@link #AccountBalance}
-     */
-    public AccountBalance withBalance(BigDecimal balance) {
-        this.balance = balance;
+    public AccountBalance withAmount(Money amount) {
+        this.amount = amount;
         return this;
     }
 

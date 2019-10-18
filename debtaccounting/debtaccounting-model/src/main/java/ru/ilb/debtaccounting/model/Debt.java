@@ -150,8 +150,4 @@ public class Debt implements Serializable {
         debtAccount.setDebt(null);
     }
 
-    public Optional<DebtAccount> getDebtAccount(Class<? extends DebtAccount> type) {
-        return getDebtAccounts().stream().filter(da -> type.isAssignableFrom(da.getClass())).findFirst();
-    }
-
 }
