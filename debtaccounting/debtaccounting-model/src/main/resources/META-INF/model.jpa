@@ -31,6 +31,10 @@
                     <cascade-all/>
                 </cascade>
             </one-to-many>
+            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1571377905073118" connected-attribute-id="_1571377999465129" v="true" xvt="" name="debtRights" id="_1571377999466130">
+                <xwm/>
+                <xm/>
+            </one-to-many>
             <one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="principalAccount" id="_1571325389420117">
                 <des>Счет основного долга</des>
                 <xwm/>
@@ -328,6 +332,62 @@
             <query>Select e from Cashflow e</query>
         </nq>
     </entity>
+    <entity compositePrimaryKeyClass="DebtRightPK" abs="false" class="DebtRight" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_1571377905073118">
+        <des>Право на долг</des>
+        <ath>slavb</ath>
+        <attributes>
+            <basic attribute-type="java.math.BigDecimal" v="true" xvt="" name="share" id="_1571378025273131">
+                <des>Доля</des>
+                <xwm/>
+                <xm/>
+                <column unique="false" nullable="true" insertable="true" updatable="true" precision="3" scale="1"/>
+            </basic>
+            <many-to-one optional="true" primaryKey="false" connected-entity-id="_1571377938427121" connected-attribute-id="_1571377994151127" v="true" xvt="" name="businessEntity" id="_1571377994150126">
+                <xwm/>
+                <xm/>
+            </many-to-one>
+            <many-to-one optional="true" primaryKey="false" connected-entity-id="_15547892496197" connected-attribute-id="_1571377999466130" v="true" xvt="" name="debt" id="_1571377999465129">
+                <xwm/>
+                <xm/>
+            </many-to-one>
+            <id attribute-type="Long" v="true" xvt="" name="id" id="_1571377905135119">
+                <xwm/>
+                <xm/>
+                <generated-value strategy="DEFAULT"/>
+            </id>
+        </attributes>
+        <nq e="false" name="DebtRight.findAll">
+            <query>Select e from DebtRight e</query>
+        </nq>
+        <nq e="false" name="DebtRight.findByShare">
+            <query>Select d from DebtRight d where d.share=:share</query>
+        </nq>
+    </entity>
+    <entity compositePrimaryKeyClass="BusinessEntityPK" abs="false" class="BusinessEntity" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_1571377938427121">
+        <des>Хозяйствующий субъект</des>
+        <ath>slavb</ath>
+        <attributes>
+            <basic attribute-type="String" v="true" xvt="" name="name" id="_1571377954303124">
+                <xwm/>
+                <xm/>
+            </basic>
+            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1571377905073118" connected-attribute-id="_1571377994150126" v="true" xvt="" name="debtRights" id="_1571377994151127">
+                <xwm/>
+                <xm/>
+            </one-to-many>
+            <id attribute-type="Long" v="true" xvt="" name="id" id="_1571377938472122">
+                <xwm/>
+                <xm/>
+                <generated-value strategy="DEFAULT"/>
+            </id>
+        </attributes>
+        <nq e="false" name="BusinessEntity.findAll">
+            <query>Select e from BusinessEntity e</query>
+        </nq>
+        <nq e="false" name="BusinessEntity.findByName">
+            <query>Select b from BusinessEntity b where b.name=:name</query>
+        </nq>
+    </entity>
     <embeddable abs="false" class="Money" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_1571317617979192">
         <des>Деньги</des>
         <ath>slavb</ath>
@@ -368,6 +428,8 @@
             <i ref="_157130186335572" x="825" y="403"/>
             <i ref="_15547892496197" x="804" y="638"/>
             <i ref="_155478964715420" x="534" y="138"/>
+            <i ref="_1571377938427121" x="1009" y="688"/>
+            <i ref="_1571377905073118" x="1016" y="840"/>
             <i ref="_155478925652110" x="1033" y="436"/>
             <i ref="_155478984578741" x="32" y="32"/>
         </ws>

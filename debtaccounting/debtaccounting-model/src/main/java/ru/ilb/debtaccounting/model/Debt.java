@@ -52,6 +52,10 @@ public class Debt implements Serializable {
     @XmlTransient
     private List<DebtAccount> debtAccounts;
 
+    @OneToMany(mappedBy = "debt")
+    @XmlTransient
+    private List<DebtRight> debtRights;
+
     public Long getId() {
         return id;
     }
@@ -183,6 +187,32 @@ public class Debt implements Serializable {
     public void removeDebtAccount(DebtAccount debtAccount) {
         getDebtAccounts().remove(debtAccount);
         debtAccount.setDebt(null);
+    }
+
+    public List<DebtRight> getDebtRights() {
+        if (debtRights == null) {
+            debtRights = new ArrayList<>();
+        }
+        return debtRights;
+    }
+
+    public void setDebtRights(List<DebtRight> debtRights) {
+        this.debtRights = debtRights;
+    }
+
+    public Debt withDebtRights(List<DebtRight> debtRights) {
+        this.debtRights = debtRights;
+        return this;
+    }
+
+    public void addDebtRight(DebtRight debtRight) {
+        getDebtRights().add(debtRight);
+        debtRight.setDebt(this);
+    }
+
+    public void removeDebtRight(DebtRight debtRight) {
+        getDebtRights().remove(debtRight);
+        debtRight.setDebt(null);
     }
 
 }
