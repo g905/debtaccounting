@@ -28,37 +28,34 @@ import static org.junit.jupiter.api.Assertions.*;
 import ru.ilb.debtaccounting.loan.Loan;
 import ru.ilb.debtaccounting.loan.events.createloan.CreateLoanEventHandlerTest;
 import ru.ilb.debtaccounting.model.DebtStatusCode;
+import ru.ilb.debtaccounting.model.Money;
 
 /**
  *
  * @author slavb
  */
 public class DisburseLoanEventHandlerTest {
-    
+
     public DisburseLoanEventHandlerTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
 
-    /**
-     * Test of process method, of class DisburseLoanEventHandler.
-     */
-    @Test
-    public void testProcess() {
+    public Loan process() {
         Loan loan = CreateLoanEventHandlerTest.process();
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
@@ -67,7 +64,18 @@ public class DisburseLoanEventHandlerTest {
         event.setDebt(loan);
 
         hanler.process(loan, event);
-        Assertions.assertEquals(DebtStatusCode.DISBURSED, loan.getStatus());
+        return loan;
     }
-    
+
+    /**
+     * Test of process method, of class DisburseLoanEventHandler.
+     */
+    @Test
+    public void testProcess() {
+        Loan loan = process();
+        assertEquals(DebtStatusCode.DISBURSED, loan.getStatus());
+        assertNotNull(loan.getPrincipalAccount(), "Счет основного долга должен быть заведен");
+        assertEquals(Money.locale(0), loan.getPrincipalAccount().getAmount());
+    }
+
 }

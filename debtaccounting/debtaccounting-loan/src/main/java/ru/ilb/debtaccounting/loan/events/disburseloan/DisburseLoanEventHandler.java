@@ -19,6 +19,7 @@ import javax.validation.Validator;
 import ru.ilb.debtaccounting.model.DebtStatusCode;
 import ru.ilb.debtaccounting.model.EventHandler;
 import ru.ilb.debtaccounting.loan.Loan;
+import ru.ilb.debtaccounting.model.Account;
 
 /**
  *
@@ -30,12 +31,20 @@ public class DisburseLoanEventHandler extends EventHandler<DisburseLoanEvent, Lo
         super(validator);
     }
 
-
+    /**
+     * Выдать кредит
+     * 
+     * 1. Создать счет основного долга {@link Loan#principalAccount}
+     * 2. Зачислить сумму кредита на счет основого долга {@link Account#deposit}
+     * @param debt
+     * @param event
+     */
     @Override
     public void process(Loan debt, DisburseLoanEvent event) {
         if (debt.getStatus() != DebtStatusCode.CREATED) {
             throw new AlreadyDisbursedException();
         }
+        Account account = new Account();
 
         debt.setStatus(DebtStatusCode.DISBURSED);
     }
