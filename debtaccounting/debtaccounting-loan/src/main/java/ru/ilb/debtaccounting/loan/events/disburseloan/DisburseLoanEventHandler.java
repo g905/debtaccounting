@@ -20,6 +20,7 @@ import ru.ilb.debtaccounting.model.DebtStatusCode;
 import ru.ilb.debtaccounting.model.EventHandler;
 import ru.ilb.debtaccounting.loan.Loan;
 import ru.ilb.debtaccounting.model.Account;
+import ru.ilb.debtaccounting.model.DebtRight;
 
 /**
  *
@@ -36,6 +37,7 @@ public class DisburseLoanEventHandler extends EventHandler<DisburseLoanEvent, Lo
      * 
      * 1. Создать счет основного долга {@link Loan#principalAccount}
      * 2. Зачислить сумму кредита на счет основого долга {@link Account#deposit}
+     * 3. Создать право на долг (@link DebtRight}, задать долю 1 (100%) {@link DebtRight#share}, владельца прав {@link DebtRight#businessEntity}
      * @param debt
      * @param event
      */
@@ -45,6 +47,7 @@ public class DisburseLoanEventHandler extends EventHandler<DisburseLoanEvent, Lo
             throw new AlreadyDisbursedException();
         }
         Account account = new Account();
+        DebtRight debtRight = new DebtRight();
 
         debt.setStatus(DebtStatusCode.DISBURSED);
     }
