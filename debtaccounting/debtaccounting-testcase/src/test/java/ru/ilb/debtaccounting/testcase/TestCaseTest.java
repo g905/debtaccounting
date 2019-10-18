@@ -56,6 +56,7 @@ public class TestCaseTest {
 
     /**
      * Test of getInputData method, of class TestCase.
+     * @throws java.io.IOException
      */
     @Test
     public void testGetInputData() throws IOException {
@@ -73,6 +74,7 @@ public class TestCaseTest {
 
     /**
      * Test of getInputDataJson method, of class TestCase.
+     * @throws java.io.IOException
      */
     @Test
     public void testGetInputDataJson() throws IOException {
@@ -86,6 +88,7 @@ public class TestCaseTest {
 
     /**
      * Test of getCalculationTable method, of class TestCase.
+     * @throws java.io.IOException
      */
     @Test
     public void testGetCalculationTable() throws IOException {
