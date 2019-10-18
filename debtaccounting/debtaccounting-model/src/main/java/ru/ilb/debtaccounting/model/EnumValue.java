@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Bystrobank.
+ * Copyright 2019 slavb.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,36 +16,11 @@
 package ru.ilb.debtaccounting.model;
 
 /**
- *
+ * enum с идентификатором
  * @author slavb
  */
-public enum DebtStatusCode implements EnumValue {
-    /**
-     * Создан
-     */
-    CREATED(1),
-    /**
-     * Выдан
-     */
-    DISBURSED(2);
-
-    private DebtStatusCode(int value) {
-        this.value = value;
-    }
-
-    @Override
-    public int value() {
-        return value;
-    }
-
-    public static DebtStatusCode fromValue(int v) {
-        for (DebtStatusCode c : DebtStatusCode.values()) {
-            if (c.value == v) {
-                return c;
-            }
-        }
-        throw new IllegalArgumentException(Integer.toString(v));
-    }
-    private final int value;
-
+public interface EnumValue {
+    
+   int value();
+    
 }
