@@ -91,7 +91,7 @@ public class ODSTestCase extends TestCase {
             Object[][] colValues2D = rangeColumn.getValues();
             Object[] colValues = new Object[sheet.getMaxRows() - 1];
             for (int i = 0; i < sheet.getMaxRows() - 1; i++) {
-                colValues[i] = colValues2D[i][0];
+                colValues[i] = ValueConverter.convertValue(colValues2D[i][0]);
             }
 
             columns.put(colName, colValues);

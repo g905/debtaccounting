@@ -30,11 +30,11 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author slavb
  */
-public class TestCaseTest {
+public class ODSTestCaseTest {
 
     private static final String TESTCASE_SOURCE = "testcases/createloan/cashflow.ods";
 
-    public TestCaseTest() {
+    public ODSTestCaseTest() {
     }
 
     @BeforeAll
@@ -104,6 +104,7 @@ public class TestCaseTest {
         assertEquals(expectedRows, result.get("PAYMENTINT").length);
         assertEquals(expectedRows, result.get("DEBTREMAINDER").length);
 
+        assertEquals(0, result.get("T")[0]);
     }
 
 }
