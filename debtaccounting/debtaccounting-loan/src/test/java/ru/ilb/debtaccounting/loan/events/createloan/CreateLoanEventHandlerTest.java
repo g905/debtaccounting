@@ -21,9 +21,11 @@ import java.math.BigDecimal;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.ilb.debtaccounting.loan.Loan;
 import ru.ilb.debtaccounting.model.CashFlow;
+import ru.ilb.debtaccounting.model.DebtStatusCode;
 import ru.ilb.debtaccounting.testcase.ODSTestCase;
 
 /**
@@ -35,33 +37,42 @@ public class CreateLoanEventHandlerTest {
     public CreateLoanEventHandlerTest() {
     }
 
-    /**
-     * Test of process method, of class CreateLoanEventHandler.
-     * @throws java.io.IOException
-     */
-    @Test
-    public void testProcess() throws IOException {
-        System.out.println("process");
-
-        InputStream testData = this.getClass().getClassLoader().getResourceAsStream("testcases/createloan/cashflow.ods");
-        ODSTestCase testCase = new ODSTestCase(testData);
-
-        Loan loan = new Loan();
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
-        CreateLoanEventHandler hanler = new CreateLoanEventHandler(validator);
-        CreateLoanEvent event = hanler.createEvent();
+    private static CreateLoanRequest createLoanRequest() {
         CreateLoanRequest request = new CreateLoanRequest();
         request.setAmount(BigDecimal.valueOf(968600));
         request.setPeriod(60);
         request.setRate(BigDecimal.valueOf(0.1537));
         CashFlow CashFlow = new CashFlow();
         request.setCashFlow(CashFlow);
-        event.setRequest(request);
+        return request;
+    }
+
+    public static Loan process() {
+        // InputStream testData = this.getClass().getClassLoader().getResourceAsStream("testcases/createloan/cashflow.ods");
+        //  ODSTestCase testCase = new ODSTestCase(testData);
+
+        Loan loan = new Loan();
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        CreateLoanEventHandler hanler = new CreateLoanEventHandler(validator);
+        CreateLoanEvent event = hanler.createEvent();
+        event.setRequest(createLoanRequest());
         event.setDebt(loan);
 
-
         hanler.process(loan, event);
+        return loan;
+    }
+
+    /**
+     * Test of process method, of class CreateLoanEventHandler.
+     *
+     * @throws java.io.IOException
+     */
+    @Test
+    public void testProcess() throws IOException {
+        System.out.println("process");
+        Loan loan = process();
+        Assertions.assertEquals(DebtStatusCode.CREATED, loan.getStatus());
     }
 
 }
