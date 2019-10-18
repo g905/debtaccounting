@@ -13,7 +13,7 @@
                 <xwm/>
                 <xm/>
             </many-to-one>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_157130186335572" v="true" xvt="" name="cashFlow" id="_157130188343176">
+            <many-to-one optional="true" primaryKey="false" connected-entity-id="_157130186335572" v="true" xvt="" name="cashflow" id="_157130188343176">
                 <xwm/>
                 <xm/>
             </many-to-one>
@@ -119,7 +119,7 @@
                 <xwm/>
                 <xm/>
             </many-to-one>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_157130186335572" connected-attribute-id="_157130198154785" v="true" xvt="" name="cashFlow" id="_157130198154684">
+            <many-to-one optional="true" primaryKey="false" connected-entity-id="_157130186335572" connected-attribute-id="_157130198154785" v="true" xvt="" name="cashflow" id="_157130198154684">
                 <xwm/>
                 <xm/>
             </many-to-one>
@@ -310,7 +310,7 @@
             <query>Select d from DebtStatus d where d.disbursed=:disbursed</query>
         </nq>
     </entity>
-    <entity compositePrimaryKeyClass="CashFlowPK" abs="false" class="CashFlow" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_157130186335572">
+    <entity compositePrimaryKeyClass="CashflowPK" abs="false" class="Cashflow" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_157130186335572">
         <des>Денежный поток</des>
         <ath>slavb</ath>
         <attributes>
@@ -324,8 +324,8 @@
                 <generated-value strategy="DEFAULT"/>
             </id>
         </attributes>
-        <nq e="false" name="CashFlow.findAll">
-            <query>Select e from CashFlow e</query>
+        <nq e="false" name="Cashflow.findAll">
+            <query>Select e from Cashflow e</query>
         </nq>
     </entity>
     <embeddable abs="false" class="Money" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_1571317617979192">

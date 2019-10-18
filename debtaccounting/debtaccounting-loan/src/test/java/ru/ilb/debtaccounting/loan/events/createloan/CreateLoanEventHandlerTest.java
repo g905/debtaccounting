@@ -24,7 +24,7 @@ import javax.validation.ValidatorFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.ilb.debtaccounting.loan.Loan;
-import ru.ilb.debtaccounting.model.CashFlow;
+import ru.ilb.debtaccounting.model.Cashflow;
 import ru.ilb.debtaccounting.model.DebtStatusCode;
 import ru.ilb.debtaccounting.testcase.ODSTestCase;
 
@@ -42,8 +42,8 @@ public class CreateLoanEventHandlerTest {
         request.setAmount(BigDecimal.valueOf(968600));
         request.setPeriod(60);
         request.setRate(BigDecimal.valueOf(0.1537));
-        CashFlow CashFlow = new CashFlow();
-        request.setCashFlow(CashFlow);
+        Cashflow CashFlow = new Cashflow();
+        request.setCashflow(CashFlow);
         return request;
     }
 

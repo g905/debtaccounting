@@ -18,13 +18,13 @@ import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class CashFlow implements Serializable {
+public class Cashflow implements Serializable {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @OneToMany(mappedBy = "cashFlow")
+    @OneToMany(mappedBy = "cashflow")
     @XmlTransient
     private List<Transaction> transactions;
 
@@ -36,7 +36,7 @@ public class CashFlow implements Serializable {
         this.id = id;
     }
 
-    public CashFlow withId(Long id) {
+    public Cashflow withId(Long id) {
         this.id = id;
         return this;
     }
@@ -52,19 +52,19 @@ public class CashFlow implements Serializable {
         this.transactions = transactions;
     }
 
-    public CashFlow withTransactions(List<Transaction> transactions) {
+    public Cashflow withTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
         return this;
     }
 
     public void addTransaction(Transaction transaction) {
         getTransactions().add(transaction);
-        transaction.setCashFlow(this);
+        transaction.setCashflow(this);
     }
 
     public void removeTransaction(Transaction transaction) {
         getTransactions().remove(transaction);
-        transaction.setCashFlow(null);
+        transaction.setCashflow(null);
     }
 
 }

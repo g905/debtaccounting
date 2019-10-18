@@ -45,7 +45,7 @@ public class Transaction implements Serializable {
     private Event event;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private CashFlow cashFlow;
+    private Cashflow cashflow;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Account accountFrom;
@@ -151,16 +151,16 @@ public class Transaction implements Serializable {
         return this;
     }
 
-    public CashFlow getCashFlow() {
-        return cashFlow;
+    public Cashflow getCashflow() {
+        return cashflow;
     }
 
-    public void setCashFlow(CashFlow cashFlow) {
-        this.cashFlow = cashFlow;
+    public void setCashflow(Cashflow cashflow) {
+        this.cashflow = cashflow;
     }
 
-    public Transaction withCashFlow(CashFlow cashFlow) {
-        this.cashFlow = cashFlow;
+    public Transaction withCashflow(Cashflow cashflow) {
+        this.cashflow = cashflow;
         return this;
     }
 

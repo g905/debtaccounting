@@ -18,7 +18,7 @@ package ru.ilb.debtaccounting.loan.events.createloan;
 import java.math.BigDecimal;
 import javax.validation.constraints.NotNull;
 import ru.ilb.debtaccounting.loan.events.LoanEventRequest;
-import ru.ilb.debtaccounting.model.CashFlow;
+import ru.ilb.debtaccounting.model.Cashflow;
 
 /**
  *
@@ -46,7 +46,7 @@ public class CreateLoanRequest extends LoanEventRequest {
      * График погашения
      */
     @NotNull
-    CashFlow CashFlow;
+    Cashflow cashflow;
 
     public BigDecimal getAmount() {
         return amount;
@@ -72,12 +72,12 @@ public class CreateLoanRequest extends LoanEventRequest {
         this.rate = rate;
     }
 
-    public CashFlow getCashFlow() {
-        return CashFlow;
+    public Cashflow getCashflow() {
+        return cashflow;
     }
 
-    public void setCashFlow(CashFlow CashFlow) {
-        this.CashFlow = CashFlow;
+    public void setCashflow(Cashflow cashflow) {
+        this.cashflow = cashflow;
     }
 
 }

@@ -42,7 +42,7 @@ public class Debt implements Serializable {
     private DebtStatus debtStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private CashFlow cashFlow;
+    private Cashflow cashflow;
 
     @OneToMany(mappedBy = "debt", cascade = CascadeType.ALL)
     @XmlTransient
@@ -120,16 +120,16 @@ public class Debt implements Serializable {
         return this;
     }
 
-    public CashFlow getCashFlow() {
-        return cashFlow;
+    public Cashflow getCashflow() {
+        return cashflow;
     }
 
-    public void setCashFlow(CashFlow cashFlow) {
-        this.cashFlow = cashFlow;
+    public void setCashflow(Cashflow cashflow) {
+        this.cashflow = cashflow;
     }
 
-    public Debt withCashFlow(CashFlow cashFlow) {
-        this.cashFlow = cashFlow;
+    public Debt withCashflow(Cashflow cashflow) {
+        this.cashflow = cashflow;
         return this;
     }
 
