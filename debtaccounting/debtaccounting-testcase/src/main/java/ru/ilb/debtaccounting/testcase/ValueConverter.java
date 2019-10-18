@@ -15,32 +15,20 @@
  */
 package ru.ilb.debtaccounting.testcase;
 
-import java.util.Map;
-import org.apache.cxf.jaxrs.json.basic.JsonMapObject;
-import org.apache.cxf.jaxrs.json.basic.JsonMapObjectReaderWriter;
-
 /**
  *
  * @author slavb
  */
-public class TestCase {
+public class ValueConverter {
 
-    protected Map<String, Object> inputData;
-
-    protected Map<String, Object[]> calculationTable;
-
-    public Map<String, Object> getInputData() {
-        return inputData;
+    public static Object convertValue(Object value) {
+        if (value instanceof Double) {
+            Double dblValue = (Double) value;
+            int intValue = dblValue.intValue();
+            if (Double.valueOf(intValue).equals(value)) {
+                value = intValue;
+            }
+        }
+        return value;
     }
-    
-    public String getInputDataJson() {
-        JsonMapObjectReaderWriter jsonreaderwriter = new JsonMapObjectReaderWriter();
-        return jsonreaderwriter.toJson(new JsonMapObject(inputData));
-    }
-    
-
-    public Map<String, Object[]> getCalculationTable() {
-        return calculationTable;
-    }
-
 }

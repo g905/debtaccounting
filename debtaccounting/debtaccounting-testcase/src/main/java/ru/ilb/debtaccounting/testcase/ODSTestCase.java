@@ -71,10 +71,12 @@ public class ODSTestCase extends TestCase {
 
             String varName = rangeName.getValue().toString();
             Object varValue = rangeValue.getValue();
-            inputData.put(varName, varValue);
+            inputData.put(varName, ValueConverter.convertValue(varValue));
         }
         return inputData;
     }
+
+
 
     private static Map<String, Object[]> loadCalculationTable(Sheet sheet) {
         Map<String, Object[]> columns = new HashMap<>();
