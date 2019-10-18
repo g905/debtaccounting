@@ -6,7 +6,6 @@ package ru.ilb.debtaccounting.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -31,6 +31,12 @@ public class Debt implements Serializable {
 
     @Basic
     private DebtStatusCode status;
+
+    /**
+     * Счет основного долга
+     */
+    @OneToOne(fetch = FetchType.LAZY)
+    private Account principalAccount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private DebtStatus debtStatus;
@@ -69,6 +75,35 @@ public class Debt implements Serializable {
 
     public Debt withStatus(DebtStatusCode status) {
         this.status = status;
+        return this;
+    }
+
+    /**
+     * Get счет основного долга
+     *
+     * @return {@link #principalAccount}
+     */
+    public Account getPrincipalAccount() {
+        return principalAccount;
+    }
+
+    /**
+     * Set счет основного долга
+     *
+     * @param principalAccount {@link #principalAccount}
+     */
+    public void setPrincipalAccount(Account principalAccount) {
+        this.principalAccount = principalAccount;
+    }
+
+    /**
+     * Set счет основного долга
+     *
+     * @param principalAccount {@link #principalAccount}
+     * @return {@link #Debt}
+     */
+    public Debt withPrincipalAccount(Account principalAccount) {
+        this.principalAccount = principalAccount;
         return this;
     }
 

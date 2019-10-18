@@ -2,6 +2,7 @@
 <entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ptype="MONOLITH" ppkg="ru.ilb.debtaccounting" epkg="model" v="3.1" rws="_157123801533879" Pws="_157123801533879" cws="_157123801533879" persistenceUnitName="debtaccounting" sm="false" xs="true" id="_14855761330684" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
     <description>debtaccounting model</description>
     <entity compositePrimaryKeyClass="DebtPK" abs="false" class="Debt" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_15547892496197">
+        <des>Долг</des>
         <ath>slavb</ath>
         <attributes>
             <basic attribute-type="ru.ilb.debtaccounting.model.DebtStatusCode" v="true" xvt="" name="status" id="_1571305246203200">
@@ -30,6 +31,11 @@
                     <cascade-all/>
                 </cascade>
             </one-to-many>
+            <one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="principalAccount" id="_1571325389420117">
+                <des>Счет основного долга</des>
+                <xwm/>
+                <xm/>
+            </one-to-one>
             <id attribute-type="Long" v="true" xvt="" name="id" id="_15547892496318">
                 <xwm/>
                 <xm/>
@@ -96,6 +102,7 @@
             <a>_1571315198144155</a>
         </con>
         <con am="PUBLIC" e="true"/>
+        <des>Транзакция</des>
         <ath>slavb</ath>
         <attributes>
             <basic attribute-type="java.time.LocalDate" v="true" xvt="" name="date" id="_1571314056178113">
@@ -145,6 +152,7 @@
         </nq>
     </entity>
     <entity compositePrimaryKeyClass="AccountPK" abs="false" class="Account" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478977385433">
+        <des>Счет</des>
         <ath>slavb</ath>
         <attributes>
             <basic attribute-type="String" v="true" xvt="" name="name" id="_157130161523071">
@@ -153,14 +161,11 @@
                 <xm/>
             </basic>
             <embedded connected-class-id="_1571317617979192" v="true" xvt="" name="amount" id="_1571325113731113">
+                <des>Остаток на счете</des>
                 <xwm/>
                 <xm/>
             </embedded>
             <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155479004646055" connected-attribute-id="_155479006402262" v="true" xvt="" name="debtAccounts" id="_155479006402363">
-                <xwm/>
-                <xm/>
-            </one-to-many>
-            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155479016569768" connected-attribute-id="_155479018836672" v="true" xvt="" name="accountBalances" id="_155479018836773">
                 <xwm/>
                 <xm/>
             </one-to-many>
@@ -190,6 +195,7 @@
             <a>_1571317936709197</a>
         </con>
         <con am="PUBLIC" e="true"/>
+        <des>Запись</des>
         <ath>slavb</ath>
         <attributes>
             <basic attribute-type="java.time.LocalDate" v="true" xvt="" name="date" id="_1571314155020115">
@@ -225,6 +231,7 @@
         </nq>
     </entity>
     <entity compositePrimaryKeyClass="DebtAccountPK" abs="false" class="DebtAccount" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155479004646055">
+        <des>Счет долга</des>
         <ath>slavb</ath>
         <attributes>
             <many-to-one optional="true" primaryKey="false" connected-entity-id="_15547892496197" connected-attribute-id="_155479005796660" v="true" xvt="" name="debt" id="_155479005796659">
@@ -251,38 +258,6 @@
         </attributes>
         <nq e="false" name="DebtAccount.findAll">
             <query>Select e from DebtAccount e</query>
-        </nq>
-    </entity>
-    <entity compositePrimaryKeyClass="AccountBalancePK" abs="false" class="AccountBalance" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155479016569768">
-        <ath>slavb</ath>
-        <attributes>
-            <basic attribute-type="java.time.LocalDate" v="true" xvt="" name="date" id="_155479019334974">
-                <des>Дата остатка</des>
-                <xwm/>
-                <xm/>
-            </basic>
-            <embedded connected-class-id="_1571317617979192" v="true" xvt="" name="amount" id="_1571325141927115">
-                <xwm/>
-                <xm/>
-            </embedded>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" connected-attribute-id="_155479018836773" v="true" xvt="" name="account" id="_155479018836672">
-                <xwm/>
-                <xm/>
-            </many-to-one>
-            <id attribute-type="Long" v="true" xvt="" name="id" id="_155479016570669">
-                <xwm/>
-                <xm/>
-                <generated-value strategy="DEFAULT"/>
-            </id>
-        </attributes>
-        <nq e="false" name="AccountBalance.findAll">
-            <query>Select e from AccountBalance e</query>
-        </nq>
-        <nq e="false" name="AccountBalance.findByDate">
-            <query>Select a from AccountBalance a where a.date=:date</query>
-        </nq>
-        <nq e="false" name="AccountBalance.findByBalance">
-            <query>Select a from AccountBalance a where a.balance=:balance</query>
         </nq>
     </entity>
     <entity compositePrimaryKeyClass="DebtStatusPK" abs="false" class="DebtStatus" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155479065881382">
@@ -336,6 +311,7 @@
         </nq>
     </entity>
     <entity compositePrimaryKeyClass="CashFlowPK" abs="false" class="CashFlow" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_157130186335572">
+        <des>Денежный поток</des>
         <ath>slavb</ath>
         <attributes>
             <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478964715420" connected-attribute-id="_157130198154684" v="true" xvt="" name="transactions" id="_157130198154785">
@@ -353,6 +329,7 @@
         </nq>
     </entity>
     <embeddable abs="false" class="Money" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_1571317617979192">
+        <des>Деньги</des>
         <ath>slavb</ath>
         <attributes>
             <basic attribute-type="long" v="true" xvt="" name="amount" id="_1571317632239194">
@@ -384,14 +361,13 @@
     </c>
     <wsl>
         <ws n="Main" id="_157123801533879">
-            <i ref="_155478977385433" x="296" y="229"/>
+            <i ref="_155478977385433" x="326" y="489"/>
             <i ref="_155479004646055" x="529" y="436"/>
             <i ref="_1571317617979192" x="92" y="271"/>
             <i ref="_155479065881382" x="529" y="828"/>
             <i ref="_157130186335572" x="825" y="403"/>
             <i ref="_15547892496197" x="804" y="638"/>
             <i ref="_155478964715420" x="534" y="138"/>
-            <i ref="_155479016569768" x="32" y="436"/>
             <i ref="_155478925652110" x="1033" y="436"/>
             <i ref="_155478984578741" x="32" y="32"/>
         </ws>

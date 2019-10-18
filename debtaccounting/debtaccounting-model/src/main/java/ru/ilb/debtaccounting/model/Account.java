@@ -4,7 +4,6 @@
 package ru.ilb.debtaccounting.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,16 +33,15 @@ public class Account implements Serializable {
     @Basic
     private String name;
 
+    /**
+     * Остаток на счете
+     */
     @Embedded
     private Money amount;
 
     @OneToMany(mappedBy = "account")
     @XmlTransient
     private List<DebtAccount> debtAccounts;
-
-    @OneToMany(mappedBy = "account")
-    @XmlTransient
-    private List<AccountBalance> accountBalances;
 
     @OneToMany(mappedBy = "account")
     @XmlTransient
@@ -91,14 +89,30 @@ public class Account implements Serializable {
         return this;
     }
 
+    /**
+     * Get остаток на счете
+     *
+     * @return {@link #amount}
+     */
     public Money getAmount() {
         return amount;
     }
 
+    /**
+     * Set остаток на счете
+     *
+     * @param amount {@link #amount}
+     */
     public void setAmount(Money amount) {
         this.amount = amount;
     }
 
+    /**
+     * Set остаток на счете
+     *
+     * @param amount {@link #amount}
+     * @return {@link #Account}
+     */
     public Account withAmount(Money amount) {
         this.amount = amount;
         return this;
@@ -128,32 +142,6 @@ public class Account implements Serializable {
     public void removeDebtAccount(DebtAccount debtAccount) {
         getDebtAccounts().remove(debtAccount);
         debtAccount.setAccount(null);
-    }
-
-    public List<AccountBalance> getAccountBalances() {
-        if (accountBalances == null) {
-            accountBalances = new ArrayList<>();
-        }
-        return accountBalances;
-    }
-
-    public void setAccountBalances(List<AccountBalance> accountBalances) {
-        this.accountBalances = accountBalances;
-    }
-
-    public Account withAccountBalances(List<AccountBalance> accountBalances) {
-        this.accountBalances = accountBalances;
-        return this;
-    }
-
-    public void addAccountBalance(AccountBalance accountBalance) {
-        getAccountBalances().add(accountBalance);
-        accountBalance.setAccount(this);
-    }
-
-    public void removeAccountBalance(AccountBalance accountBalance) {
-        getAccountBalances().remove(accountBalance);
-        accountBalance.setAccount(null);
     }
 
     public List<Entry> getEntries() {
