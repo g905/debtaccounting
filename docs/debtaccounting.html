@@ -1,27 +1,59 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>debtaccounting</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
-  </style>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
 </head>
 <body>
-<nav id="TOC">
+<div id="TOC">
 <ul>
-<li><a href="#actors">Actors</a></li>
-<li><a href="#usecases">Use Cases</a></li>
+<li><a href="#actors">Actors</a><ul>
+<li><a>Заемщик</a></li>
+<li><a>Пользователь</a></li>
+</ul></li>
+<li><a href="#usecases">Use Cases</a><ul>
+<li><a>Создать долг</a></li>
+<li><a>Сформировать договора</a></li>
+<li><a>Выдать долг</a></li>
+<li><a>Ежемесячный платеж</a></li>
+<li><a>ЧПД</a></li>
+<li><a>ПДП</a></li>
+<li><a>Обслуживать долг</a></li>
+<li><a>Уступка</a></li>
+</ul></li>
 <li><a href="#interfaces">Interfaces</a></li>
-<li><a href="#classes">Classes</a></li>
+<li><a href="#classes">Classes</a><ul>
+<li><a>Долг</a></li>
+<li><a>Право на долг</a></li>
+<li><a>Диапазон дат</a></li>
+<li><a>Инвестор</a></li>
+<li><a>Дата</a></li>
+<li><a>Обеспечение долга</a></li>
+<li><a>Событие</a></li>
+<li><a>Обработчик события</a></li>
+<li><a>Транзакция</a></li>
+<li><a>Тип долга</a></li>
+<li><a>Эмиссия долга</a></li>
+<li><a>ХС</a></li>
+<li><a>цело</a></li>
+<li><a>целое</a></li>
+<li><a>вещественное</a></li>
+<li><a>График платежей</a></li>
+<li><a>Тип остатка</a></li>
+<li><a>Создание</a></li>
+<li><a>ЧДП</a></li>
+<li><a>ПДП</a></li>
+<li><a>Погашение</a></li>
+<li><a>Тип события</a></li>
+<li><a>Обрабочтик события</a></li>
+<li><a>Обрабочик события Эмиссия</a></li>
+<li><a>Обработчик события ЧДП</a></li>
+<li><a>Обработчик события ПДП</a></li>
+<li><a>Обработчик события Погашение</a></li>
+</ul></li>
 <li><a href="#diagrams">Diagrams</a><ul>
 <li><a>classes</a></li>
 <li><a>Classes:</a></li>
@@ -30,11 +62,692 @@
 <li><a>Use Cases:</a></li>
 </ul></li>
 </ul>
-</nav>
+</div>
 <h1 id="actors">Actors</h1>
+<h2>Заемщик</h2>
+<table>
+<thead>
+<tr class="header">
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<h2>Пользователь</h2>
+<table>
+<thead>
+<tr class="header">
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
 <h1 id="usecases">Use Cases</h1>
+<h2>Создать долг</h2>
+<table>
+<thead>
+<tr class="header">
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<h2>Сформировать договора</h2>
+<table>
+<thead>
+<tr class="header">
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<h2>Выдать долг</h2>
+<table>
+<thead>
+<tr class="header">
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<h2>Ежемесячный платеж</h2>
+<table>
+<thead>
+<tr class="header">
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<h2>ЧПД</h2>
+<table>
+<thead>
+<tr class="header">
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<h2>ПДП</h2>
+<table>
+<thead>
+<tr class="header">
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<h2>Обслуживать долг</h2>
+<table>
+<thead>
+<tr class="header">
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<h2>Уступка</h2>
+<table>
+<thead>
+<tr class="header">
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
 <h1 id="interfaces">Interfaces</h1>
 <h1 id="classes">Classes</h1>
+<h2>Долг</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Долг</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Attributes:</td>
+</tr>
+<tr class="even">
+<td>visibility</td>
+<td>type</td>
+<td>name</td>
+</tr>
+<tr class="odd">
+<td>private</td>
+<td>Тип долга</td>
+<td>тип</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>private</td>
+<td></td>
+<td>заемщик</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>private</td>
+<td></td>
+<td>срок</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>private</td>
+<td></td>
+<td>ставка</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Право на долг</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Право на долг</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Attributes:</td>
+</tr>
+<tr class="even">
+<td>visibility</td>
+<td>type</td>
+<td>name</td>
+</tr>
+<tr class="odd">
+<td>private</td>
+<td></td>
+<td>доля</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>private</td>
+<td></td>
+<td>эффективность</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Диапазон дат</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Инвестор</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Дата</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Обеспечение долга</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Обеспечение долга</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Залог, поручительство и пр. меры обеспечения возвратности долга.</p></td>
+</tr>
+<tr class="even">
+<td>Attributes:</td>
+</tr>
+<tr class="odd">
+<td>visibility</td>
+<td>type</td>
+<td>name</td>
+</tr>
+<tr class="even">
+<td>private</td>
+<td></td>
+<td>залогодатель</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>private</td>
+<td></td>
+<td>выгодопробретатель</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Событие</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Событие</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Событие опписывает нечто интересное бизнесу - выдачу кредита, погашение очередного платажа, досрочное погашение, выход на просрочку и т.д.</p></td>
+</tr>
+<tr class="even">
+<td>Attributes:</td>
+</tr>
+<tr class="odd">
+<td>visibility</td>
+<td>type</td>
+<td>name</td>
+</tr>
+<tr class="even">
+<td>private</td>
+<td></td>
+<td>дата</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>private</td>
+<td></td>
+<td>тип</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Обработчик события</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Обработчик события</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Attributes:</td>
+</tr>
+<tr class="even">
+<td>visibility</td>
+<td>type</td>
+<td>name</td>
+</tr>
+<tr class="odd">
+<td>private</td>
+<td>Событие</td>
+<td>событие</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Транзакция</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Тип долга</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Тип долга</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Operations:</p></td>
+</tr>
+<tr class="even">
+<td><p>visibility</p></td>
+<td><p>return</p></td>
+<td><p>name</p></td>
+</tr>
+<tr class="odd">
+<td>public</td>
+<td>Обработчик события</td>
+<td>получитьОбработчикСобытия</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Эмиссия долга</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>ХС</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>цело</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>целое</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>вещественное</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>График платежей</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>График платежей</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Attributes:</td>
+</tr>
+<tr class="even">
+<td>visibility</td>
+<td>type</td>
+<td>name</td>
+</tr>
+<tr class="odd">
+<td>private</td>
+<td></td>
+<td>эффективность</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Тип остатка</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Создание</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Создание</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Attributes:</td>
+</tr>
+<tr class="even">
+<td>visibility</td>
+<td>type</td>
+<td>name</td>
+</tr>
+<tr class="odd">
+<td>private</td>
+<td>График платежей</td>
+<td>график платежей</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>ЧДП</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>ЧДП</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Attributes:</td>
+</tr>
+<tr class="even">
+<td>visibility</td>
+<td>type</td>
+<td>name</td>
+</tr>
+<tr class="odd">
+<td>private</td>
+<td></td>
+<td>сумма</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>ПДП</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>ПДП</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Attributes:</td>
+</tr>
+<tr class="even">
+<td>visibility</td>
+<td>type</td>
+<td>name</td>
+</tr>
+<tr class="odd">
+<td>private</td>
+<td></td>
+<td>сумма</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Погашение</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Погашение</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Attributes:</td>
+</tr>
+<tr class="even">
+<td>visibility</td>
+<td>type</td>
+<td>name</td>
+</tr>
+<tr class="odd">
+<td>private</td>
+<td></td>
+<td>сумма</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Тип события</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Обрабочтик события</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Обрабочтик события</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Operations:</p></td>
+</tr>
+<tr class="even">
+<td><p>visibility</p></td>
+<td><p>return</p></td>
+<td><p>name</p></td>
+</tr>
+<tr class="odd">
+<td>public</td>
+<td><p>void</p></td>
+<td>обработать</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Обрабочик события Эмиссия</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Обработчик события ЧДП</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Обработчик события ПДП</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Обработчик события Погашение</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+</tbody>
+</table>
 <h1 id="diagrams">Diagrams</h1>
 <h2>classes</h2>
 <p><img src="classes.png" /></p>
