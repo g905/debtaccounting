@@ -16,18 +16,27 @@
 package ru.ilb.debtaccounting.testcase;
 
 /**
- *
+ * Converter of spreadsheet values
  * @author slavb
  */
 public class ValueConverter {
 
     public static Object convertValue(Object value) {
         if (value instanceof Double) {
-            Double dblValue = (Double) value;
-            int intValue = dblValue.intValue();
-            if (Double.valueOf(intValue).equals(value)) {
-                value = intValue;
-            }
+            value = convertValue((Double) value);
+        }
+        return value;
+    }
+
+    /**
+     * Convert double values to int in case of no fractional portion
+     * @param value
+     * @return
+     */
+    private static Object convertValue(Double value) {
+        int intValue = value.intValue();
+        if (Double.valueOf(intValue).equals(value)) {
+            return intValue;
         }
         return value;
     }
