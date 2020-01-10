@@ -30,9 +30,13 @@ public enum TransactionStatusCode implements EnumValue {
      */
     EXECUTED(2);
 
+    private final int value;
+
     private TransactionStatusCode(int value){
         this.value = value;
     }
+
+
 
     public static TransactionStatusCode fromValue(int v) {
         for (TransactionStatusCode c : TransactionStatusCode.values()) {
@@ -47,6 +51,4 @@ public enum TransactionStatusCode implements EnumValue {
     public int value() {
         return value;
     }
-    private final int value;
-
 }

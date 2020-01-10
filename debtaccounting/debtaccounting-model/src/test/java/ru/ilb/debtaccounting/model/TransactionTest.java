@@ -54,14 +54,7 @@ public class TransactionTest {
     public void testGetStatus() {
         System.out.println("getStatus");
         Transaction trans = new Transaction();
-        for(TransactionStatusCode c : TransactionStatusCode.values())
-        {
-            System.out.println(c);
-            trans.setStatus(c);
-            assertEquals(trans.getStatus(), c);
-        }
-        /*trans.setStatus(TransactionStatusCode.CREATED);
-        TransactionStatusCode expected = TransactionStatusCode.CREATED;
-        assertEquals(trans.getStatus(), expected);*/
+        System.out.println(trans.getStatus().getCode());
+        assertEquals(trans.getStatus().getCode(), TransactionStatusCode.fromValue(1));
     }
 }

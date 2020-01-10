@@ -35,8 +35,8 @@ public class Transaction implements Serializable {
     @Basic
     private LocalDate date;
 
-    @Basic
-    private TransactionStatusCode status;
+    @Embedded
+    private TransactionStatus status;
 
     /**
      * Сумма
@@ -65,9 +65,11 @@ public class Transaction implements Serializable {
         this.amount = amount;
         this.accountFrom = accountFrom;
         this.accountTo = accountTo;
+
     }
 
     public Transaction() {
+        this.status =  new TransactionStatus();
     }
 
     public Long getId() {
@@ -83,11 +85,11 @@ public class Transaction implements Serializable {
         return this;
     }
 
-    public TransactionStatusCode getStatus() {
+    public TransactionStatus getStatus() {
         return status;
     }
 
-    public void setStatus(TransactionStatusCode status) {
+    public void setStatus(TransactionStatus status) {
         this.status = status;
     }
 

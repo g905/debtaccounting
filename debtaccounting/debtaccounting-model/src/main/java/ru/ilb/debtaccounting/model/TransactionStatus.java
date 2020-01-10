@@ -32,24 +32,24 @@ public class TransactionStatus implements Serializable {
      */
     @Basic
     @Enumerated(EnumType.STRING)
-    private TransactionStatus code;
+    private TransactionStatusCode code;
 
     @Basic
     private String name;
 
-    /**
-     * Выдан
-     */
-    @Basic
-    private boolean disbursed;
 
-    public TransactionStatus(Long id, TransactionStatus code, String name) {
+    public TransactionStatus(Long id, TransactionStatusCode code, String name) {
         this.id = id;
         this.code = code;
         this.name = name;
     }
 
     public TransactionStatus() {
+        this.code = TransactionStatusCode.fromValue(1);
+    }
+
+    public TransactionStatus(Long id){
+        this.id=id;
     }
 
     public Long getId() {
@@ -60,18 +60,13 @@ public class TransactionStatus implements Serializable {
         this.id = id;
     }
 
-    public TransactionStatus withId(Long id) {
-        this.id = id;
-        return this;
-    }
-
     /**
      * Get код
      *
      * @return {@link #code}
      */
-    public TransactionStatus getCode() {
-        return code;
+    public TransactionStatusCode getCode() {
+        return this.code;
     }
 
     /**
@@ -79,7 +74,7 @@ public class TransactionStatus implements Serializable {
      *
      * @param code {@link #code}
      */
-    public void setCode(TransactionStatus code) {
+    public void setCode(TransactionStatusCode code) {
         this.code = code;
     }
 
@@ -89,7 +84,7 @@ public class TransactionStatus implements Serializable {
      * @param code {@link #code}
      * @return {@link #DebtStatus}
      */
-    public TransactionStatus withCode(TransactionStatus code) {
+    public  TransactionStatus withCode(TransactionStatusCode code) {
         this.code = code;
         return this;
     }
@@ -104,35 +99,6 @@ public class TransactionStatus implements Serializable {
 
     public TransactionStatus withName(String name) {
         this.name = name;
-        return this;
-    }
-
-    /**
-     * Get выдан
-     *
-     * @return {@link #disbursed}
-     */
-    public boolean getDisbursed() {
-        return disbursed;
-    }
-
-    /**
-     * Set выдан
-     *
-     * @param disbursed {@link #disbursed}
-     */
-    public void setDisbursed(boolean disbursed) {
-        this.disbursed = disbursed;
-    }
-
-    /**
-     * Set выдан
-     *
-     * @param disbursed {@link #disbursed}
-     * @return {@link #DebtStatus}
-     */
-    public TransactionStatus withDisbursed(boolean disbursed) {
-        this.disbursed = disbursed;
         return this;
     }
 
