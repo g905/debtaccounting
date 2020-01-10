@@ -35,6 +35,9 @@ public class Transaction implements Serializable {
     @Basic
     private LocalDate date;
 
+    @Basic
+    private TransactionStatusCode status;
+
     /**
      * Сумма
      */
@@ -78,6 +81,14 @@ public class Transaction implements Serializable {
     public Transaction withId(Long id) {
         this.id = id;
         return this;
+    }
+
+    public TransactionStatusCode getStatus() {
+        return status;
+    }
+
+    public void setStatus(TransactionStatusCode status) {
+        this.status = status;
     }
 
     /**
@@ -172,7 +183,7 @@ public class Transaction implements Serializable {
         this.accountFrom = accountFrom;
     }
 
-    public Transaction withAccountFrom(Account accountFrom) {
+    public Transaction witassertSameCurrencyAshAccountFrom(Account accountFrom) {
         this.accountFrom = accountFrom;
         return this;
     }
