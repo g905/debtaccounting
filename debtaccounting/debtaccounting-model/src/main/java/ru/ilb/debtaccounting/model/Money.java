@@ -145,7 +145,8 @@ public class Money implements Serializable {
      */
     public Money addMoney(Money other) {
         assertSameCurrencyAs(other);
-        return newMoney(amount + other.amount);
+        amount+=other.amount;
+        return this;
     }
 
     /**
@@ -268,5 +269,11 @@ public class Money implements Serializable {
         money.amount = amount;
         return money;
     }
+
+    @Override
+    public String toString() {
+        return "Money{" + "amount=" + amount + ", currency=" + currency + '}';
+    }
+
 
 }

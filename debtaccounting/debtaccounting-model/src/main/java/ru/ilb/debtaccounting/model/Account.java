@@ -6,7 +6,9 @@ package ru.ilb.debtaccounting.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 import javax.persistence.Basic;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -95,7 +97,13 @@ public class Account implements Serializable {
      * @return {@link #amount}
      */
     public Money getAmount() {
-        return amount;
+        Money money = new Money();
+        money.setAmount(0);
+        money.setCurrency(Currency.getInstance(Locale.getDefault()));
+        for(Entry entry : getEntries()){
+            money.addMoney(entry.getAmount());
+        }
+        return money;
     }
 
     /**
@@ -188,7 +196,7 @@ public class Account implements Serializable {
      * @param source
      * @param date
      */
-    void deposit(Money amount, Account source, LocalDate date) {
+    public void deposit(Money amount, Account source, LocalDate date) {
         new Transaction(date, amount, source, this).execute();
     }
 

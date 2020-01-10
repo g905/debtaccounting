@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Embedded;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,6 +33,9 @@ public class Debt implements Serializable {
     @Basic
     private DebtStatusCode status;
 
+    @Embedded
+    private Money amount;
+
     /**
      * Счет основного долга
      */
@@ -55,6 +59,14 @@ public class Debt implements Serializable {
     @OneToMany(mappedBy = "debt")
     @XmlTransient
     private List<DebtRight> debtRights;
+
+    public void setAmount(Money amount){
+        this.amount = amount;
+    }
+
+    public Money getAmount(){
+        return this.amount;
+    }
 
     public Long getId() {
         return id;

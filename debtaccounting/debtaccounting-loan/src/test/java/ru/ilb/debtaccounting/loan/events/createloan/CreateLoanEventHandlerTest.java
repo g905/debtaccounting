@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import ru.ilb.debtaccounting.loan.Loan;
 import ru.ilb.debtaccounting.model.Cashflow;
 import ru.ilb.debtaccounting.model.DebtStatusCode;
+import ru.ilb.debtaccounting.model.Money;
 import ru.ilb.debtaccounting.testcase.ODSTestCase;
 
 /**
@@ -73,6 +74,7 @@ public class CreateLoanEventHandlerTest {
         System.out.println("process");
         Loan loan = process();
         Assertions.assertEquals(DebtStatusCode.CREATED, loan.getStatus());
+        Assertions.assertEquals(Money.locale(968600), loan.getAmount());
     }
 
 }

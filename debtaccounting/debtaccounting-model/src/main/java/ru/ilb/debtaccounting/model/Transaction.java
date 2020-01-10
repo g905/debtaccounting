@@ -118,7 +118,7 @@ public class Transaction implements Serializable {
         return amount;
     }
 
-    /**
+    /**accountTo
      * Set сумма
      *
      * @param amount {@link #amount}
@@ -216,12 +216,12 @@ public class Transaction implements Serializable {
         entry.setTransaction(null);
     }
 
-    void execute() {
+    public void execute() {
         Entry entryFrom = new Entry(date, amount.negateMoney());
         accountFrom.addEntry(entryFrom);
         addEntry(entryFrom);
         Entry entryTo = new Entry(date, amount);
-        accountFrom.addEntry(entryTo);
+        accountTo.addEntry(entryTo);
         addEntry(entryTo);
     }
 

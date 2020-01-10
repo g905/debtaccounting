@@ -19,6 +19,7 @@ import javax.validation.Validator;
 import ru.ilb.debtaccounting.model.DebtStatusCode;
 import ru.ilb.debtaccounting.model.EventHandler;
 import ru.ilb.debtaccounting.loan.Loan;
+import ru.ilb.debtaccounting.model.Money;
 
 /**
  * Событие "Создание долга"
@@ -36,6 +37,7 @@ public class CreateLoanEventHandler extends EventHandler<CreateLoanEvent, Loan> 
         if (debt.getStatus() != null) {
             throw new AlreadyCreatedException();
         }
+        debt.setAmount(Money.locale(968600));
         debt.setCashflow(event.getRequest().getCashflow());
         debt.setStatus(DebtStatusCode.CREATED);
     }

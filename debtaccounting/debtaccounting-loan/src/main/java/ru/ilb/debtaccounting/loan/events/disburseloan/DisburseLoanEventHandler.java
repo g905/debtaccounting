@@ -15,12 +15,18 @@
  */
 package ru.ilb.debtaccounting.loan.events.disburseloan;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.validation.Validator;
 import ru.ilb.debtaccounting.model.DebtStatusCode;
 import ru.ilb.debtaccounting.model.EventHandler;
 import ru.ilb.debtaccounting.loan.Loan;
 import ru.ilb.debtaccounting.model.Account;
+import ru.ilb.debtaccounting.model.BusinessEntity;
 import ru.ilb.debtaccounting.model.DebtRight;
+import ru.ilb.debtaccounting.model.Money;
 
 /**
  *
@@ -34,7 +40,7 @@ public class DisburseLoanEventHandler extends EventHandler<DisburseLoanEvent, Lo
 
     /**
      * Выдать кредит
-     * 
+     *
      * 1. Создать счет основного долга {@link Loan#principalAccount}
      * 2. Зачислить сумму кредита на счет основого долга {@link Account#deposit}
      * 3. Создать право на долг (@link DebtRight}, задать долю 1 (100%) {@link DebtRight#share}, владельца прав {@link DebtRight#businessEntity}
@@ -45,10 +51,19 @@ public class DisburseLoanEventHandler extends EventHandler<DisburseLoanEvent, Lo
     public void process(Loan debt, DisburseLoanEvent event) {
         if (debt.getStatus() != DebtStatusCode.CREATED) {
             throw new AlreadyDisbursedException();
-        }
-        Account account = new Account();
-        DebtRight debtRight = new DebtRight();
 
+        }
+
+        Account account = new Account();
+        Account accSource = new Account();
+        debt.setPrincipalAccount(account);
+        account.deposit(debt.getAmount(), accSource, LocalDate.now());
+        DebtRight debtRight = new DebtRight();
+        debtRight.setShare(BigDecimal.ONE);
+        BusinessEntity businessEntity = new BusinessEntity();
+        businessEntity.addDebtRight(debtRight);
+        businessEntity.setName("ПАО \"Быстробанк\"");
+        debt.addDebtRight(debtRight);
         debt.setStatus(DebtStatusCode.DISBURSED);
     }
 

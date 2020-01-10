@@ -77,11 +77,12 @@ public class DisburseLoanEventHandlerTest {
         Loan loan = process();
         assertEquals(DebtStatusCode.DISBURSED, loan.getStatus());
         assertNotNull(loan.getPrincipalAccount(), "Счет основного долга должен быть заведен");
-        assertEquals(Money.locale(0), loan.getPrincipalAccount().getAmount());
+        assertEquals(Money.locale(968600), loan.getPrincipalAccount().getAmount());
         assertNotNull(loan.getDebtRights(), "Заведены права на долг");
         assertEquals(1,loan.getDebtRights().size(),"Заведено 1 право на долг");
-        assertNotNull(loan.getDebtRights().get(0).getBusinessEntity(),"Заведен ХС в правена долг");
+        assertNotNull(loan.getDebtRights().get(0).getBusinessEntity(),"Заведен ХС в праве на долг");
         assertEquals("ПАО \"Быстробанк\"",loan.getDebtRights().get(0).getBusinessEntity().getName(),"Право на долг - ПАО Быстробанк");
+        
     }
 
 }
