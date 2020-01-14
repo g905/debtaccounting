@@ -35,6 +35,9 @@ public class Transaction implements Serializable {
     @Basic
     private LocalDate date;
 
+    @Basic
+    private TransactionStatusCode status;
+
     /**
      * Сумма
      */
@@ -62,6 +65,7 @@ public class Transaction implements Serializable {
         this.amount = amount;
         this.accountFrom = accountFrom;
         this.accountTo = accountTo;
+        //this.status = TransactionStatusCode.CREATED;
     }
 
     public Transaction() {
