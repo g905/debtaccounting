@@ -15,18 +15,16 @@
  */
 package ru.ilb.debtaccounting.loan.events.disburseloan;
 
-import java.math.BigDecimal;
+import java.io.IOException;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import org.hibernate.validator.internal.util.Contracts;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import ru.ilb.debtaccounting.loan.Loan;
 import ru.ilb.debtaccounting.loan.events.createloan.CreateLoanEventHandlerTest;
 import ru.ilb.debtaccounting.model.DebtStatusCode;
@@ -57,7 +55,7 @@ public class DisburseLoanEventHandlerTest {
     public void tearDown() {
     }
 
-    public Loan process() {
+    public Loan process() throws IOException {
         Loan loan = CreateLoanEventHandlerTest.process();
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
@@ -73,7 +71,7 @@ public class DisburseLoanEventHandlerTest {
      * Test of process method, of class DisburseLoanEventHandler.
      */
     @Test
-    public void testProcess() {
+    public void testProcess() throws IOException {
         Loan loan = process();
         assertEquals(DebtStatusCode.DISBURSED, loan.getStatus());
         assertNotNull(loan.getPrincipalAccount(), "Счет основного долга должен быть заведен");
