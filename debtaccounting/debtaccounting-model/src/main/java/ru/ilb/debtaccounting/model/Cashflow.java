@@ -52,11 +52,6 @@ public class Cashflow implements Serializable {
         this.transactions = transactions;
     }
 
-    public Cashflow withTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
-        return this;
-    }
-
     public void addTransaction(Transaction transaction) {
         getTransactions().add(transaction);
         transaction.setCashflow(this);
@@ -65,6 +60,11 @@ public class Cashflow implements Serializable {
     public void removeTransaction(Transaction transaction) {
         getTransactions().remove(transaction);
         transaction.setCashflow(null);
+    }
+
+    public Cashflow withTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+        return this;
     }
 
 }

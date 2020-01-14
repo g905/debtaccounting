@@ -7,10 +7,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.Embedded;
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -32,20 +31,19 @@ public class Debt implements Serializable {
 
     @Basic
     private DebtStatusCode status;
-
     @Embedded
     private Money amount;
 
     /**
      * Счет основного долга
      */
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     private Account principalAccount;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private DebtStatus debtStatus;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Cashflow cashflow;
 
     @OneToMany(mappedBy = "debt", cascade = CascadeType.ALL)
@@ -60,11 +58,11 @@ public class Debt implements Serializable {
     @XmlTransient
     private List<DebtRight> debtRights;
 
-    public void setAmount(Money amount){
+    public void setAmount(Money amount) {
         this.amount = amount;
     }
 
-    public Money getAmount(){
+    public Money getAmount() {
         return this.amount;
     }
 
@@ -160,11 +158,6 @@ public class Debt implements Serializable {
         this.events = events;
     }
 
-    public Debt withEvents(List<Event> events) {
-        this.events = events;
-        return this;
-    }
-
     public void addEvent(Event event) {
         getEvents().add(event);
         event.setDebt(this);
@@ -173,6 +166,11 @@ public class Debt implements Serializable {
     public void removeEvent(Event event) {
         getEvents().remove(event);
         event.setDebt(null);
+    }
+
+    public Debt withEvents(List<Event> events) {
+        this.events = events;
+        return this;
     }
 
     public List<DebtAccount> getDebtAccounts() {
@@ -186,11 +184,6 @@ public class Debt implements Serializable {
         this.debtAccounts = debtAccounts;
     }
 
-    public Debt withDebtAccounts(List<DebtAccount> debtAccounts) {
-        this.debtAccounts = debtAccounts;
-        return this;
-    }
-
     public void addDebtAccount(DebtAccount debtAccount) {
         getDebtAccounts().add(debtAccount);
         debtAccount.setDebt(this);
@@ -199,6 +192,11 @@ public class Debt implements Serializable {
     public void removeDebtAccount(DebtAccount debtAccount) {
         getDebtAccounts().remove(debtAccount);
         debtAccount.setDebt(null);
+    }
+
+    public Debt withDebtAccounts(List<DebtAccount> debtAccounts) {
+        this.debtAccounts = debtAccounts;
+        return this;
     }
 
     public List<DebtRight> getDebtRights() {
@@ -212,11 +210,6 @@ public class Debt implements Serializable {
         this.debtRights = debtRights;
     }
 
-    public Debt withDebtRights(List<DebtRight> debtRights) {
-        this.debtRights = debtRights;
-        return this;
-    }
-
     public void addDebtRight(DebtRight debtRight) {
         getDebtRights().add(debtRight);
         debtRight.setDebt(this);
@@ -225,6 +218,11 @@ public class Debt implements Serializable {
     public void removeDebtRight(DebtRight debtRight) {
         getDebtRights().remove(debtRight);
         debtRight.setDebt(null);
+    }
+
+    public Debt withDebtRights(List<DebtRight> debtRights) {
+        this.debtRights = debtRights;
+        return this;
     }
 
 }

@@ -100,7 +100,7 @@ public class Account implements Serializable {
         Money money = new Money();
         money.setAmount(0);
         money.setCurrency(Currency.getInstance(Locale.getDefault()));
-        for(Entry entry : getEntries()){
+        for (Entry entry : getEntries()) {
             money.addMoney(entry.getAmount());
         }
         return money;
@@ -137,11 +137,6 @@ public class Account implements Serializable {
         this.debtAccounts = debtAccounts;
     }
 
-    public Account withDebtAccounts(List<DebtAccount> debtAccounts) {
-        this.debtAccounts = debtAccounts;
-        return this;
-    }
-
     public void addDebtAccount(DebtAccount debtAccount) {
         getDebtAccounts().add(debtAccount);
         debtAccount.setAccount(this);
@@ -150,6 +145,11 @@ public class Account implements Serializable {
     public void removeDebtAccount(DebtAccount debtAccount) {
         getDebtAccounts().remove(debtAccount);
         debtAccount.setAccount(null);
+    }
+
+    public Account withDebtAccounts(List<DebtAccount> debtAccounts) {
+        this.debtAccounts = debtAccounts;
+        return this;
     }
 
     public List<Entry> getEntries() {
@@ -163,11 +163,6 @@ public class Account implements Serializable {
         this.entries = entries;
     }
 
-    public Account withEntries(List<Entry> entries) {
-        this.entries = entries;
-        return this;
-    }
-
     public void addEntry(Entry entry) {
         getEntries().add(entry);
         entry.setAccount(this);
@@ -176,6 +171,11 @@ public class Account implements Serializable {
     public void removeEntry(Entry entry) {
         getEntries().remove(entry);
         entry.setAccount(null);
+    }
+
+    public Account withEntries(List<Entry> entries) {
+        this.entries = entries;
+        return this;
     }
 
     /**
@@ -195,9 +195,9 @@ public class Account implements Serializable {
      * @param amount
      * @param source
      * @param date
+     * @return {@link #Transaction}
      */
-    public void deposit(Money amount, Account source, LocalDate date) {
-        new Transaction(date, amount, source, this).execute();
+    public Transaction deposit(Money amount, Account source, LocalDate date) {
+        return new Transaction(date, amount, source, this);
     }
-
 }

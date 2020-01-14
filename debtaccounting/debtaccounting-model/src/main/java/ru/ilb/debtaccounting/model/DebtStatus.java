@@ -64,20 +64,10 @@ public class DebtStatus implements Serializable {
         return this;
     }
 
-    /**
-     * Get код
-     *
-     * @return {@link #code}
-     */
     public DebtStatusCode getCode() {
         return code;
     }
 
-    /**
-     * Set код
-     *
-     * @param code {@link #code}
-     */
     public void setCode(DebtStatusCode code) {
         this.code = code;
     }
@@ -111,7 +101,7 @@ public class DebtStatus implements Serializable {
      *
      * @return {@link #disbursed}
      */
-    public boolean getDisbursed() {
+    public boolean isDisbursed() {
         return disbursed;
     }
 

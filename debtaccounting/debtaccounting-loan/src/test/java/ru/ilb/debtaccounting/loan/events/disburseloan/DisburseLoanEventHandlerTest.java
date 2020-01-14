@@ -15,22 +15,23 @@
  */
 package ru.ilb.debtaccounting.loan.events.disburseloan;
 
-import java.math.BigDecimal;
+import java.time.LocalDate;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import org.hibernate.validator.internal.util.Contracts;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import ru.ilb.debtaccounting.loan.Loan;
 import ru.ilb.debtaccounting.loan.events.createloan.CreateLoanEventHandlerTest;
+import ru.ilb.debtaccounting.model.Account;
 import ru.ilb.debtaccounting.model.DebtStatusCode;
 import ru.ilb.debtaccounting.model.Money;
+import ru.ilb.debtaccounting.model.Transaction;
+import ru.ilb.debtaccounting.model.TransactionStatusCode;
 
 /**
  *
@@ -59,6 +60,9 @@ public class DisburseLoanEventHandlerTest {
 
     public Loan process() {
         Loan loan = CreateLoanEventHandlerTest.process();
+        for (Transaction t : loan.getCashflow().getTransactions()) {
+            t.execute();
+        }
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         DisburseLoanEventHandler hanler = new DisburseLoanEventHandler(validator);
@@ -75,14 +79,22 @@ public class DisburseLoanEventHandlerTest {
     @Test
     public void testProcess() {
         Loan loan = process();
+
+        for (Transaction t : loan.getCashflow().getTransactions()) {
+            if (LocalDate.now().equals(t.getDate())) {
+                assertEquals(TransactionStatusCode.EXECUTED, t.getStatus());
+            } else {
+                assertEquals(TransactionStatusCode.CREATED, t.getStatus());
+            }
+        }
+
         assertEquals(DebtStatusCode.DISBURSED, loan.getStatus());
         assertNotNull(loan.getPrincipalAccount(), "Счет основного долга должен быть заведен");
-        assertEquals(Money.locale(968600), loan.getPrincipalAccount().getAmount());
+        assertEquals(Money.getTestSum(), loan.getPrincipalAccount().getAmount());
         assertNotNull(loan.getDebtRights(), "Заведены права на долг");
         assertEquals(1,loan.getDebtRights().size(),"Заведено 1 право на долг");
         assertNotNull(loan.getDebtRights().get(0).getBusinessEntity(),"Заведен ХС в праве на долг");
         assertEquals("ПАО \"Быстробанк\"",loan.getDebtRights().get(0).getBusinessEntity().getName(),"Право на долг - ПАО Быстробанк");
-        
     }
 
 }

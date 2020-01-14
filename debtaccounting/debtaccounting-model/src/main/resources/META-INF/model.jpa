@@ -1,414 +1,421 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ptype="MONOLITH" ppkg="ru.ilb.debtaccounting" epkg="model" v="3.1" rws="_157123801533879" Pws="_157123801533879" cws="_157123801533879" persistenceUnitName="debtaccounting" sm="false" xs="true" id="_14855761330684" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
-    <description>debtaccounting model</description>
-    <entity compositePrimaryKeyClass="DebtPK" abs="false" class="Debt" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_15547892496197">
-        <des>Долг</des>
-        <ath>slavb</ath>
-        <attributes>
-            <basic attribute-type="ru.ilb.debtaccounting.model.DebtStatusCode" v="true" xvt="" name="status" id="_1571305246203200">
-                <xwm/>
-                <xm/>
-            </basic>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_155479065881382" v="true" xvt="" name="debtStatus" id="_155479068635888">
-                <xwm/>
-                <xm/>
-            </many-to-one>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_157130186335572" v="true" xvt="" name="cashflow" id="_157130188343176">
-                <xwm/>
-                <xm/>
-            </many-to-one>
-            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478925652110" connected-attribute-id="_155478966206224" v="true" xvt="" name="events" id="_155478966206325">
-                <xwm/>
-                <xm/>
-                <cascade>
-                    <cascade-all/>
-                </cascade>
-            </one-to-many>
-            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155479004646055" connected-attribute-id="_155479005796659" v="true" xvt="" name="debtAccounts" id="_155479005796660">
-                <xwm/>
-                <xm/>
-                <cascade>
-                    <cascade-all/>
-                </cascade>
-            </one-to-many>
-            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1571377905073118" connected-attribute-id="_1571377999465129" v="true" xvt="" name="debtRights" id="_1571377999466130">
-                <xwm/>
-                <xm/>
-            </one-to-many>
-            <one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="principalAccount" id="_1571325389420117">
-                <des>Счет основного долга</des>
-                <xwm/>
-                <xm/>
-            </one-to-one>
-            <id attribute-type="Long" v="true" xvt="" name="id" id="_15547892496318">
-                <xwm/>
-                <xm/>
-                <generated-value strategy="DEFAULT"/>
-            </id>
-        </attributes>
-        <nq e="false" name="Debt.findAll">
-            <query>Select e from Debt e</query>
-        </nq>
-        <nq e="false" name="Debt.findByStatus">
-            <query>Select d from Debt d where d.status=:status</query>
-        </nq>
-    </entity>
-    <entity compositePrimaryKeyClass="EventPK" abs="false" class="Event" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478925652110">
-        <ath>slavb</ath>
-        <attributes>
-            <basic attribute-type="java.time.LocalDate" v="true" xvt="" name="date" id="_155479029845376">
-                <xwm/>
-                <xm/>
-            </basic>
-            <basic attribute-type="ru.ilb.debtaccounting.model.EventRequest" v="true" xvt="" name="request" id="_157130263119190">
-                <des>Запрос</des>
-                <xwm/>
-                <xm/>
-                <an e="true" n="@javax.validation.Valid"/>
-            </basic>
-            <basic attribute-type="java.time.LocalDateTime" v="true" xvt="" name="createdDate" id="_1571303297407127">
-                <des>Дата создания</des>
-                <xwm/>
-                <xm/>
-            </basic>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_15547892496197" connected-attribute-id="_155478966206325" v="true" xvt="" name="debt" id="_155478966206224">
-                <xwm/>
-                <xm/>
-            </many-to-one>
-            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478964715420" connected-attribute-id="_155478966997427" v="true" xvt="" name="transactions" id="_155478966997628">
-                <xwm/>
-                <xm/>
-            </one-to-many>
-            <id attribute-type="Long" v="true" xvt="" name="id" id="_155478925652211">
-                <xwm/>
-                <xm/>
-                <generated-value strategy="DEFAULT"/>
-            </id>
-        </attributes>
-        <nq e="false" name="Event.findAll">
-            <query>Select e from Event e</query>
-        </nq>
-        <nq e="false" name="Event.findByDate">
-            <query>Select e from Event e where e.date=:date</query>
-        </nq>
-        <nq e="false" name="Event.findByRequest">
-            <query>Select e from Event e where e.request=:request</query>
-        </nq>
-        <nq e="false" name="Event.findByCreatedDate">
-            <query>Select e from Event e where e.createdDate=:createdDate</query>
-        </nq>
-    </entity>
-    <entity compositePrimaryKeyClass="TransactionPK" abs="false" class="Transaction" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478964715420">
-        <con am="PUBLIC" e="true">
-            <a>_1571314056178113</a>
-            <a>_1571318024132199</a>
-            <a>_1571315173012153</a>
-            <a>_1571315198144155</a>
-        </con>
-        <con am="PUBLIC" e="true"/>
-        <des>Транзакция</des>
-        <ath>slavb</ath>
-        <attributes>
-            <basic attribute-type="java.time.LocalDate" v="true" xvt="" name="date" id="_1571314056178113">
-                <des>Дата транзакции</des>
-                <xwm/>
-                <xm/>
-            </basic>
-            <embedded connected-class-id="_1571317617979192" v="true" xvt="" name="amount" id="_1571318024132199">
-                <des>Сумма</des>
-                <xwm/>
-                <xm/>
-            </embedded>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478925652110" connected-attribute-id="_155478966997628" v="true" xvt="" name="event" id="_155478966997427">
-                <xwm/>
-                <xm/>
-            </many-to-one>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_157130186335572" connected-attribute-id="_157130198154785" v="true" xvt="" name="cashflow" id="_157130198154684">
-                <xwm/>
-                <xm/>
-            </many-to-one>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="accountFrom" id="_1571315173012153">
-                <xwm/>
-                <xm/>
-            </many-to-one>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="accountTo" id="_1571315198144155">
-                <xwm/>
-                <xm/>
-            </many-to-one>
-            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478984578741" connected-attribute-id="_155478988629448" v="true" xvt="" name="entries" id="_155478988629449">
-                <xwm/>
-                <xm/>
-            </one-to-many>
-            <id attribute-type="Long" v="true" xvt="" name="id" id="_155478964715521">
-                <xwm/>
-                <xm/>
-                <generated-value strategy="DEFAULT"/>
-            </id>
-        </attributes>
-        <nq e="false" name="Transaction.findAll">
-            <query>Select e from Transaction e</query>
-        </nq>
-        <nq e="false" name="Transaction.findByDate">
-            <query>Select t from Transaction t where t.date=:date</query>
-        </nq>
-        <nq e="false" name="Transaction.findByAmount">
-            <query>Select t from Transaction t where t.amount=:amount</query>
-        </nq>
-    </entity>
-    <entity compositePrimaryKeyClass="AccountPK" abs="false" class="Account" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478977385433">
-        <des>Счет</des>
-        <ath>slavb</ath>
-        <attributes>
-            <basic attribute-type="String" v="true" xvt="" name="name" id="_157130161523071">
-                <des>Наименование счета</des>
-                <xwm/>
-                <xm/>
-            </basic>
-            <embedded connected-class-id="_1571317617979192" v="true" xvt="" name="amount" id="_1571325113731113">
-                <des>Остаток на счете</des>
-                <xwm/>
-                <xm/>
-            </embedded>
-            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155479004646055" connected-attribute-id="_155479006402262" v="true" xvt="" name="debtAccounts" id="_155479006402363">
-                <xwm/>
-                <xm/>
-            </one-to-many>
-            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478984578741" connected-attribute-id="_1571313873416111" v="true" xvt="" name="entries" id="_1571313873416112">
-                <xwm/>
-                <xm/>
-            </one-to-many>
-            <id attribute-type="Long" v="true" xvt="" name="id" id="_155478977386534">
-                <xwm/>
-                <xm/>
-                <generated-value strategy="DEFAULT"/>
-            </id>
-        </attributes>
-        <nq e="false" name="Account.findAll">
-            <query>Select e from Account e</query>
-        </nq>
-        <nq e="false" name="Account.findByBalance">
-            <query>Select a from Account a where a.balance=:balance</query>
-        </nq>
-        <nq e="false" name="Account.findByName">
-            <query>Select a from Account a where a.name=:name</query>
-        </nq>
-    </entity>
-    <entity compositePrimaryKeyClass="EntryPK" abs="false" class="Entry" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478984578741">
-        <con am="PUBLIC" e="true">
-            <a>_1571314155020115</a>
-            <a>_1571317936709197</a>
-        </con>
-        <con am="PUBLIC" e="true"/>
-        <des>Запись</des>
-        <ath>slavb</ath>
-        <attributes>
-            <basic attribute-type="java.time.LocalDate" v="true" xvt="" name="date" id="_1571314155020115">
-                <xwm/>
-                <xm/>
-            </basic>
-            <embedded connected-class-id="_1571317617979192" v="true" xvt="" name="amount" id="_1571317936709197">
-                <xwm/>
-                <xm/>
-            </embedded>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478964715420" connected-attribute-id="_155478988629449" v="true" xvt="" name="transaction" id="_155478988629448">
-                <xwm/>
-                <xm/>
-            </many-to-one>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" connected-attribute-id="_1571313873416112" v="true" xvt="" name="account" id="_1571313873416111">
-                <xwm/>
-                <xm/>
-            </many-to-one>
-            <id attribute-type="Long" v="true" xvt="" name="id" id="_155478984579342">
-                <xwm/>
-                <xm/>
-                <generated-value strategy="DEFAULT"/>
-            </id>
-        </attributes>
-        <nq e="false" name="Entry.findAll">
-            <query>Select e from Entry e</query>
-        </nq>
-        <nq e="false" name="Entry.findByAmount">
-            <query>Select s from Entry s where s.amount=:amount</query>
-        </nq>
-        <nq e="false" name="Entry.findByDate">
-            <query>Select e from Entry e where e.date=:date</query>
-        </nq>
-    </entity>
-    <entity compositePrimaryKeyClass="DebtAccountPK" abs="false" class="DebtAccount" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155479004646055">
-        <des>Счет долга</des>
-        <ath>slavb</ath>
-        <attributes>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_15547892496197" connected-attribute-id="_155479005796660" v="true" xvt="" name="debt" id="_155479005796659">
-                <xwm/>
-                <xm/>
-                <cascade>
-                    <cascade-persist/>
-                    <cascade-merge/>
-                </cascade>
-            </many-to-one>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" connected-attribute-id="_155479006402363" v="true" xvt="" name="account" id="_155479006402262">
-                <xwm/>
-                <xm/>
-                <cascade>
-                    <cascade-persist/>
-                    <cascade-merge/>
-                </cascade>
-            </many-to-one>
-            <id attribute-type="Long" v="true" xvt="" name="id" id="_155479004646556">
-                <xwm/>
-                <xm/>
-                <generated-value strategy="DEFAULT"/>
-            </id>
-        </attributes>
-        <nq e="false" name="DebtAccount.findAll">
-            <query>Select e from DebtAccount e</query>
-        </nq>
-    </entity>
-    <entity compositePrimaryKeyClass="DebtStatusPK" abs="false" class="DebtStatus" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155479065881382">
-        <hc e="true">
-            <a>_155479067419885</a>
-        </hc>
-        <eq e="true">
-            <a>_155479067419885</a>
-        </eq>
-        <con am="PUBLIC" e="true">
-            <a>_155479065882383</a>
-            <a>_155479067419885</a>
-            <a>_155479067626286</a>
-        </con>
-        <con am="PUBLIC" e="true"/>
-        <des>Статус долга</des>
-        <ath>slavb</ath>
-        <attributes>
-            <basic attribute-type="DebtStatusCode" v="true" xvt="" name="code" id="_155479067419885">
-                <des>код</des>
-                <xwm/>
-                <xm/>
-                <enumerated>STRING</enumerated>
-            </basic>
-            <basic attribute-type="String" v="true" xvt="" name="name" id="_155479067626286">
-                <xwm/>
-                <xm/>
-            </basic>
-            <basic attribute-type="boolean" v="true" xvt="" name="disbursed" id="_155479236948136">
-                <des>Выдан</des>
-                <xwm/>
-                <xm/>
-            </basic>
-            <id attribute-type="Long" v="true" xvt="" name="id" id="_155479065882383">
-                <xwm/>
-                <xm/>
-                <generated-value strategy="DEFAULT"/>
-            </id>
-        </attributes>
-        <nq e="false" name="DebtStatus.findAll">
-            <query>Select e from DebtStatus e</query>
-        </nq>
-        <nq e="false" name="DebtStatus.findByCode">
-            <query>Select d from DebtStatus d where d.code=:code</query>
-        </nq>
-        <nq e="false" name="DebtStatus.findByName">
-            <query>Select d from DebtStatus d where d.name=:name</query>
-        </nq>
-        <nq e="false" name="DebtStatus.findByDisbursed">
-            <query>Select d from DebtStatus d where d.disbursed=:disbursed</query>
-        </nq>
-    </entity>
-    <entity compositePrimaryKeyClass="CashflowPK" abs="false" class="Cashflow" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_157130186335572">
-        <des>Денежный поток</des>
-        <ath>slavb</ath>
-        <attributes>
-            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478964715420" connected-attribute-id="_157130198154684" v="true" xvt="" name="transactions" id="_157130198154785">
-                <xwm/>
-                <xm/>
-            </one-to-many>
-            <id attribute-type="Long" v="true" xvt="" name="id" id="_157130186344473">
-                <xwm/>
-                <xm/>
-                <generated-value strategy="DEFAULT"/>
-            </id>
-        </attributes>
-        <nq e="false" name="Cashflow.findAll">
-            <query>Select e from Cashflow e</query>
-        </nq>
-    </entity>
-    <entity compositePrimaryKeyClass="DebtRightPK" abs="false" class="DebtRight" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_1571377905073118">
-        <des>Право на долг</des>
-        <ath>slavb</ath>
-        <attributes>
-            <basic attribute-type="java.math.BigDecimal" v="true" xvt="" name="share" id="_1571378025273131">
-                <des>Доля</des>
-                <xwm/>
-                <xm/>
-                <column unique="false" nullable="true" insertable="true" updatable="true" precision="3" scale="1"/>
-            </basic>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_1571377938427121" connected-attribute-id="_1571377994151127" v="true" xvt="" name="businessEntity" id="_1571377994150126">
-                <xwm/>
-                <xm/>
-            </many-to-one>
-            <many-to-one optional="true" primaryKey="false" connected-entity-id="_15547892496197" connected-attribute-id="_1571377999466130" v="true" xvt="" name="debt" id="_1571377999465129">
-                <xwm/>
-                <xm/>
-            </many-to-one>
-            <id attribute-type="Long" v="true" xvt="" name="id" id="_1571377905135119">
-                <xwm/>
-                <xm/>
-                <generated-value strategy="DEFAULT"/>
-            </id>
-        </attributes>
-        <nq e="false" name="DebtRight.findAll">
-            <query>Select e from DebtRight e</query>
-        </nq>
-        <nq e="false" name="DebtRight.findByShare">
-            <query>Select d from DebtRight d where d.share=:share</query>
-        </nq>
-    </entity>
-    <entity compositePrimaryKeyClass="BusinessEntityPK" abs="false" class="BusinessEntity" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_1571377938427121">
-        <des>Хозяйствующий субъект</des>
-        <ath>slavb</ath>
-        <attributes>
-            <basic attribute-type="String" v="true" xvt="" name="name" id="_1571377954303124">
-                <xwm/>
-                <xm/>
-            </basic>
-            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1571377905073118" connected-attribute-id="_1571377994150126" v="true" xvt="" name="debtRights" id="_1571377994151127">
-                <xwm/>
-                <xm/>
-            </one-to-many>
-            <id attribute-type="Long" v="true" xvt="" name="id" id="_1571377938472122">
-                <xwm/>
-                <xm/>
-                <generated-value strategy="DEFAULT"/>
-            </id>
-        </attributes>
-        <nq e="false" name="BusinessEntity.findAll">
-            <query>Select e from BusinessEntity e</query>
-        </nq>
-        <nq e="false" name="BusinessEntity.findByName">
-            <query>Select b from BusinessEntity b where b.name=:name</query>
-        </nq>
-    </entity>
-    <embeddable abs="false" class="Money" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_1571317617979192">
-        <des>Деньги</des>
-        <ath>slavb</ath>
-        <attributes>
-            <basic attribute-type="long" v="true" xvt="" name="amount" id="_1571317632239194">
-                <des>Сумма</des>
-                <xwm/>
-                <xm/>
-            </basic>
-            <basic attribute-type="java.util.Currency" v="true" xvt="" name="currency" id="_1571317644165195">
-                <des>Валюта</des>
-                <xwm/>
-                <xm/>
-            </basic>
-        </attributes>
-    </embeddable>
-    <snp loc="BEFORE_PACKAGE" e="true">/**
+<jpa:entity-mappings ptype="MONOLITH" ppkg="ru.ilb.debtaccounting" epkg="model" v="3.1" rws="_157889169992243" Pws="_157889169992243" cws="_157889169992243" persistenceUnitName="debtaccounting" sm="false" xs="true" id="_14855761330684" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <jpa:description>debtaccounting model</jpa:description>
+    <jpa:entity compositePrimaryKeyClass="DebtPK" abs="false" class="Debt" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_15547892496197">
+        <jpa:des>Долг</jpa:des>
+        <jpa:ath>slavb</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="ru.ilb.debtaccounting.model.DebtStatusCode" v="true" xvt="" name="status" id="_1571305246203200">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155479065881382" v="true" xvt="" name="debtStatus" id="_155479068635888">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_157130186335572" v="true" xvt="" name="cashflow" id="_157130188343176">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478925652110" connected-attribute-id="_155478966206224" v="true" xvt="" name="events" id="_155478966206325">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:cascade>
+                    <jpa:cascade-all/>
+                </jpa:cascade>
+            </jpa:one-to-many>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155479004646055" connected-attribute-id="_155479005796659" v="true" xvt="" name="debtAccounts" id="_155479005796660">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:cascade>
+                    <jpa:cascade-all/>
+                </jpa:cascade>
+            </jpa:one-to-many>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1571377905073118" connected-attribute-id="_1571377999465129" v="true" xvt="" name="debtRights" id="_1571377999466130">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-many>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="principalAccount" id="_1571325389420117">
+                <jpa:des>Счет основного долга</jpa:des>
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-one>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_15547892496318">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Debt.findAll">
+            <jpa:query>Select e from Debt e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Debt.findByStatus">
+            <jpa:query>Select d from Debt d where d.status=:status</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="EventPK" abs="false" class="Event" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478925652110">
+        <jpa:ath>slavb</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="java.time.LocalDate" v="true" xvt="" name="date" id="_155479029845376">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="ru.ilb.debtaccounting.model.EventRequest" v="true" xvt="" name="request" id="_157130263119190">
+                <jpa:des>Запрос</jpa:des>
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:an e="true" n="@javax.validation.Valid"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.time.LocalDateTime" v="true" xvt="" name="createdDate" id="_1571303297407127">
+                <jpa:des>Дата создания</jpa:des>
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_15547892496197" connected-attribute-id="_155478966206325" v="true" xvt="" name="debt" id="_155478966206224">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478964715420" connected-attribute-id="_155478966997427" v="true" xvt="" name="transactions" id="_155478966997628">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_155478925652211">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Event.findAll">
+            <jpa:query>Select e from Event e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Event.findByDate">
+            <jpa:query>Select e from Event e where e.date=:date</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Event.findByRequest">
+            <jpa:query>Select e from Event e where e.request=:request</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Event.findByCreatedDate">
+            <jpa:query>Select e from Event e where e.createdDate=:createdDate</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="TransactionPK" abs="false" class="Transaction" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478964715420">
+        <jpa:con am="PUBLIC" e="true">
+            <jpa:a>_1571314056178113</jpa:a>
+            <jpa:a>_1571318024132199</jpa:a>
+            <jpa:a>_1571315173012153</jpa:a>
+            <jpa:a>_1571315198144155</jpa:a>
+        </jpa:con>
+        <jpa:con am="PUBLIC" e="true"/>
+        <jpa:des>Транзакция</jpa:des>
+        <jpa:ath>slavb</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="java.time.LocalDate" v="true" xvt="" name="date" id="_1571314056178113">
+                <jpa:des>Дата транзакции</jpa:des>
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="ru.ilb.debtaccounting.model.TransactionStatusCode" v="true" xvt="" name="status" ft="false" id="_157889176506183">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:embedded connected-class-id="_1571317617979192" v="true" xvt="" name="amount" id="_1571318024132199">
+                <jpa:des>Сумма</jpa:des>
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:embedded>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155478925652110" connected-attribute-id="_155478966997628" v="true" xvt="" name="event" id="_155478966997427">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_157130186335572" connected-attribute-id="_157130198154785" v="true" xvt="" name="cashflow" id="_157130198154684">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="accountFrom" id="_1571315173012153">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="accountTo" id="_1571315198144155">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478984578741" connected-attribute-id="_155478988629448" v="true" xvt="" name="entries" id="_155478988629449">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_155478964715521">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Transaction.findAll">
+            <jpa:query>Select e from Transaction e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Transaction.findByDate">
+            <jpa:query>Select t from Transaction t where t.date=:date</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Transaction.findByAmount">
+            <jpa:query>Select t from Transaction t where t.amount=:amount</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Transaction.findByStatus">
+            <jpa:query>Select t from Transaction t where t.status=:status</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="AccountPK" abs="false" class="Account" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478977385433">
+        <jpa:des>Счет</jpa:des>
+        <jpa:ath>slavb</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_157130161523071">
+                <jpa:des>Наименование счета</jpa:des>
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:embedded connected-class-id="_1571317617979192" v="true" xvt="" name="amount" id="_1571325113731113">
+                <jpa:des>Остаток на счете</jpa:des>
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:embedded>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155479004646055" connected-attribute-id="_155479006402262" v="true" xvt="" name="debtAccounts" id="_155479006402363">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-many>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478984578741" connected-attribute-id="_1571313873416111" v="true" xvt="" name="entries" id="_1571313873416112">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_155478977386534">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Account.findAll">
+            <jpa:query>Select e from Account e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Account.findByBalance">
+            <jpa:query>Select a from Account a where a.balance=:balance</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Account.findByName">
+            <jpa:query>Select a from Account a where a.name=:name</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="EntryPK" abs="false" class="Entry" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155478984578741">
+        <jpa:con am="PUBLIC" e="true">
+            <jpa:a>_1571314155020115</jpa:a>
+            <jpa:a>_1571317936709197</jpa:a>
+        </jpa:con>
+        <jpa:con am="PUBLIC" e="true"/>
+        <jpa:des>Запись</jpa:des>
+        <jpa:ath>slavb</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="java.time.LocalDate" v="true" xvt="" name="date" id="_1571314155020115">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:embedded connected-class-id="_1571317617979192" v="true" xvt="" name="amount" id="_1571317936709197">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:embedded>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155478964715420" connected-attribute-id="_155478988629449" v="true" xvt="" name="transaction" id="_155478988629448">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" connected-attribute-id="_1571313873416112" v="true" xvt="" name="account" id="_1571313873416111">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_155478984579342">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Entry.findAll">
+            <jpa:query>Select e from Entry e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Entry.findByAmount">
+            <jpa:query>Select s from Entry s where s.amount=:amount</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Entry.findByDate">
+            <jpa:query>Select e from Entry e where e.date=:date</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="DebtAccountPK" abs="false" class="DebtAccount" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155479004646055">
+        <jpa:des>Счет долга</jpa:des>
+        <jpa:ath>slavb</jpa:ath>
+        <jpa:attributes>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_15547892496197" connected-attribute-id="_155479005796660" v="true" xvt="" name="debt" id="_155479005796659">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:cascade>
+                    <jpa:cascade-persist/>
+                    <jpa:cascade-merge/>
+                </jpa:cascade>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" connected-attribute-id="_155479006402363" v="true" xvt="" name="account" id="_155479006402262">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:cascade>
+                    <jpa:cascade-persist/>
+                    <jpa:cascade-merge/>
+                </jpa:cascade>
+            </jpa:many-to-one>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_155479004646556">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="DebtAccount.findAll">
+            <jpa:query>Select e from DebtAccount e</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="DebtStatusPK" abs="false" class="DebtStatus" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_155479065881382">
+        <jpa:hc e="true">
+            <jpa:a>_155479067419885</jpa:a>
+        </jpa:hc>
+        <jpa:eq e="true">
+            <jpa:a>_155479067419885</jpa:a>
+        </jpa:eq>
+        <jpa:con am="PUBLIC" e="true">
+            <jpa:a>_155479065882383</jpa:a>
+            <jpa:a>_155479067419885</jpa:a>
+            <jpa:a>_155479067626286</jpa:a>
+        </jpa:con>
+        <jpa:con am="PUBLIC" e="true"/>
+        <jpa:des>Статус долга</jpa:des>
+        <jpa:ath>slavb</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="DebtStatusCode" v="true" xvt="" name="code" id="_155479067419885">
+                <jpa:des>код</jpa:des>
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:enumerated>STRING</jpa:enumerated>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_155479067626286">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="boolean" v="true" xvt="" name="disbursed" id="_155479236948136">
+                <jpa:des>Выдан</jpa:des>
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_155479065882383">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="DebtStatus.findAll">
+            <jpa:query>Select e from DebtStatus e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="DebtStatus.findByCode">
+            <jpa:query>Select d from DebtStatus d where d.code=:code</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="DebtStatus.findByName">
+            <jpa:query>Select d from DebtStatus d where d.name=:name</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="DebtStatus.findByDisbursed">
+            <jpa:query>Select d from DebtStatus d where d.disbursed=:disbursed</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="CashflowPK" abs="false" class="Cashflow" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_157130186335572">
+        <jpa:des>Денежный поток</jpa:des>
+        <jpa:ath>slavb</jpa:ath>
+        <jpa:attributes>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478964715420" connected-attribute-id="_157130198154684" v="true" xvt="" name="transactions" id="_157130198154785">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_157130186344473">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Cashflow.findAll">
+            <jpa:query>Select e from Cashflow e</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="DebtRightPK" abs="false" class="DebtRight" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_1571377905073118">
+        <jpa:des>Право на долг</jpa:des>
+        <jpa:ath>slavb</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="java.math.BigDecimal" v="true" xvt="" name="share" id="_1571378025273131">
+                <jpa:des>Доля</jpa:des>
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" precision="3" scale="1"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1571377938427121" connected-attribute-id="_1571377994151127" v="true" xvt="" name="businessEntity" id="_1571377994150126">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_15547892496197" connected-attribute-id="_1571377999466130" v="true" xvt="" name="debt" id="_1571377999465129">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_1571377905135119">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="DebtRight.findAll">
+            <jpa:query>Select e from DebtRight e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="DebtRight.findByShare">
+            <jpa:query>Select d from DebtRight d where d.share=:share</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="BusinessEntityPK" abs="false" class="BusinessEntity" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_1571377938427121">
+        <jpa:des>Хозяйствующий субъект</jpa:des>
+        <jpa:ath>slavb</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_1571377954303124">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1571377905073118" connected-attribute-id="_1571377994150126" v="true" xvt="" name="debtRights" id="_1571377994151127">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_1571377938472122">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="BusinessEntity.findAll">
+            <jpa:query>Select e from BusinessEntity e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="BusinessEntity.findByName">
+            <jpa:query>Select b from BusinessEntity b where b.name=:name</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:embeddable abs="false" class="Money" v="true" jbn="false" xre="false" m="false" rootElement="_14855761330684" id="_1571317617979192">
+        <jpa:des>Деньги</jpa:des>
+        <jpa:ath>slavb</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="long" v="true" xvt="" name="amount" id="_1571317632239194">
+                <jpa:des>Сумма</jpa:des>
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.util.Currency" v="true" xvt="" name="currency" id="_1571317644165195">
+                <jpa:des>Валюта</jpa:des>
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:embeddable>
+    <jpa:snp loc="BEFORE_PACKAGE" e="true">/**
  * This file was generated by the JPA Modeler
- */</snp>
-    <inf e="true" n="java.io.Serializable"/>
-    <c>
+ */</jpa:snp>
+    <jpa:inf e="true" n="java.io.Serializable"/>
+    <jpa:c>
         <ct>java.util.List</ct>
         <ct>java.util.Set</ct>
         <ct>java.util.Map</ct>
@@ -418,20 +425,20 @@
         <cit>java.util.HashSet</cit>
         <cit>java.util.TreeSet</cit>
         <cit>java.util.HashMap</cit>
-    </c>
-    <wsl>
-        <ws n="Main" id="_157123801533879">
-            <i ref="_155478977385433" x="326" y="489"/>
-            <i ref="_155479004646055" x="529" y="436"/>
-            <i ref="_1571317617979192" x="92" y="271"/>
-            <i ref="_155479065881382" x="529" y="828"/>
-            <i ref="_157130186335572" x="825" y="403"/>
-            <i ref="_15547892496197" x="804" y="638"/>
-            <i ref="_155478964715420" x="534" y="138"/>
-            <i ref="_1571377938427121" x="1009" y="688"/>
-            <i ref="_1571377905073118" x="1016" y="840"/>
-            <i ref="_155478925652110" x="1033" y="436"/>
-            <i ref="_155478984578741" x="32" y="32"/>
-        </ws>
-    </wsl>
-</entity-mappings>
+    </jpa:c>
+    <jpa:wsl>
+        <jpa:ws n="Main" id="_157889169992243">
+            <i ref="_155478977385433" x="935" y="779"/>
+            <i ref="_155479004646055" x="261" y="584"/>
+            <i ref="_1571317617979192" x="1152" y="1022"/>
+            <i ref="_155479065881382" x="710" y="584"/>
+            <i ref="_157130186335572" x="710" y="32"/>
+            <i ref="_15547892496197" x="496" y="281"/>
+            <i ref="_155478964715420" x="42" y="281"/>
+            <i ref="_1571377938427121" x="1152" y="577"/>
+            <i ref="_1571377905073118" x="935" y="281"/>
+            <i ref="_155478925652110" x="261" y="32"/>
+            <i ref="_155478984578741" x="710" y="1022"/>
+        </jpa:ws>
+    </jpa:wsl>
+</jpa:entity-mappings>

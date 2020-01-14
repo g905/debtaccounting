@@ -54,7 +54,8 @@ public class TransactionTest {
     public void testGetStatus() {
         System.out.println("getStatus");
         Transaction trans = new Transaction();
-        System.out.println(trans.getStatus().getCode());
-        assertEquals(trans.getStatus().getCode(), TransactionStatusCode.fromValue(1));
+        trans.setStatus(TransactionStatusCode.CREATED);
+        System.out.println(trans.getStatus());
+        assertEquals(trans.getStatus(), TransactionStatusCode.CREATED);
     }
 }

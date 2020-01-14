@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -46,7 +45,7 @@ public class Event implements Serializable {
     @Basic
     private LocalDateTime createdDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Debt debt;
 
     @OneToMany(mappedBy = "event")
@@ -161,11 +160,6 @@ public class Event implements Serializable {
         this.transactions = transactions;
     }
 
-    public Event withTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
-        return this;
-    }
-
     public void addTransaction(Transaction transaction) {
         getTransactions().add(transaction);
         transaction.setEvent(this);
@@ -174,6 +168,11 @@ public class Event implements Serializable {
     public void removeTransaction(Transaction transaction) {
         getTransactions().remove(transaction);
         transaction.setEvent(null);
+    }
+
+    public Event withTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+        return this;
     }
 
 }

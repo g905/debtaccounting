@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import javax.persistence.Basic;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -32,10 +31,10 @@ public class Entry implements Serializable {
     @Embedded
     private Money amount;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Transaction transaction;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Account account;
 
     public Entry(LocalDate date, Money amount) {

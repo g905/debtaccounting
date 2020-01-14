@@ -15,10 +15,13 @@
  */
 package ru.ilb.debtaccounting.loan.events.createloan;
 
+import java.time.LocalDate;
 import javax.validation.Validator;
 import ru.ilb.debtaccounting.model.DebtStatusCode;
 import ru.ilb.debtaccounting.model.EventHandler;
 import ru.ilb.debtaccounting.loan.Loan;
+import ru.ilb.debtaccounting.model.Account;
+import ru.ilb.debtaccounting.model.Cashflow;
 import ru.ilb.debtaccounting.model.Money;
 
 /**
@@ -37,11 +40,14 @@ public class CreateLoanEventHandler extends EventHandler<CreateLoanEvent, Loan> 
         if (debt.getStatus() != null) {
             throw new AlreadyCreatedException();
         }
-        debt.setAmount(Money.locale(968600));
-        debt.setCashflow(event.getRequest().getCashflow());
+
+        Account account = new Account();
+        Account accSource = new Account();
+        Cashflow cf = event.getRequest().getCashflow();
+        cf.addTransaction(account.deposit(Money.getTestSum(), accSource, LocalDate.now()));
+        debt.setPrincipalAccount(account);
+        debt.setCashflow(cf);
+        debt.setAmount(Money.getTestSum());
         debt.setStatus(DebtStatusCode.CREATED);
     }
-
-
-
 }

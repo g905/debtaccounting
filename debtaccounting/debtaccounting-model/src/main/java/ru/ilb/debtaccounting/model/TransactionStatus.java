@@ -45,11 +45,15 @@ public class TransactionStatus implements Serializable {
     }
 
     public TransactionStatus() {
-        this.code = TransactionStatusCode.fromValue(1);
+        this.code = TransactionStatusCode.CREATED;
     }
 
     public TransactionStatus(Long id){
         this.id=id;
+    }
+
+    public TransactionStatus(TransactionStatusCode code){
+        this.code=code;
     }
 
     public Long getId() {

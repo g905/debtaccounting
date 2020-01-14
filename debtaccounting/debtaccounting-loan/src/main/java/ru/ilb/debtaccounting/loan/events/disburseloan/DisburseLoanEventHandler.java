@@ -16,9 +16,6 @@
 package ru.ilb.debtaccounting.loan.events.disburseloan;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import javax.validation.Validator;
 import ru.ilb.debtaccounting.model.DebtStatusCode;
 import ru.ilb.debtaccounting.model.EventHandler;
@@ -26,7 +23,8 @@ import ru.ilb.debtaccounting.loan.Loan;
 import ru.ilb.debtaccounting.model.Account;
 import ru.ilb.debtaccounting.model.BusinessEntity;
 import ru.ilb.debtaccounting.model.DebtRight;
-import ru.ilb.debtaccounting.model.Money;
+import ru.ilb.debtaccounting.model.Transaction;
+import ru.ilb.debtaccounting.model.TransactionStatusCode;
 
 /**
  *
@@ -51,13 +49,12 @@ public class DisburseLoanEventHandler extends EventHandler<DisburseLoanEvent, Lo
     public void process(Loan debt, DisburseLoanEvent event) {
         if (debt.getStatus() != DebtStatusCode.CREATED) {
             throw new AlreadyDisbursedException();
-
         }
-
-        Account account = new Account();
-        Account accSource = new Account();
-        debt.setPrincipalAccount(account);
-        account.deposit(debt.getAmount(), accSource, LocalDate.now());
+        for (Transaction t : debt.getCashflow().getTransactions()) {
+            if (!(t.getStatus() == TransactionStatusCode.EXECUTED)) {
+                t.execute();
+            }
+        }
         DebtRight debtRight = new DebtRight();
         debtRight.setShare(BigDecimal.ONE);
         BusinessEntity businessEntity = new BusinessEntity();
@@ -66,5 +63,4 @@ public class DisburseLoanEventHandler extends EventHandler<DisburseLoanEvent, Lo
         debt.addDebtRight(debtRight);
         debt.setStatus(DebtStatusCode.DISBURSED);
     }
-
 }

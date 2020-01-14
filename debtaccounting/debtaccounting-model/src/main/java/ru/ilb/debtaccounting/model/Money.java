@@ -20,6 +20,8 @@ public class Money implements Serializable {
 
     private static final int[] CENTS = new int[]{1, 10, 100, 1000};
 
+    static final int TEST_SUM = 968600;
+
     /**
      * Сумма
      */
@@ -52,6 +54,11 @@ public class Money implements Serializable {
      */
     public long getAmount() {
         return amount;
+    }
+
+    public static Money getTestSum()
+    {
+        return locale(TEST_SUM);
     }
 
     /**
@@ -111,32 +118,6 @@ public class Money implements Serializable {
         return new Money(amount, Currency.getInstance(Locale.getDefault()));
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Money money = (Money) o;
-        if (amount != money.amount) {
-            return false;
-        }
-        if (currency != null ? !currency.equals(money.currency) : money.currency != null) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        result = (int) (amount ^ (amount >>> 32));
-        result = 31 * result + (currency != null ? currency.hashCode() : 0);
-        return result;
-    }
-
     /**
      * Функция складывает деньги
      *
@@ -145,7 +126,7 @@ public class Money implements Serializable {
      */
     public Money addMoney(Money other) {
         assertSameCurrencyAs(other);
-        amount+=other.amount;
+        amount += other.amount;
         return this;
     }
 
@@ -271,9 +252,34 @@ public class Money implements Serializable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Money money = (Money) o;
+        if (amount != money.amount) {
+            return false;
+        }
+        if (currency != null ? !currency.equals(money.currency) : money.currency != null) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        result = (int) (amount ^ (amount >>> 32));
+        result = 31 * result + (currency != null ? currency.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Money{" + "amount=" + amount + ", currency=" + currency + '}';
     }
-
 
 }

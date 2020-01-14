@@ -10,7 +10,6 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -18,9 +17,10 @@ import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.*;
 
 /**
+ * Транзакция
+ *
  * @author slavb
  */
-
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class Transaction implements Serializable {
@@ -35,8 +35,9 @@ public class Transaction implements Serializable {
     @Basic
     private LocalDate date;
 
-    @Embedded
-    private TransactionStatus status;
+    @Basic
+    private TransactionStatusCode status;
+
 
     /**
      * Сумма
@@ -44,16 +45,16 @@ public class Transaction implements Serializable {
     @Embedded
     private Money amount;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Event event;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Cashflow cashflow;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Account accountFrom;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Account accountTo;
 
     @OneToMany(mappedBy = "transaction")
@@ -65,11 +66,10 @@ public class Transaction implements Serializable {
         this.amount = amount;
         this.accountFrom = accountFrom;
         this.accountTo = accountTo;
-
+        this.status = TransactionStatusCode.CREATED;
     }
 
     public Transaction() {
-        this.status =  new TransactionStatus();
     }
 
     public Long getId() {
@@ -80,75 +80,28 @@ public class Transaction implements Serializable {
         this.id = id;
     }
 
-    public Transaction withId(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public TransactionStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(TransactionStatus status) {
-        this.status = status;
-    }
-
-    /**
-     * Get дата транзакции
-     *
-     * @return {@link #date}
-     */
     public LocalDate getDate() {
         return date;
     }
 
-    /**
-     * Set дата транзакции
-     *
-     * @param date {@link #date}
-     */
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    /**
-     * Set дата транзакции
-     *
-     * @param date {@link #date}
-     * @return {@link #Transaction}
-     */
-    public Transaction withDate(LocalDate date) {
-        this.date = date;
-        return this;
+    public TransactionStatusCode getStatus() {
+        return status;
     }
 
-    /**
-     * Get сумма
-     *
-     * @return {@link #amount}
-     */
+    public void setStatus(TransactionStatusCode status) {
+        this.status = status;
+    }
+
     public Money getAmount() {
         return amount;
     }
 
-    /**accountTo
-     * Set сумма
-     *
-     * @param amount {@link #amount}
-     */
     public void setAmount(Money amount) {
         this.amount = amount;
-    }
-
-    /**
-     * Set сумма
-     *
-     * @param amount {@link #amount}
-     * @return {@link #Transaction}
-     */
-    public Transaction withAmount(Money amount) {
-        this.amount = amount;
-        return this;
     }
 
     public Event getEvent() {
@@ -159,22 +112,12 @@ public class Transaction implements Serializable {
         this.event = event;
     }
 
-    public Transaction withEvent(Event event) {
-        this.event = event;
-        return this;
-    }
-
     public Cashflow getCashflow() {
         return cashflow;
     }
 
     public void setCashflow(Cashflow cashflow) {
         this.cashflow = cashflow;
-    }
-
-    public Transaction withCashflow(Cashflow cashflow) {
-        this.cashflow = cashflow;
-        return this;
     }
 
     public Account getAccountFrom() {
@@ -185,22 +128,12 @@ public class Transaction implements Serializable {
         this.accountFrom = accountFrom;
     }
 
-    public Transaction witassertSameCurrencyAshAccountFrom(Account accountFrom) {
-        this.accountFrom = accountFrom;
-        return this;
-    }
-
     public Account getAccountTo() {
         return accountTo;
     }
 
     public void setAccountTo(Account accountTo) {
         this.accountTo = accountTo;
-    }
-
-    public Transaction withAccountTo(Account accountTo) {
-        this.accountTo = accountTo;
-        return this;
     }
 
     public List<Entry> getEntries() {
@@ -214,11 +147,6 @@ public class Transaction implements Serializable {
         this.entries = entries;
     }
 
-    public Transaction withEntries(List<Entry> entries) {
-        this.entries = entries;
-        return this;
-    }
-
     public void addEntry(Entry entry) {
         getEntries().add(entry);
         entry.setTransaction(this);
@@ -229,6 +157,12 @@ public class Transaction implements Serializable {
         entry.setTransaction(null);
     }
 
+    public void switchStatus() {
+        if (LocalDate.now().equals(this.getDate())) {
+            this.setStatus(TransactionStatusCode.EXECUTED);
+        }
+    }
+
     public void execute() {
         Entry entryFrom = new Entry(date, amount.negateMoney());
         accountFrom.addEntry(entryFrom);
@@ -236,6 +170,7 @@ public class Transaction implements Serializable {
         Entry entryTo = new Entry(date, amount);
         accountTo.addEntry(entryTo);
         addEntry(entryTo);
+        this.switchStatus();
     }
 
 }

@@ -70,11 +70,6 @@ public class BusinessEntity implements Serializable {
         this.debtRights = debtRights;
     }
 
-    public BusinessEntity withDebtRights(List<DebtRight> debtRights) {
-        this.debtRights = debtRights;
-        return this;
-    }
-
     public void addDebtRight(DebtRight debtRight) {
         getDebtRights().add(debtRight);
         debtRight.setBusinessEntity(this);
@@ -83,6 +78,11 @@ public class BusinessEntity implements Serializable {
     public void removeDebtRight(DebtRight debtRight) {
         getDebtRights().remove(debtRight);
         debtRight.setBusinessEntity(null);
+    }
+
+    public BusinessEntity withDebtRights(List<DebtRight> debtRights) {
+        this.debtRights = debtRights;
+        return this;
     }
 
 }
