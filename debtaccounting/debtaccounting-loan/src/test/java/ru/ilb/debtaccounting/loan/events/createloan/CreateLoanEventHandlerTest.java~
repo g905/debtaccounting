@@ -17,12 +17,16 @@ package ru.ilb.debtaccounting.loan.events.createloan;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+<<<<<<< HEAD
+import java.time.LocalDate;
+=======
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
@@ -33,9 +37,16 @@ import ru.ilb.debtaccounting.loan.Loan;
 import ru.ilb.debtaccounting.model.Account;
 import ru.ilb.debtaccounting.model.Cashflow;
 import ru.ilb.debtaccounting.model.DebtStatusCode;
+<<<<<<< HEAD
+import ru.ilb.debtaccounting.model.Entry;
+import ru.ilb.debtaccounting.model.Money;
+import ru.ilb.debtaccounting.model.Transaction;
+import ru.ilb.debtaccounting.model.TransactionStatusCode;
+=======
 import ru.ilb.debtaccounting.model.Money;
 import ru.ilb.debtaccounting.model.Transaction;
 import ru.ilb.debtaccounting.testcase.ODSTestCase;
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
 
 /**
  *
@@ -49,6 +60,24 @@ public class CreateLoanEventHandlerTest {
     public CreateLoanEventHandlerTest() {
     }
 
+<<<<<<< HEAD
+    private static CreateLoanRequest createLoanRequest() {
+        //InputStream testData = this.getClass().getClassLoader().getResourceAsStream("testcases/createloan/cashflow.ods");
+        //ODSTestCase testCase = new ODSTestCase(testData);
+        CreateLoanRequest request = new CreateLoanRequest();
+        request.setAmount(BigDecimal.valueOf(968600));
+        request.setPeriod(60);
+        request.setRate(BigDecimal.valueOf(0.1537));
+
+        Cashflow cf = new Cashflow();
+        request.setCashflow(cf);
+
+        return request;
+    }
+
+    public static Loan process() {
+
+=======
     private static CreateLoanRequest createLoanRequest() throws IOException {
         InputStream testData = CreateLoanEventHandlerTest.class.getClassLoader().getResourceAsStream(FILE_SOURCE);
         ODSTestCase instance = new ODSTestCase(testData);
@@ -87,6 +116,7 @@ public class CreateLoanEventHandlerTest {
     public static Loan process() throws IOException {
         // InputStream testData = this.getClass().getClassLoader().getResourceAsStream("testcases/createloan/cashflow.ods");
         //  ODSTestCase testCase = new ODSTestCase(testData);
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
         Loan loan = new Loan();
 
         Cashflow cf = createLoanRequest().getCashflow();
@@ -118,6 +148,14 @@ public class CreateLoanEventHandlerTest {
         Assertions.assertEquals(DebtStatusCode.CREATED, loan.getStatus());
         Assertions.assertEquals(Money.getTestSum(), loan.getAmount());
 
+<<<<<<< HEAD
+        for (Transaction t : loan.getCashflow().getTransactions())
+        {
+            Assertions.assertEquals(TransactionStatusCode.CREATED, t.getStatus());
+        }
+        //Assertions.assertEquals(TransactionStatusCode.CREATED, t.getStatus());
+    }
+=======
     @Test
     public void testCreateLoanRequest() throws IOException {
         System.out.println("Create Loan Request");
@@ -130,4 +168,5 @@ public class CreateLoanEventHandlerTest {
         assertEquals(120, request.getCashflow().getTransactions().size());
     }
 
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
 }

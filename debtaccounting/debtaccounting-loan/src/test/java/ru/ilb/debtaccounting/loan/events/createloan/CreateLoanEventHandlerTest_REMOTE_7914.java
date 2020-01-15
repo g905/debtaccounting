@@ -16,6 +16,7 @@
 package ru.ilb.debtaccounting.loan.events.createloan;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -30,7 +31,6 @@ import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import ru.ilb.debtaccounting.loan.Loan;
-import ru.ilb.debtaccounting.model.Account;
 import ru.ilb.debtaccounting.model.Cashflow;
 import ru.ilb.debtaccounting.model.DebtStatusCode;
 import ru.ilb.debtaccounting.model.Money;
@@ -88,14 +88,6 @@ public class CreateLoanEventHandlerTest {
         // InputStream testData = this.getClass().getClassLoader().getResourceAsStream("testcases/createloan/cashflow.ods");
         //  ODSTestCase testCase = new ODSTestCase(testData);
         Loan loan = new Loan();
-
-        Cashflow cf = createLoanRequest().getCashflow();
-        Account account = new Account();
-        Account accSource = new Account();
-        cf.addTransaction(account.deposit(Money.getTestSum(), accSource, LocalDate.now()));
-        loan.setPrincipalAccount(account);
-        loan.setCashflow(cf);
-
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         CreateLoanEventHandler hanler = new CreateLoanEventHandler(validator);
@@ -116,7 +108,7 @@ public class CreateLoanEventHandlerTest {
         System.out.println("process");
         Loan loan = process();
         Assertions.assertEquals(DebtStatusCode.CREATED, loan.getStatus());
-        Assertions.assertEquals(Money.getTestSum(), loan.getAmount());
+    }
 
     @Test
     public void testCreateLoanRequest() throws IOException {

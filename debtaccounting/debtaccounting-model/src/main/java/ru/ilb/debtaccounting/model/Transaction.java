@@ -66,6 +66,7 @@ public class Transaction implements Serializable {
         this.amount = amount;
         this.accountFrom = accountFrom;
         this.accountTo = accountTo;
+
         this.status = TransactionStatusCode.CREATED;
     }
 

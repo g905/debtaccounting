@@ -48,6 +48,10 @@ public class CreateLoanRequest extends LoanEventRequest {
     @NotNull
     Cashflow cashflow;
 
+    /**
+     * Дата выдачи кредита
+     */
+
     public BigDecimal getAmount() {
         return amount;
     }

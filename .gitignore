@@ -1,6 +1,16 @@
+<<<<<<< HEAD
 /debtaccounting/debtaccounting-model/target/
 /debtaccounting/debtaccounting-testcase/target/
 /debtaccounting/debtaccounting-loan/target/
 /debtaccounting/debtaccounting-api/target/
 /debtaccounting/debtaccounting-web/target/
 /debtaccounting/debtaccounting-model/nbproject/
+=======
+/debtaccounting/debtaccounting-api/target/
+/debtaccounting/debtaccounting-utils/target/
+/debtaccounting/debtaccounting-model/target/
+/debtaccounting/debtaccounting-testcase/target/
+/debtaccounting/debtaccounting-validation/target/
+/debtaccounting/debtaccounting-web/target/
+/debtaccounting/debtaccounting-loan/target/
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c

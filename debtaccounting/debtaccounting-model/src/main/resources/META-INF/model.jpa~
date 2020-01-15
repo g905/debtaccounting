@@ -58,6 +58,7 @@
         <jpa:ath>slavb</jpa:ath>
         <jpa:attributes>
             <jpa:basic attribute-type="java.time.LocalDate" v="true" xvt="" name="date" id="_155479029845376">
+<<<<<<< HEAD
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
@@ -84,6 +85,34 @@
                 <jpa:xwm/>
                 <jpa:xm/>
                 <jpa:generated-value strategy="DEFAULT"/>
+=======
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="ru.ilb.debtaccounting.model.EventRequest" v="true" xvt="" name="request" id="_157130263119190">
+                <jpa:an e="true" n="@javax.validation.Valid"/>
+                <jpa:des>Запрос</jpa:des>
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.time.LocalDateTime" v="true" xvt="" name="createdDate" id="_1571303297407127">
+                <jpa:des>Дата создания</jpa:des>
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_15547892496197" connected-attribute-id="_155478966206325" v="true" xvt="" name="debt" id="_155478966206224">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:many-to-one>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478964715420" connected-attribute-id="_155478966997427" v="true" xvt="" name="transactions" id="_155478966997628">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_155478925652211">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+                <jpa:generated-value/>
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
             </jpa:id>
         </jpa:attributes>
         <jpa:nq e="false" name="Event.findAll">
@@ -112,6 +141,7 @@
         <jpa:attributes>
             <jpa:basic attribute-type="java.time.LocalDate" v="true" xvt="" name="date" id="_1571314056178113">
                 <jpa:des>Дата транзакции</jpa:des>
+<<<<<<< HEAD
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
@@ -148,6 +178,44 @@
                 <jpa:xwm/>
                 <jpa:xm/>
                 <jpa:generated-value strategy="DEFAULT"/>
+=======
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="ru.ilb.debtaccounting.model.TransactionStatusCode" v="true" xvt="" name="status" id="_157891409040730">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155478925652110" connected-attribute-id="_155478966997628" v="true" xvt="" name="event" id="_155478966997427">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_157130186335572" connected-attribute-id="_157130198154785" v="true" xvt="" name="cashflow" id="_157130198154684">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="accountFrom" id="_1571315173012153">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" v="true" xvt="" name="accountTo" id="_1571315198144155">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:many-to-one>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478984578741" connected-attribute-id="_155478988629448" v="true" xvt="" name="entries" id="_155478988629449">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:one-to-many>
+            <jpa:embedded connected-class-id="_1571317617979192" v="true" xvt="" name="amount" id="_1571318024132199">
+                <jpa:des>Сумма</jpa:des>
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:embedded>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_155478964715521">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+                <jpa:generated-value/>
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
             </jpa:id>
         </jpa:attributes>
         <jpa:nq e="false" name="Transaction.findAll">
@@ -169,6 +237,7 @@
         <jpa:attributes>
             <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_157130161523071">
                 <jpa:des>Наименование счета</jpa:des>
+<<<<<<< HEAD
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
@@ -189,6 +258,28 @@
                 <jpa:xwm/>
                 <jpa:xm/>
                 <jpa:generated-value strategy="DEFAULT"/>
+=======
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155479004646055" connected-attribute-id="_155479006402262" v="true" xvt="" name="debtAccounts" id="_155479006402363">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:one-to-many>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478984578741" connected-attribute-id="_1571313873416111" v="true" xvt="" name="entries" id="_1571313873416112">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:one-to-many>
+            <jpa:embedded connected-class-id="_1571317617979192" v="true" xvt="" name="amount" id="_1571325113731113">
+                <jpa:des>Остаток на счете</jpa:des>
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:embedded>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_155478977386534">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+                <jpa:generated-value/>
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
             </jpa:id>
         </jpa:attributes>
         <jpa:nq e="false" name="Account.findAll">
@@ -211,6 +302,7 @@
         <jpa:ath>slavb</jpa:ath>
         <jpa:attributes>
             <jpa:basic attribute-type="java.time.LocalDate" v="true" xvt="" name="date" id="_1571314155020115">
+<<<<<<< HEAD
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
@@ -230,6 +322,27 @@
                 <jpa:xwm/>
                 <jpa:xm/>
                 <jpa:generated-value strategy="DEFAULT"/>
+=======
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155478964715420" connected-attribute-id="_155478988629449" v="true" xvt="" name="transaction" id="_155478988629448">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" connected-attribute-id="_1571313873416112" v="true" xvt="" name="account" id="_1571313873416111">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:many-to-one>
+            <jpa:embedded connected-class-id="_1571317617979192" v="true" xvt="" name="amount" id="_1571317936709197">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:embedded>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_155478984579342">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+                <jpa:generated-value/>
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
             </jpa:id>
         </jpa:attributes>
         <jpa:nq e="false" name="Entry.findAll">
@@ -247,25 +360,41 @@
         <jpa:ath>slavb</jpa:ath>
         <jpa:attributes>
             <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_15547892496197" connected-attribute-id="_155479005796660" v="true" xvt="" name="debt" id="_155479005796659">
+<<<<<<< HEAD
                 <jpa:xwm/>
                 <jpa:xm/>
+=======
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
                 <jpa:cascade>
                     <jpa:cascade-persist/>
                     <jpa:cascade-merge/>
                 </jpa:cascade>
             </jpa:many-to-one>
             <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_155478977385433" connected-attribute-id="_155479006402363" v="true" xvt="" name="account" id="_155479006402262">
+<<<<<<< HEAD
                 <jpa:xwm/>
                 <jpa:xm/>
+=======
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
                 <jpa:cascade>
                     <jpa:cascade-persist/>
                     <jpa:cascade-merge/>
                 </jpa:cascade>
             </jpa:many-to-one>
             <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_155479004646556">
+<<<<<<< HEAD
                 <jpa:xwm/>
                 <jpa:xm/>
                 <jpa:generated-value strategy="DEFAULT"/>
+=======
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+                <jpa:generated-value/>
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
             </jpa:id>
         </jpa:attributes>
         <jpa:nq e="false" name="DebtAccount.findAll">
@@ -290,6 +419,7 @@
         <jpa:attributes>
             <jpa:basic attribute-type="DebtStatusCode" v="true" xvt="" name="code" id="_155479067419885">
                 <jpa:des>код</jpa:des>
+<<<<<<< HEAD
                 <jpa:xwm/>
                 <jpa:xm/>
                 <jpa:enumerated>STRING</jpa:enumerated>
@@ -307,6 +437,25 @@
                 <jpa:xwm/>
                 <jpa:xm/>
                 <jpa:generated-value strategy="DEFAULT"/>
+=======
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+                <jpa:enumerated>STRING</jpa:enumerated>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_155479067626286">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="boolean" v="true" xvt="" name="disbursed" id="_155479236948136">
+                <jpa:des>Выдан</jpa:des>
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_155479065882383">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+                <jpa:generated-value/>
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
             </jpa:id>
         </jpa:attributes>
         <jpa:nq e="false" name="DebtStatus.findAll">
@@ -327,6 +476,7 @@
         <jpa:ath>slavb</jpa:ath>
         <jpa:attributes>
             <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_155478964715420" connected-attribute-id="_157130198154684" v="true" xvt="" name="transactions" id="_157130198154785">
+<<<<<<< HEAD
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:one-to-many>
@@ -334,6 +484,15 @@
                 <jpa:xwm/>
                 <jpa:xm/>
                 <jpa:generated-value strategy="DEFAULT"/>
+=======
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_157130186344473">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+                <jpa:generated-value/>
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
             </jpa:id>
         </jpa:attributes>
         <jpa:nq e="false" name="Cashflow.findAll">
@@ -346,6 +505,7 @@
         <jpa:attributes>
             <jpa:basic attribute-type="java.math.BigDecimal" v="true" xvt="" name="share" id="_1571378025273131">
                 <jpa:des>Доля</jpa:des>
+<<<<<<< HEAD
                 <jpa:xwm/>
                 <jpa:xm/>
                 <jpa:column unique="false" nullable="true" insertable="true" updatable="true" precision="3" scale="1"/>
@@ -362,6 +522,24 @@
                 <jpa:xwm/>
                 <jpa:xm/>
                 <jpa:generated-value strategy="DEFAULT"/>
+=======
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" precision="3" scale="1"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1571377938427121" connected-attribute-id="_1571377994151127" v="true" xvt="" name="businessEntity" id="_1571377994150126">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_15547892496197" connected-attribute-id="_1571377999466130" v="true" xvt="" name="debt" id="_1571377999465129">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:many-to-one>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_1571377905135119">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+                <jpa:generated-value/>
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
             </jpa:id>
         </jpa:attributes>
         <jpa:nq e="false" name="DebtRight.findAll">
@@ -376,6 +554,7 @@
         <jpa:ath>slavb</jpa:ath>
         <jpa:attributes>
             <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_1571377954303124">
+<<<<<<< HEAD
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
@@ -387,6 +566,19 @@
                 <jpa:xwm/>
                 <jpa:xm/>
                 <jpa:generated-value strategy="DEFAULT"/>
+=======
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1571377905073118" connected-attribute-id="_1571377994150126" v="true" xvt="" name="debtRights" id="_1571377994151127">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_1571377938472122">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+                <jpa:generated-value/>
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
             </jpa:id>
         </jpa:attributes>
         <jpa:nq e="false" name="BusinessEntity.findAll">
@@ -402,6 +594,7 @@
         <jpa:attributes>
             <jpa:basic attribute-type="long" v="true" xvt="" name="amount" id="_1571317632239194">
                 <jpa:des>Сумма</jpa:des>
+<<<<<<< HEAD
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
@@ -409,6 +602,15 @@
                 <jpa:des>Валюта</jpa:des>
                 <jpa:xwm/>
                 <jpa:xm/>
+=======
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.util.Currency" v="true" xvt="" name="currency" id="_1571317644165195">
+                <jpa:des>Валюта</jpa:des>
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
             </jpa:basic>
         </jpa:attributes>
     </jpa:embeddable>
@@ -428,6 +630,7 @@
         <cit>java.util.HashMap</cit>
     </jpa:c>
     <jpa:wsl>
+<<<<<<< HEAD
         <jpa:ws n="Main" id="_157889169992243">
             <i ref="_155478977385433" x="935" y="779"/>
             <i ref="_155479004646055" x="261" y="584"/>
@@ -440,6 +643,20 @@
             <i ref="_1571377905073118" x="935" y="281"/>
             <i ref="_155478925652110" x="261" y="32"/>
             <i ref="_155478984578741" x="710" y="1022"/>
+=======
+        <jpa:ws n="Main" id="_15789140781601">
+            <i ref="_155478977385433" x="928" y="939"/>
+            <i ref="_155479004646055" x="252" y="741"/>
+            <i ref="_1571317617979192" x="713" y="1184"/>
+            <i ref="_155479065881382" x="713" y="741"/>
+            <i ref="_157130186335572" x="252" y="222"/>
+            <i ref="_15547892496197" x="477" y="433"/>
+            <i ref="_155478964715420" x="32" y="433"/>
+            <i ref="_1571377938427121" x="477" y="32"/>
+            <i ref="_1571377905073118" x="713" y="222"/>
+            <i ref="_155478925652110" x="928" y="433"/>
+            <i ref="_155478984578741" x="1127" y="1184"/>
+>>>>>>> 8af8adda2e6c42d28b641b78a6336ec4167e092c
         </jpa:ws>
     </jpa:wsl>
 </jpa:entity-mappings>

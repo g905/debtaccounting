@@ -93,7 +93,6 @@ public class ODSTestCase extends TestCase {
             for (int i = 0; i < sheet.getMaxRows() - 1; i++) {
                 colValues[i] = ValueConverter.convertValue(colValues2D[i][0]);
             }
-
             columns.put(colName, colValues);
         }
         return columns;
